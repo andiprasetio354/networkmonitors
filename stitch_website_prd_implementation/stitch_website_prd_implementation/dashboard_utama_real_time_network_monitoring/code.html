@@ -1,0 +1,1137 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_dashboard" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@500;600;700&amp;family=Space+Grotesk:wght@500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config={darkMode:"class",theme:{extend:{colors:{"on-secondary-fixed-variant":"#004d67","on-tertiary-fixed-variant":"#314865","status-online":"#10B981","secondary-fixed":"#c2e8ff","on-tertiary-container":"#f0f4ff","status-maintenance-surface":"#EEF2FF","surface-container-high":"#dce9ff","surface-canvas":"#F4F7FB","surface-container-highest":"#d3e4fe","inverse-primary":"#b4c5ff","surface-tint":"#0053da","tertiary-container":"#5a7190","on-background":"#0b1c30","on-secondary-container":"#004b65","tertiary-fixed-dim":"#b0c8eb","on-surface":"#0b1c30","text-muted":"#94A3B8","surface-container-lowest":"#ffffff","secondary-fixed-dim":"#75d1ff","primary":"#004cca","primary-fixed":"#dbe1ff","on-secondary":"#ffffff","secondary-container":"#00c1fd","on-primary-fixed-variant":"#003ea8","status-maintenance":"#6366F1","on-secondary-fixed":"#001e2b","status-unreachable":"#F59E0B","surface":"#f8f9ff","on-error-container":"#93000a","border-strong":"#CBD5E1","tertiary":"#415976","on-primary":"#ffffff","telemetry-cyan":"#00C2FF","status-online-surface":"#ECFDF5","on-surface-variant":"#424656","on-primary-fixed":"#00174b","status-offline-glow":"#F87171","surface-variant":"#d3e4fe","on-primary-container":"#f3f3ff","primary-container":"#0062ff","error-container":"#ffdad6","status-unreachable-surface":"#FFFBEB","primary-fixed-dim":"#b4c5ff","surface-card-subtle":"#F8FAFC","border-subtle":"#E2E8F0","outline-variant":"#c2c6d9","tertiary-fixed":"#d2e4ff","on-error":"#ffffff","status-online-glow":"#34D399","surface-container-low":"#eff4ff","status-offline-surface":"#FEF2F2","secondary":"#006688","outline":"#737687","on-tertiary":"#ffffff","surface-bright":"#f8f9ff","surface-card":"#FFFFFF","error":"#ba1a1a","on-tertiary-fixed":"#001c37","text-primary":"#0F172A","inverse-on-surface":"#eaf1ff","inverse-surface":"#213145","surface-container":"#e5eeff","text-secondary":"#475569","background":"#f8f9ff","surface-dim":"#cbdbf5","status-offline":"#EF4444"},borderRadius:{DEFAULT:"0.25rem",lg:"0.5rem",xl:"0.75rem",full:"9999px"},spacing:{"space-2xl":"3rem","margin-desktop":"2rem","space-xs":"0.25rem","space-xl":"2rem","margin":"1rem","space-lg":"1.25rem","gutter":"1rem","margin-tablet":"1.5rem","space-sm":"0.5rem","gutter-desktop":"1.5rem","space-md":"0.75rem"},fontFamily:{"telemetry-badge":["JetBrains Mono"],"body-md":["Inter"],"headline-md":["Space Grotesk"],"headline-lg":["Space Grotesk"],"body-lg":["Inter"],"body-sm":["Inter"],"headline-lg-mobile":["Space Grotesk"],"label-caps":["Space Grotesk"],"display-hero":["Space Grotesk"],"headline-sm":["Space Grotesk"],"telemetry-data":["JetBrains Mono"]},fontSize:{"telemetry-badge":["11px",{lineHeight:"14px",letterSpacing:"0.05em",fontWeight:"700"}],"body-md":["14px",{lineHeight:"20px",fontWeight:"400"}],"headline-md":["24px",{lineHeight:"32px",letterSpacing:"-0.01em",fontWeight:"600"}],"headline-lg":["32px",{lineHeight:"40px",letterSpacing:"-0.02em",fontWeight:"700"}],"body-lg":["16px",{lineHeight:"24px",fontWeight:"400"}],"body-sm":["12px",{lineHeight:"16px",fontWeight:"400"}],"headline-lg-mobile":["26px",{lineHeight:"34px",letterSpacing:"-0.01em",fontWeight:"700"}],"label-caps":["11px",{lineHeight:"16px",letterSpacing:"0.08em",fontWeight:"700"}],"display-hero":["48px",{lineHeight:"56px",letterSpacing:"-0.03em",fontWeight:"700"}],"headline-sm":["18px",{lineHeight:"26px",letterSpacing:"0em",fontWeight:"600"}],"telemetry-data":["13px",{lineHeight:"18px",letterSpacing:"-0.01em",fontWeight:"600"}]}}}};</script></head><body class="bg-surface-canvas font-body-md text-on-surface"><aside class="fixed left-0 top-0 h-full w-72 bg-surface-card border-r border-border-subtle z-50 flex flex-col justify-between shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="flex flex-col"><div class="h-16 px-gutter flex items-center gap-space-sm border-b border-border-subtle"><img alt="Wifitics Logo" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/ALJJyrBLmPbDo2Pety1K2Xjnfrst_J5RLW6g3C6a7sYxJzV86k4rlcBPsGfZFHZeyw0u9hkpQfijeJNN0INrfHbSfi6Ik2oCMze9JGzaRGfSuQ5UGK2o66GYZo-sLjPqQRN_OAnA_5ktS1hPtoYzwDEWTQqX5jeaH9J5RKbHKxValFzgAWWn3iTTskCWlIyulGFS1tTZuML1rSHvJawLI5l2o8D5BNA3piakKf9arVRZOg"/><div class="flex flex-col"><span class="font-headline-sm text-headline-sm font-bold text-on-surface tracking-tight">Wifitics</span><span class="font-label-caps text-label-caps uppercase text-telemetry-cyan font-bold tracking-widest text-[9px] leading-[10px]">NOC Commander v4.2</span></div></div><div class="px-space-md py-space-sm"><div class="px-space-sm py-space-xs font-label-caps text-label-caps uppercase text-text-muted">Telemetri &amp; Operasional</div></div><nav class="flex flex-col gap-space-xs px-space-md" data-active-classes="bg-primary-container text-on-primary font-semibold shadow-[0_2px_8px_rgba(0,98,255,0.3)]"><a aria-current="page" class="flex items-center gap-space-md px-space-md py-space-sm rounded-lg transition-all group bg-primary-container text-on-primary font-semibold shadow-[0_2px_8px_rgba(0,98,255,0.3)]" data-path="dashboard-utama" href="#"><span class="material-symbols-outlined text-[20px] text-text-muted group-hover:text-primary transition-colors">monitoring</span><span class="font-body-md text-body-md">Dashboard Utama</span></a><a class="flex items-center gap-space-md px-space-md py-space-sm rounded-lg text-text-secondary hover:bg-surface-container-low hover:text-on-surface transition-all group" data-path="manajemen-perangkat" href="#"><span class="material-symbols-outlined text-[20px] text-text-muted group-hover:text-primary transition-colors">router</span><span class="font-body-md text-body-md">Manajemen Perangkat</span></a><a class="flex items-center gap-space-md px-space-md py-space-sm rounded-lg text-text-secondary hover:bg-surface-container-low hover:text-on-surface transition-all group" data-path="topologi-jaringan" href="#"><span class="material-symbols-outlined text-[20px] text-text-muted group-hover:text-primary transition-colors">hub</span><span class="font-body-md text-body-md">Topologi Jaringan</span></a><a class="flex items-center gap-space-md px-space-md py-space-sm rounded-lg text-text-secondary hover:bg-surface-container-low hover:text-on-surface transition-all group" data-path="riwayat-log-insiden" href="#"><span class="material-symbols-outlined text-[20px] text-text-muted group-hover:text-primary transition-colors">receipt_long</span><span class="font-body-md text-body-md">Riwayat &amp; Log Insiden</span></a></nav><div class="px-space-md pt-space-lg pb-space-xs"><div class="px-space-sm py-space-xs font-label-caps text-label-caps uppercase text-text-muted">Konfigurasi Sistem</div></div><nav class="flex flex-col gap-space-xs px-space-md" data-active-classes="bg-primary-container text-on-primary font-semibold shadow-[0_2px_8px_rgba(0,98,255,0.3)]"><a class="flex items-center gap-space-md px-space-md py-space-sm rounded-lg text-text-secondary hover:bg-surface-container-low hover:text-on-surface transition-all group" data-path="pengaturan-notifikasi" href="#"><span class="material-symbols-outlined text-[20px] text-text-muted group-hover:text-primary transition-colors">notifications_active</span><span class="font-body-md text-body-md">Pengaturan Notifikasi</span></a><a class="flex items-center gap-space-md px-space-md py-space-sm rounded-lg text-text-secondary hover:bg-surface-container-low hover:text-on-surface transition-all group" data-path="pengaturan-sistem" href="#"><span class="material-symbols-outlined text-[20px] text-text-muted group-hover:text-primary transition-colors">settings_suggest</span><span class="font-body-md text-body-md">Pengaturan Sistem</span></a></nav></div><div class="p-space-md m-space-md rounded-xl bg-surface-card-subtle border border-border-subtle flex flex-col gap-space-xs"><div class="flex items-center justify-between"><span class="font-label-caps text-label-caps uppercase text-text-muted">Cluster Status</span><span class="font-telemetry-badge text-telemetry-badge text-status-online bg-status-online-surface px-space-xs py-0.5 rounded border border-status-online/20">OPTIMAL</span></div><div class="flex items-center justify-between text-body-sm font-body-sm text-text-secondary mt-space-xs"><span>Avg Latency</span><span class="font-telemetry-data text-telemetry-data text-on-surface font-semibold">14.2 ms</span></div><div class="flex items-center justify-between text-body-sm font-body-sm text-text-secondary"><span>Active Nodes</span><span class="font-telemetry-data text-telemetry-data text-primary font-semibold">148 / 152</span></div></div></aside><div class="pl-72"><header class="fixed top-0 left-72 right-0 h-16 bg-surface-card/90 backdrop-blur-xl border-b border-border-subtle z-40 flex items-center justify-between px-margin-desktop"><div class="flex items-center gap-gutter"><div class="inline-flex items-center gap-space-xs px-space-md py-1 rounded-full bg-status-online-surface border border-status-online/30 text-status-online font-telemetry-badge text-telemetry-badge shadow-[0_0_10px_rgba(16,185,129,0.2)]"><span class="relative flex h-2 w-2"><span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-status-online opacity-75"></span><span class="relative inline-flex rounded-full h-2 w-2 bg-status-online"></span></span><span>WebSocket Connected • 2s refresh</span></div><div class="relative hidden lg:flex items-center"><span class="material-symbols-outlined absolute left-space-md text-text-muted text-[18px]">search</span><input class="pl-10 pr-space-md py-1.5 w-80 rounded-lg bg-surface-canvas border border-border-subtle font-body-sm text-body-sm text-on-surface placeholder:text-text-muted focus:outline-none focus:border-primary focus:ring-2 focus:ring-telemetry-cyan/20 transition-all font-telemetry-data" placeholder="Quick IP, MAC, Subnet (e.g. 192.168.1.0/24)..." type="text"/></div></div><div class="flex items-center gap-space-lg"><button class="relative p-space-sm rounded-lg hover:bg-surface-container-low text-text-secondary hover:text-on-surface transition-colors" type="button"><span class="material-symbols-outlined text-[22px]">notifications</span><span class="absolute top-1.5 right-1.5 flex h-4 min-w-[16px] items-center justify-center rounded-full bg-status-offline px-1 font-telemetry-badge text-[10px] font-bold text-on-error ring-2 ring-surface-card">4</span></button><div class="h-6 w-px bg-border-subtle"></div><div class="flex items-center gap-space-md pl-space-xs"><div class="flex flex-col text-right hidden sm:flex"><span class="font-body-md text-body-md font-semibold text-on-surface leading-tight">IT Admin Ops</span><span class="font-label-caps text-[10px] text-text-muted uppercase font-bold">Root Access • NOC-1</span></div><img alt="Profile" class="w-8 h-8 rounded-full object-cover ring-2 ring-primary/20" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDoViGmDXBPNNL36RDP3LK8gw4MmOX4DCp5-4AcNpqqjwUkY-vtFfeA4xtCNQnuJBLi9i2JUMgqkgFnkvy_AC4KlEE7Z0Qn9kZfiVC5xlcdM_nnAUtk7A7YGiLJQ26FLkCrz9W6BwAhuV36UBRqQvB3C_x3Idb_UIoMDwLv9v1c3BELwnE2W2WEyMyyBEtqchYYQQEoyOAtuCP4zey60mXBYz85Ksa1rbGlDtjYQQ"/></div></div></header><main class="w-full pt-16 bg-surface-canvas min-h-screen px-margin-desktop py-space-xl"><div class="flex flex-col w-full gap-space-xl">
+<!-- Operational Alert Banner & NOC Quick Control Bar -->
+<div class="relative overflow-hidden rounded-xl bg-surface-card p-space-lg shadow-sm flex flex-col lg:flex-row lg:items-center justify-between gap-space-lg">
+<div class="absolute -right-16 -top-16 w-64 h-64 rounded-full bg-telemetry-cyan/10 blur-3xl pointer-events-none"></div>
+<div class="flex flex-col gap-space-xs z-10">
+<div class="flex items-center gap-space-sm">
+<span class="font-label-caps text-label-caps uppercase text-primary font-bold">NOC Enterprise Control • HQ Tower</span>
+<span class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-status-online-surface text-status-online font-telemetry-badge text-telemetry-badge">
+<span class="w-1.5 h-1.5 rounded-full bg-status-online animate-ping"></span>
+          Telemetry Synced (1.4s)
+        </span>
+</div>
+<h1 class="font-headline-lg text-headline-lg text-text-primary tracking-tight">Office Network Operations Center</h1>
+<p class="font-body-md text-body-md text-text-secondary max-w-2xl">
+        Pemantauan terpusat multi-lantai real-time. 4 insiden terdeteksi membutuhkan penanganan proaktif oleh tim infrastruktur.
+      </p>
+</div>
+<!-- NOC Action Controls -->
+<div class="flex flex-wrap items-center gap-space-md z-10">
+<button class="group inline-flex items-center gap-space-sm px-space-lg py-space-sm rounded-lg bg-primary-container hover:bg-primary text-on-primary font-body-md font-semibold shadow-sm transition-all" id="btn-ping-all" onclick="triggerGlobalPing()">
+<span class="material-symbols-outlined text-[20px] transition-transform duration-700" id="ping-icon">sync</span>
+<span>Quick Scan / Ping All</span>
+</button>
+<button class="inline-flex items-center gap-space-sm px-space-md py-space-sm rounded-lg bg-surface-container-low hover:bg-surface-container text-text-primary font-body-md font-medium transition-colors" id="btn-tv-mode" onclick="toggleTvDisplay()">
+<span class="material-symbols-outlined text-[20px] text-text-secondary">tv</span>
+<span>TV Wall Mode</span>
+</button>
+<div class="hidden sm:flex items-center gap-space-xs pl-space-sm bg-surface-container-low/60 rounded-lg p-1">
+<button class="px-space-sm py-1 rounded bg-surface-card text-primary font-telemetry-badge text-telemetry-badge shadow-sm">HQ NOC-1</button>
+<button class="px-space-sm py-1 rounded text-text-muted hover:text-text-primary font-telemetry-badge text-telemetry-badge transition-colors">DC BEKASI</button>
+</div>
+</div>
+</div>
+<!-- KPI 4 Summary Grid (F-10, F-11) -->
+<div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-space-lg">
+<!-- Total Perangkat -->
+<div class="relative overflow-hidden rounded-xl bg-surface-card p-space-lg shadow-sm flex flex-col justify-between">
+<div class="absolute top-0 left-0 right-0 h-1 bg-primary"></div>
+<div class="flex items-start justify-between">
+<div class="flex flex-col">
+<span class="font-label-caps text-label-caps uppercase text-text-muted">Total Perangkat Monitored</span>
+<div class="flex items-baseline gap-space-xs mt-1">
+<span class="font-display-hero text-headline-lg font-bold text-text-primary">148</span>
+<span class="font-telemetry-data text-telemetry-data text-text-secondary">Nodes</span>
+</div>
+</div>
+<div class="w-10 h-10 rounded-xl bg-surface-container-low flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[22px]">developer_board</span>
+</div>
+</div>
+<div class="mt-space-md flex items-center justify-between text-body-sm text-text-secondary">
+<span class="flex items-center gap-1 font-telemetry-data text-[12px]">
+<span class="inline-block w-2 h-2 rounded-full bg-primary"></span>
+          5 Lantai + Data Center
+        </span>
+<span class="font-telemetry-badge text-telemetry-badge text-text-muted">100% DISCOVERED</span>
+</div>
+</div>
+<!-- Perangkat Online -->
+<div class="relative overflow-hidden rounded-xl bg-surface-card p-space-lg shadow-sm flex flex-col justify-between">
+<div class="absolute top-0 left-0 right-0 h-1 bg-status-online"></div>
+<div class="flex items-start justify-between">
+<div class="flex flex-col">
+<span class="font-label-caps text-label-caps uppercase text-text-muted">Online / Sehat</span>
+<div class="flex items-baseline gap-space-xs mt-1">
+<span class="font-display-hero text-headline-lg font-bold text-status-online">142</span>
+<span class="font-telemetry-data text-telemetry-data text-status-online font-semibold">95.9%</span>
+</div>
+</div>
+<div class="w-10 h-10 rounded-xl bg-status-online-surface flex items-center justify-center text-status-online">
+<span class="material-symbols-outlined text-[22px]">verified</span>
+</div>
+</div>
+<div class="mt-space-md flex items-center justify-between text-body-sm text-text-secondary">
+<span class="flex items-center gap-1 font-telemetry-data text-[12px] text-status-online font-semibold">
+<span class="material-symbols-outlined text-[14px]">trending_up</span>
+          Latency stabil 12.4ms
+        </span>
+<span class="font-telemetry-badge text-telemetry-badge text-status-online">HEALTHY CLUSTER</span>
+</div>
+</div>
+<!-- Perangkat Offline (Critical Attention) -->
+<div class="relative overflow-hidden rounded-xl bg-surface-card p-space-lg shadow-sm flex flex-col justify-between ring-1 ring-status-offline/30">
+<div class="absolute top-0 left-0 right-0 h-1 bg-status-offline"></div>
+<div class="flex items-start justify-between">
+<div class="flex flex-col">
+<span class="font-label-caps text-label-caps uppercase text-status-offline font-bold flex items-center gap-1">
+<span class="relative flex h-2 w-2">
+<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-status-offline opacity-75"></span>
+<span class="relative inline-flex rounded-full h-2 w-2 bg-status-offline"></span>
+</span>
+            Kritis: Terputus / Down
+          </span>
+<div class="flex items-baseline gap-space-xs mt-1">
+<span class="font-display-hero text-headline-lg font-bold text-status-offline">4</span>
+<span class="font-telemetry-data text-telemetry-data text-status-offline font-semibold">Nodes Tumbang</span>
+</div>
+</div>
+<div class="w-10 h-10 rounded-xl bg-status-offline-surface flex items-center justify-center text-status-offline">
+<span class="material-symbols-outlined text-[22px]">fmd_bad</span>
+</div>
+</div>
+<div class="mt-space-md flex items-center justify-between text-body-sm text-status-offline">
+<span class="font-body-sm text-body-sm font-semibold">Perlu Intervensi Segera</span>
+<span class="font-telemetry-badge text-telemetry-badge bg-status-offline-surface px-1.5 py-0.5 rounded text-status-offline">TRAP LINKDOWN</span>
+</div>
+</div>
+<!-- Perangkat Unreachable / Parent Down -->
+<div class="relative overflow-hidden rounded-xl bg-surface-card p-space-lg shadow-sm flex flex-col justify-between">
+<div class="absolute top-0 left-0 right-0 h-1 bg-status-unreachable"></div>
+<div class="flex items-start justify-between">
+<div class="flex flex-col">
+<span class="font-label-caps text-label-caps uppercase text-text-muted">Unreachable (Parent Down)</span>
+<div class="flex items-baseline gap-space-xs mt-1">
+<span class="font-display-hero text-headline-lg font-bold text-status-unreachable">2</span>
+<span class="font-telemetry-data text-telemetry-data text-status-unreachable font-semibold">Isolasi Jalur</span>
+</div>
+</div>
+<div class="w-10 h-10 rounded-xl bg-status-unreachable-surface flex items-center justify-center text-status-unreachable">
+<span class="material-symbols-outlined text-[22px]">alt_route</span>
+</div>
+</div>
+<div class="mt-space-md flex items-center justify-between text-body-sm text-text-secondary">
+<span class="flex items-center gap-1 font-telemetry-data text-[12px] text-status-unreachable">
+          Switch Transit Terputus
+        </span>
+<span class="font-telemetry-badge text-telemetry-badge text-status-unreachable">DEPENDENCY BLOCK</span>
+</div>
+</div>
+</div>
+<!-- Priority Triage Panel (F-15: Perangkat Terputus / Perlu Perhatian) -->
+<div class="rounded-xl bg-surface-card p-space-lg shadow-sm flex flex-col gap-space-md">
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-space-sm">
+<div class="flex items-center gap-space-sm">
+<div class="p-2 rounded-lg bg-status-offline-surface text-status-offline">
+<span class="material-symbols-outlined text-[22px]">warning</span>
+</div>
+<div class="flex flex-col">
+<div class="flex items-center gap-space-xs">
+<h2 class="font-headline-sm text-headline-sm font-bold text-text-primary">Insiden Aktif • Prioritas Penanganan NOC</h2>
+<span class="px-2 py-0.5 rounded-full bg-status-offline text-on-error font-telemetry-badge text-telemetry-badge">4 ALERTS</span>
+</div>
+<span class="font-body-sm text-body-sm text-text-secondary">Perangkat offline diurutkan berdasarkan dampak topologi dan durasi putus.</span>
+</div>
+</div>
+<div class="flex items-center gap-space-xs">
+<span class="font-body-sm text-body-sm text-text-muted">Auto-escalation SLA:</span>
+<span class="font-telemetry-data text-telemetry-data text-status-offline font-semibold">16 Menit Tersisa</span>
+</div>
+</div>
+<!-- Alert Cards Horizontal Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-space-md pt-space-xs">
+<!-- Incident 1: Core Switch (Impact Kritis) -->
+<div class="rounded-xl bg-surface-card-subtle p-space-md flex flex-col justify-between gap-space-md shadow-sm hover:shadow transition-shadow">
+<div class="flex flex-col gap-space-xs">
+<div class="flex items-center justify-between">
+<span class="font-telemetry-badge text-telemetry-badge text-status-offline bg-status-offline-surface px-2 py-0.5 rounded uppercase font-bold">DOWN • 8m lalu</span>
+<span class="font-label-caps text-label-caps text-text-muted font-bold">CORE SWITCH</span>
+</div>
+<div class="flex items-center gap-2 mt-1">
+<span class="material-symbols-outlined text-[20px] text-status-offline">device_hub</span>
+<span class="font-headline-sm text-[16px] font-bold text-text-primary leading-tight">SW-CORE-FL03</span>
+</div>
+<div class="flex items-center justify-between font-telemetry-data text-telemetry-data text-text-secondary mt-1">
+<span>192.168.10.1</span>
+<span class="text-text-muted">Lantai 3 Rack-C</span>
+</div>
+<div class="p-2 rounded bg-surface-card text-body-sm text-text-secondary flex flex-col gap-1 mt-1">
+<span class="text-[11px] font-semibold text-status-offline flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">cell_tower</span> SNMP trap linkDown port Gi0/1
+            </span>
+<span class="text-[11px] text-text-muted">PIC: Tier-2 Network Team (On-site)</span>
+</div>
+</div>
+<div class="flex items-center gap-space-xs pt-space-xs">
+<button class="flex-1 py-1.5 px-space-xs rounded bg-primary hover:bg-primary-container text-on-primary font-body-sm text-body-sm font-semibold transition-colors flex items-center justify-center gap-1" onclick="diagnoseDevice('SW-CORE-FL03')">
+<span class="material-symbols-outlined text-[16px]">troubleshoot</span> Cek Sekarang
+          </button>
+<button class="p-1.5 rounded bg-surface-container-low hover:bg-surface-container text-text-secondary" title="Buka Syslog">
+<span class="material-symbols-outlined text-[18px]">terminal</span>
+</button>
+<button class="p-1.5 rounded bg-surface-container-low hover:bg-surface-container text-text-secondary" title="Set Maintenance">
+<span class="material-symbols-outlined text-[18px]">build</span>
+</button>
+</div>
+</div>
+<!-- Incident 2: Access Point VIP -->
+<div class="rounded-xl bg-surface-card-subtle p-space-md flex flex-col justify-between gap-space-md shadow-sm hover:shadow transition-shadow">
+<div class="flex flex-col gap-space-xs">
+<div class="flex items-center justify-between">
+<span class="font-telemetry-badge text-telemetry-badge text-status-offline bg-status-offline-surface px-2 py-0.5 rounded uppercase font-bold">DOWN • 2m lalu</span>
+<span class="font-label-caps text-label-caps text-text-muted font-bold">ACCESS POINT</span>
+</div>
+<div class="flex items-center gap-2 mt-1">
+<span class="material-symbols-outlined text-[20px] text-status-offline">wifi_off</span>
+<span class="font-headline-sm text-[16px] font-bold text-text-primary leading-tight">AP-MEETING-VIP</span>
+</div>
+<div class="flex items-center justify-between font-telemetry-data text-telemetry-data text-text-secondary mt-1">
+<span>192.168.30.45</span>
+<span class="text-text-muted">Lt 3 Boardroom</span>
+</div>
+<div class="p-2 rounded bg-surface-card text-body-sm text-text-secondary flex flex-col gap-1 mt-1">
+<span class="text-[11px] font-semibold text-status-offline flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">flaky</span> ICMP 3x failed (PoE loss suspected)
+            </span>
+<span class="text-[11px] text-text-muted">Parent SW-CORE-FL03 Unreachable</span>
+</div>
+</div>
+<div class="flex items-center gap-space-xs pt-space-xs">
+<button class="flex-1 py-1.5 px-space-xs rounded bg-surface-container hover:bg-surface-container-high text-on-surface font-body-sm text-body-sm font-semibold transition-colors flex items-center justify-center gap-1" onclick="diagnoseDevice('AP-MEETING-VIP')">
+<span class="material-symbols-outlined text-[16px]">sync</span> Ping Port
+          </button>
+<button class="p-1.5 rounded bg-surface-container-low hover:bg-surface-container text-text-secondary" title="Lihat Riwayat">
+<span class="material-symbols-outlined text-[18px]">history</span>
+</button>
+<button class="p-1.5 rounded bg-surface-container-low hover:bg-surface-container text-text-secondary" title="Reboot PoE Port">
+<span class="material-symbols-outlined text-[18px]">restart_alt</span>
+</button>
+</div>
+</div>
+<!-- Incident 3: Network Printer -->
+<div class="rounded-xl bg-surface-card-subtle p-space-md flex flex-col justify-between gap-space-md shadow-sm hover:shadow transition-shadow">
+<div class="flex flex-col gap-space-xs">
+<div class="flex items-center justify-between">
+<span class="font-telemetry-badge text-telemetry-badge text-status-offline bg-status-offline-surface px-2 py-0.5 rounded uppercase font-bold">PORT TIMEOUT • 11m</span>
+<span class="font-label-caps text-label-caps text-text-muted font-bold">PERIPHERAL</span>
+</div>
+<div class="flex items-center gap-2 mt-1">
+<span class="material-symbols-outlined text-[20px] text-status-offline">print_disabled</span>
+<span class="font-headline-sm text-[16px] font-bold text-text-primary leading-tight">PRN-FINANCE-02</span>
+</div>
+<div class="flex items-center justify-between font-telemetry-data text-telemetry-data text-text-secondary mt-1">
+<span>192.168.20.88</span>
+<span class="text-text-muted">Lantai 2 Finance Wing</span>
+</div>
+<div class="p-2 rounded bg-surface-card text-body-sm text-text-secondary flex flex-col gap-1 mt-1">
+<span class="text-[11px] font-semibold text-status-offline flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">lan</span> TCP Port 9100 Unreachable
+            </span>
+<span class="text-[11px] text-text-muted">ICMP alive (18ms), Print queue stalled</span>
+</div>
+</div>
+<div class="flex items-center gap-space-xs pt-space-xs">
+<button class="flex-1 py-1.5 px-space-xs rounded bg-surface-container hover:bg-surface-container-high text-on-surface font-body-sm text-body-sm font-semibold transition-colors flex items-center justify-center gap-1" onclick="diagnoseDevice('PRN-FINANCE-02')">
+<span class="material-symbols-outlined text-[16px]">sync</span> Test Port
+          </button>
+<button class="p-1.5 rounded bg-surface-container-low hover:bg-surface-container text-text-secondary" title="Clear Spool">
+<span class="material-symbols-outlined text-[18px]">restart_alt</span>
+</button>
+</div>
+</div>
+<!-- Incident 4: CCTV Gate North -->
+<div class="rounded-xl bg-surface-card-subtle p-space-md flex flex-col justify-between gap-space-md shadow-sm hover:shadow transition-shadow">
+<div class="flex flex-col gap-space-xs">
+<div class="flex items-center justify-between">
+<span class="font-telemetry-badge text-telemetry-badge text-status-offline bg-status-offline-surface px-2 py-0.5 rounded uppercase font-bold">STREAM LOST • 14m</span>
+<span class="font-label-caps text-label-caps text-text-muted font-bold">SECURITY SURVEILLANCE</span>
+</div>
+<div class="flex items-center gap-2 mt-1">
+<span class="material-symbols-outlined text-[20px] text-status-offline">videocam_off</span>
+<span class="font-headline-sm text-[16px] font-bold text-text-primary leading-tight">CCTV-GATE-NORTH</span>
+</div>
+<div class="flex items-center justify-between font-telemetry-data text-telemetry-data text-text-secondary mt-1">
+<span>192.168.40.12</span>
+<span class="text-text-muted">Gerbang Utama Depan</span>
+</div>
+<div class="p-2 rounded bg-surface-card text-body-sm text-text-secondary flex flex-col gap-1 mt-1">
+<span class="text-[11px] font-semibold text-status-offline flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">videocam</span> RTSP TCP 554 Closed
+            </span>
+<span class="text-[11px] text-text-muted">High packet loss detected (100%)</span>
+</div>
+</div>
+<div class="flex items-center gap-space-xs pt-space-xs">
+<button class="flex-1 py-1.5 px-space-xs rounded bg-surface-container hover:bg-surface-container-high text-on-surface font-body-sm text-body-sm font-semibold transition-colors flex items-center justify-center gap-1" onclick="diagnoseDevice('CCTV-GATE-NORTH')">
+<span class="material-symbols-outlined text-[16px]">sync</span> Ping Camera
+          </button>
+<button class="p-1.5 rounded bg-surface-container-low hover:bg-surface-container text-text-secondary" title="Buka DVR Logs">
+<span class="material-symbols-outlined text-[18px]">receipt_long</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Telemetry Analytics & Category Breakdown (Bento Grid) -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-space-lg">
+<!-- 24H Latency Telemetry Waveform -->
+<div class="lg:col-span-8 rounded-xl bg-surface-card p-space-lg shadow-sm flex flex-col justify-between">
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-space-xs pb-space-md">
+<div class="flex flex-col">
+<span class="font-label-caps text-label-caps uppercase text-text-muted">Network Performance Telemetry</span>
+<h2 class="font-headline-sm text-headline-sm font-bold text-text-primary">Rata-Rata Latensi Jaringan 24 Jam</h2>
+</div>
+<div class="flex items-center gap-space-md">
+<div class="flex items-center gap-space-xs">
+<span class="w-3 h-3 rounded-sm bg-primary"></span>
+<span class="font-body-sm text-body-sm text-text-secondary">Latency (ms)</span>
+</div>
+<div class="flex items-center gap-space-xs">
+<span class="w-3 h-3 rounded-sm bg-status-offline"></span>
+<span class="font-body-sm text-body-sm text-text-secondary">Spikes / Loss</span>
+</div>
+<span class="font-telemetry-badge text-telemetry-badge bg-surface-container-low px-2 py-1 rounded text-primary">AVG: 12.4 ms</span>
+</div>
+</div>
+<!-- Vector Telemetry Chart -->
+<div class="relative w-full h-44 my-space-xs">
+<svg class="w-full h-full text-primary" preserveaspectratio="none" viewbox="0 0 700 160">
+<defs>
+<lineargradient id="latencyGradient" x1="0" x2="0" y1="0" y2="1">
+<stop offset="0%" stop-color="#00C2FF" stop-opacity="0.35"></stop>
+<stop offset="100%" stop-color="#0062FF" stop-opacity="0.0"></stop>
+</lineargradient>
+</defs>
+<!-- Grid lines -->
+<line opacity="0.3" stroke="#CBD5E1" stroke-dasharray="3 3" x1="0" x2="700" y1="30" y2="30"></line>
+<line opacity="0.3" stroke="#CBD5E1" stroke-dasharray="3 3" x1="0" x2="700" y1="75" y2="75"></line>
+<line opacity="0.3" stroke="#CBD5E1" stroke-dasharray="3 3" x1="0" x2="700" y1="120" y2="120"></line>
+<!-- Area fill -->
+<polygon fill="url(#latencyGradient)" points="0,150 0,110 50,115 100,105 150,118 200,98 250,102 300,85 350,92 400,110 450,105 500,70 540,28 560,40 580,110 630,108 700,104 700,150"></polygon>
+<!-- Smooth Line -->
+<polyline fill="none" points="0,110 50,115 100,105 150,118 200,98 250,102 300,85 350,92 400,110 450,105 500,70 540,28 560,40 580,110 630,108 700,104" stroke="#0062FF" stroke-linecap="round" stroke-width="2.5"></polyline>
+<!-- Incident Anomaly Pulse Marker -->
+<circle cx="540" cy="28" fill="#EF4444" r="5" stroke="#FFFFFF" stroke-width="2"></circle>
+<circle cx="540" cy="28" fill="none" opacity="0.6" r="10" stroke="#EF4444" stroke-width="1.5"></circle>
+</svg>
+<!-- Tooltip overlay callout on the spike -->
+<div class="absolute left-[74%] top-2 -translate-x-1/2 bg-surface-card rounded px-2 py-1 shadow-md text-left flex flex-col pointer-events-none">
+<span class="font-telemetry-badge text-[10px] text-status-offline font-bold">CORE-FL03 DISCONNECT</span>
+<span class="font-telemetry-data text-[11px] text-text-primary">128ms / 4.8% Packet Loss</span>
+</div>
+</div>
+<div class="flex items-center justify-between text-body-sm text-text-muted pt-space-xs font-telemetry-data">
+<span>00:00 (H-24)</span>
+<span>06:00 WIB</span>
+<span>12:00 WIB</span>
+<span>18:00 WIB</span>
+<span class="text-primary font-bold">Sekarang (LIVE)</span>
+</div>
+</div>
+<!-- Quick Device Type Distribution (F-11) -->
+<div class="lg:col-span-4 rounded-xl bg-surface-card p-space-lg shadow-sm flex flex-col justify-between">
+<div class="flex items-center justify-between pb-space-sm">
+<div class="flex flex-col">
+<span class="font-label-caps text-label-caps uppercase text-text-muted">Topologi Inventaris</span>
+<h2 class="font-headline-sm text-headline-sm font-bold text-text-primary">Distribusi Perangkat</h2>
+</div>
+<span class="font-telemetry-badge text-telemetry-badge text-text-muted">6 KATEGORI</span>
+</div>
+<div class="flex flex-col gap-space-sm my-space-xs">
+<!-- Switch Distribution -->
+<div class="flex flex-col gap-1">
+<div class="flex items-center justify-between text-body-sm">
+<span class="font-medium text-text-primary flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[16px] text-primary">hub</span> Switches (Core/Dist)
+            </span>
+<span class="font-telemetry-data text-telemetry-data text-text-primary">17 / 18 Aktif</span>
+</div>
+<div class="w-full h-2 rounded-full bg-surface-container-low overflow-hidden">
+<div class="h-full bg-primary rounded-full" style="width: 94%;"></div>
+</div>
+</div>
+<!-- Access Points -->
+<div class="flex flex-col gap-1">
+<div class="flex items-center justify-between text-body-sm">
+<span class="font-medium text-text-primary flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[16px] text-telemetry-cyan">wifi</span> Access Points Wi-Fi 6
+            </span>
+<span class="font-telemetry-data text-telemetry-data text-text-primary">41 / 42 Aktif</span>
+</div>
+<div class="w-full h-2 rounded-full bg-surface-container-low overflow-hidden">
+<div class="h-full bg-telemetry-cyan rounded-full" style="width: 97%;"></div>
+</div>
+</div>
+<!-- Surveillance CCTV -->
+<div class="flex flex-col gap-1">
+<div class="flex items-center justify-between text-body-sm">
+<span class="font-medium text-text-primary flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[16px] text-text-secondary">videocam</span> CCTV Surveillance
+            </span>
+<span class="font-telemetry-data text-telemetry-data text-text-primary">43 / 44 Aktif</span>
+</div>
+<div class="w-full h-2 rounded-full bg-surface-container-low overflow-hidden">
+<div class="h-full bg-text-secondary rounded-full" style="width: 97%;"></div>
+</div>
+</div>
+<!-- Printers & Office IoT -->
+<div class="flex flex-col gap-1">
+<div class="flex items-center justify-between text-body-sm">
+<span class="font-medium text-text-primary flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[16px] text-tertiary">print</span> Network Printers
+            </span>
+<span class="font-telemetry-data text-telemetry-data text-text-primary">23 / 24 Aktif</span>
+</div>
+<div class="w-full h-2 rounded-full bg-surface-container-low overflow-hidden">
+<div class="h-full bg-tertiary rounded-full" style="width: 95%;"></div>
+</div>
+</div>
+<!-- Servers / DC -->
+<div class="flex flex-col gap-1">
+<div class="flex items-center justify-between text-body-sm">
+<span class="font-medium text-text-primary flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[16px] text-status-online">dns</span> Server Cluster &amp; Gateway
+            </span>
+<span class="font-telemetry-data text-telemetry-data text-text-primary">20 / 20 Sehat</span>
+</div>
+<div class="w-full h-2 rounded-full bg-surface-container-low overflow-hidden">
+<div class="h-full bg-status-online rounded-full" style="width: 100%;"></div>
+</div>
+</div>
+</div>
+<div class="pt-space-xs flex items-center justify-between text-body-sm text-text-muted">
+<span>Kapasitas Subnet: /22 Active</span>
+<a class="text-primary hover:underline font-semibold flex items-center gap-1 font-body-sm" href="#">
+          Topologi Lengkap <span class="material-symbols-outlined text-[14px]">arrow_forward</span>
+</a>
+</div>
+</div>
+</div>
+<!-- Real-time Device Table Section with Live Filter, Autocomplete Search (F-12, F-14) -->
+<div class="rounded-xl bg-surface-card p-space-lg shadow-sm flex flex-col gap-space-md">
+<!-- Table Toolbar Header -->
+<div class="flex flex-col xl:flex-row xl:items-center justify-between gap-space-md">
+<div class="flex flex-col">
+<h2 class="font-headline-sm text-headline-sm font-bold text-text-primary">Daftar Telemetri Seluruh Perangkat</h2>
+<span class="font-body-sm text-body-sm text-text-secondary">Sinkronisasi status ICMP Ping, SNMP Polling, dan TCP Handshake tiap 2 detik.</span>
+</div>
+<!-- Pill Filters (F-13) -->
+<div class="flex flex-wrap items-center gap-space-xs" id="status-filters">
+<button class="filter-pill px-space-md py-1.5 rounded-full bg-primary text-on-primary font-telemetry-badge text-telemetry-badge transition-all" onclick="filterByStatus('all', this)">
+          SEMUA (148)
+        </button>
+<button class="filter-pill px-space-md py-1.5 rounded-full bg-surface-container-low text-status-offline hover:bg-status-offline-surface font-telemetry-badge text-telemetry-badge transition-all" onclick="filterByStatus('offline', this)">
+          OFFLINE (4)
+        </button>
+<button class="filter-pill px-space-md py-1.5 rounded-full bg-surface-container-low text-status-unreachable hover:bg-status-unreachable-surface font-telemetry-badge text-telemetry-badge transition-all" onclick="filterByStatus('unreachable', this)">
+          UNREACHABLE (2)
+        </button>
+<button class="filter-pill px-space-md py-1.5 rounded-full bg-surface-container-low text-status-online hover:bg-status-online-surface font-telemetry-badge text-telemetry-badge transition-all" onclick="filterByStatus('online', this)">
+          ONLINE (142)
+        </button>
+</div>
+</div>
+<!-- Filter Dropdowns & Live Search Input Bar -->
+<div class="grid grid-cols-1 md:grid-cols-12 gap-space-md items-center bg-surface-card-subtle p-space-md rounded-xl">
+<!-- Search Autocomplete Input -->
+<div class="md:col-span-6 relative">
+<span class="material-symbols-outlined absolute left-space-md top-1/2 -translate-y-1/2 text-text-muted text-[20px]">search</span>
+<input class="w-full pl-11 pr-space-md py-2 rounded-lg bg-surface-card text-on-surface font-telemetry-data text-body-sm placeholder:text-text-muted focus:outline-none focus:ring-2 focus:ring-primary shadow-sm" id="device-search" onkeyup="searchTable()" placeholder="Cari Hostname, IP Address (mis. 192.168.10), MAC, atau Port..." type="text"/>
+<span class="hidden absolute right-space-md top-1/2 -translate-y-1/2 text-text-muted hover:text-text-primary cursor-pointer text-[16px] material-symbols-outlined" id="search-clear" onclick="clearSearch()">close</span>
+</div>
+<!-- Lokasi Filter -->
+<div class="md:col-span-3">
+<select class="w-full px-space-md py-2 rounded-lg bg-surface-card text-on-surface font-body-sm focus:outline-none focus:ring-2 focus:ring-primary shadow-sm cursor-pointer" id="location-select" onchange="applyFilters()">
+<option value="all">Semua Lokasi / Lantai</option>
+<option value="Lantai 1">Lantai 1 - Lobby &amp; Operations</option>
+<option value="Lantai 2">Lantai 2 - Finance &amp; HR</option>
+<option value="Lantai 3">Lantai 3 - Executive Boardroom</option>
+<option value="Data Center">Data Center / Server Room</option>
+<option value="Outdoor">Outdoor / Perimeter Guard</option>
+</select>
+</div>
+<!-- Tipe Perangkat Filter -->
+<div class="md:col-span-3">
+<select class="w-full px-space-md py-2 rounded-lg bg-surface-card text-on-surface font-body-sm focus:outline-none focus:ring-2 focus:ring-primary shadow-sm cursor-pointer" id="type-select" onchange="applyFilters()">
+<option value="all">Semua Tipe Perangkat</option>
+<option value="Switch">Switch (Core/Access)</option>
+<option value="Access Point">Access Point</option>
+<option value="Server">Server / Gateway</option>
+<option value="Printer">Network Printer</option>
+<option value="CCTV">CCTV Surveillance</option>
+</select>
+</div>
+</div>
+<!-- Telemetry Table (High density) -->
+<div class="overflow-x-auto w-full">
+<table class="w-full text-left" id="network-table">
+<thead>
+<tr class="bg-surface-card-subtle font-label-caps text-label-caps uppercase text-text-muted">
+<th class="py-space-md px-space-md rounded-l-lg">Status &amp; Health</th>
+<th class="py-space-md px-space-md">Nama Perangkat / Hostname</th>
+<th class="py-space-md px-space-md">IP Address &amp; MAC</th>
+<th class="py-space-md px-space-md">Kategori &amp; Model</th>
+<th class="py-space-md px-space-md">Lokasi Fisik</th>
+<th class="py-space-md px-space-md">Metode Cek</th>
+<th class="py-space-md px-space-md">Latensi / Jitter</th>
+<th class="py-space-md px-space-md">Terakhir Berubah</th>
+<th class="py-space-md px-space-md rounded-r-lg text-right">Aksi Cepat</th>
+</tr>
+</thead>
+<tbody class="divide-y-0 text-body-sm" id="table-rows">
+<!-- Row 1: SW-CORE-FL03 (Offline - Kritis) -->
+<tr class="device-row bg-status-offline-surface/40 hover:bg-status-offline-surface transition-colors" data-location="Lantai 3" data-status="offline" data-type="Switch">
+<td class="py-space-md px-space-md">
+<span class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-status-offline text-on-error font-telemetry-badge text-telemetry-badge shadow-sm">
+<span class="w-1.5 h-1.5 rounded-full bg-on-error animate-ping"></span>
+                OFFLINE
+              </span>
+</td>
+<td class="py-space-md px-space-md font-semibold text-text-primary">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px] text-status-offline">hub</span>
+<div>
+<div class="font-body-md font-bold text-text-primary">SW-CORE-FL03</div>
+<span class="font-telemetry-data text-[11px] text-text-muted">Cisco Catalyst 9300-48P</span>
+</div>
+</div>
+</td>
+<td class="py-space-md px-space-md font-telemetry-data">
+<div class="text-text-primary font-bold">192.168.10.1</div>
+<div class="text-text-muted text-[11px]">00:1A:2B:3C:4D:5E</div>
+</td>
+<td class="py-space-md px-space-md">
+<span class="px-2 py-0.5 rounded bg-surface-container text-text-primary font-telemetry-badge text-[11px]">Core Switch</span>
+</td>
+<td class="py-space-md px-space-md text-text-secondary">
+              Lantai 3 • Rack-C01
+            </td>
+<td class="py-space-md px-space-md">
+<span class="font-telemetry-badge text-[11px] text-status-offline font-semibold">SNMP Trap + ICMP</span>
+</td>
+<td class="py-space-md px-space-md font-telemetry-data text-status-offline font-bold">
+              TIMED OUT (100% loss)
+            </td>
+<td class="py-space-md px-space-md font-telemetry-data text-text-muted text-[12px]">
+              8 mnt lalu
+            </td>
+<td class="py-space-md px-space-md text-right">
+<div class="inline-flex items-center gap-1">
+<button class="p-1.5 rounded hover:bg-surface-card text-primary" onclick="pingSingle('SW-CORE-FL03', this)" title="Poll Sekarang">
+<span class="material-symbols-outlined text-[18px]">sync</span>
+</button>
+<button class="p-1.5 rounded hover:bg-surface-card text-text-secondary" title="Detail Perangkat">
+<span class="material-symbols-outlined text-[18px]">visibility</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 2: AP-MEETING-VIP (Offline) -->
+<tr class="device-row bg-status-offline-surface/40 hover:bg-status-offline-surface transition-colors" data-location="Lantai 3" data-status="offline" data-type="Access Point">
+<td class="py-space-md px-space-md">
+<span class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-status-offline text-on-error font-telemetry-badge text-telemetry-badge">
+<span class="w-1.5 h-1.5 rounded-full bg-on-error"></span>
+                OFFLINE
+              </span>
+</td>
+<td class="py-space-md px-space-md font-semibold text-text-primary">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px] text-status-offline">wifi_off</span>
+<div>
+<div class="font-body-md font-bold text-text-primary">AP-MEETING-VIP</div>
+<span class="font-telemetry-data text-[11px] text-text-muted">Ubiquiti U6-Enterprise</span>
+</div>
+</div>
+</td>
+<td class="py-space-md px-space-md font-telemetry-data">
+<div class="text-text-primary font-bold">192.168.30.45</div>
+<div class="text-text-muted text-[11px]">74:83:C2:11:AB:90</div>
+</td>
+<td class="py-space-md px-space-md">
+<span class="px-2 py-0.5 rounded bg-surface-container text-text-primary font-telemetry-badge text-[11px]">Access Point</span>
+</td>
+<td class="py-space-md px-space-md text-text-secondary">
+              Lantai 3 • Ruang Rapat VIP
+            </td>
+<td class="py-space-md px-space-md">
+<span class="font-telemetry-badge text-[11px] text-status-offline font-semibold">ICMP 2s Ping</span>
+</td>
+<td class="py-space-md px-space-md font-telemetry-data text-status-offline font-bold">
+              Unreachable (No ping)
+            </td>
+<td class="py-space-md px-space-md font-telemetry-data text-text-muted text-[12px]">
+              2 mnt lalu
+            </td>
+<td class="py-space-md px-space-md text-right">
+<div class="inline-flex items-center gap-1">
+<button class="p-1.5 rounded hover:bg-surface-card text-primary" onclick="pingSingle('AP-MEETING-VIP', this)" title="Poll Sekarang">
+<span class="material-symbols-outlined text-[18px]">sync</span>
+</button>
+<button class="p-1.5 rounded hover:bg-surface-card text-text-secondary" title="Detail Perangkat">
+<span class="material-symbols-outlined text-[18px]">visibility</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 3: CCTV-GATE-NORTH (Offline) -->
+<tr class="device-row bg-status-offline-surface/40 hover:bg-status-offline-surface transition-colors" data-location="Outdoor" data-status="offline" data-type="CCTV">
+<td class="py-space-md px-space-md">
+<span class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-status-offline text-on-error font-telemetry-badge text-telemetry-badge">
+<span class="w-1.5 h-1.5 rounded-full bg-on-error"></span>
+                OFFLINE
+              </span>
+</td>
+<td class="py-space-md px-space-md font-semibold text-text-primary">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px] text-status-offline">videocam_off</span>
+<div>
+<div class="font-body-md font-bold text-text-primary">CCTV-GATE-NORTH</div>
+<span class="font-telemetry-data text-[11px] text-text-muted">Hikvision 4K PTZ IP-Cam</span>
+</div>
+</div>
+</td>
+<td class="py-space-md px-space-md font-telemetry-data">
+<div class="text-text-primary font-bold">192.168.40.12</div>
+<div class="text-text-muted text-[11px]">BC:92:68:55:01:2C</div>
+</td>
+<td class="py-space-md px-space-md">
+<span class="px-2 py-0.5 rounded bg-surface-container text-text-primary font-telemetry-badge text-[11px]">CCTV Camera</span>
+</td>
+<td class="py-space-md px-space-md text-text-secondary">
+              Outdoor • Gerbang Utara
+            </td>
+<td class="py-space-md px-space-md">
+<span class="font-telemetry-badge text-[11px] text-status-offline font-semibold">TCP RTSP (554)</span>
+</td>
+<td class="py-space-md px-space-md font-telemetry-data text-status-offline font-bold">
+              Port closed
+            </td>
+<td class="py-space-md px-space-md font-telemetry-data text-text-muted text-[12px]">
+              14 mnt lalu
+            </td>
+<td class="py-space-md px-space-md text-right">
+<div class="inline-flex items-center gap-1">
+<button class="p-1.5 rounded hover:bg-surface-card text-primary" onclick="pingSingle('CCTV-GATE-NORTH', this)" title="Poll Sekarang">
+<span class="material-symbols-outlined text-[18px]">sync</span>
+</button>
+<button class="p-1.5 rounded hover:bg-surface-card text-text-secondary" title="Detail Perangkat">
+<span class="material-symbols-outlined text-[18px]">visibility</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 4: PRN-FINANCE-02 (Offline) -->
+<tr class="device-row bg-status-offline-surface/40 hover:bg-status-offline-surface transition-colors" data-location="Lantai 2" data-status="offline" data-type="Printer">
+<td class="py-space-md px-space-md">
+<span class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-status-offline text-on-error font-telemetry-badge text-telemetry-badge">
+<span class="w-1.5 h-1.5 rounded-full bg-on-error"></span>
+                OFFLINE
+              </span>
+</td>
+<td class="py-space-md px-space-md font-semibold text-text-primary">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px] text-status-offline">print_disabled</span>
+<div>
+<div class="font-body-md font-bold text-text-primary">PRN-FINANCE-02</div>
+<span class="font-telemetry-data text-[11px] text-text-muted">HP LaserJet Managed E60165</span>
+</div>
+</div>
+</td>
+<td class="py-space-md px-space-md font-telemetry-data">
+<div class="text-text-primary font-bold">192.168.20.88</div>
+<div class="text-text-muted text-[11px]">3C:D9:2B:FF:34:10</div>
+</td>
+<td class="py-space-md px-space-md">
+<span class="px-2 py-0.5 rounded bg-surface-container text-text-primary font-telemetry-badge text-[11px]">Network Printer</span>
+</td>
+<td class="py-space-md px-space-md text-text-secondary">
+              Lantai 2 • Finance Hall
+            </td>
+<td class="py-space-md px-space-md">
+<span class="font-telemetry-badge text-[11px] text-status-offline font-semibold">TCP 9100 RAW</span>
+</td>
+<td class="py-space-md px-space-md font-telemetry-data text-status-offline font-bold">
+              Port Refused
+            </td>
+<td class="py-space-md px-space-md font-telemetry-data text-text-muted text-[12px]">
+              11 mnt lalu
+            </td>
+<td class="py-space-md px-space-md text-right">
+<div class="inline-flex items-center gap-1">
+<button class="p-1.5 rounded hover:bg-surface-card text-primary" onclick="pingSingle('PRN-FINANCE-02', this)" title="Poll Sekarang">
+<span class="material-symbols-outlined text-[18px]">sync</span>
+</button>
+<button class="p-1.5 rounded hover:bg-surface-card text-text-secondary" title="Detail Perangkat">
+<span class="material-symbols-outlined text-[18px]">visibility</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 5: SW-DIST-FL03-EAST (Unreachable) -->
+<tr class="device-row bg-status-unreachable-surface/40 hover:bg-status-unreachable-surface transition-colors" data-location="Lantai 3" data-status="unreachable" data-type="Switch">
+<td class="py-space-md px-space-md">
+<span class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-status-unreachable text-on-error font-telemetry-badge text-telemetry-badge">
+<span class="w-1.5 h-1.5 rounded-full bg-on-error"></span>
+                UNREACHABLE
+              </span>
+</td>
+<td class="py-space-md px-space-md font-semibold text-text-primary">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px] text-status-unreachable">alt_route</span>
+<div>
+<div class="font-body-md font-bold text-text-primary">SW-DIST-FL03-EAST</div>
+<span class="font-telemetry-data text-[11px] text-text-muted">EdgeSwitch 24 PoE 250W</span>
+</div>
+</div>
+</td>
+<td class="py-space-md px-space-md font-telemetry-data">
+<div class="text-text-primary font-bold">192.168.10.14</div>
+<div class="text-text-muted text-[11px]">F0:9F:C2:5D:88:1A</div>
+</td>
+<td class="py-space-md px-space-md">
+<span class="px-2 py-0.5 rounded bg-surface-container text-text-primary font-telemetry-badge text-[11px]">Dist Switch</span>
+</td>
+<td class="py-space-md px-space-md text-text-secondary">
+              Lantai 3 • Sayap Timur
+            </td>
+<td class="py-space-md px-space-md">
+<span class="font-telemetry-badge text-[11px] text-status-unreachable font-semibold">ICMP via Transit</span>
+</td>
+<td class="py-space-md px-space-md font-telemetry-data text-status-unreachable font-bold">
+              Parent Node Down
+            </td>
+<td class="py-space-md px-space-md font-telemetry-data text-text-muted text-[12px]">
+              8 mnt lalu
+            </td>
+<td class="py-space-md px-space-md text-right">
+<div class="inline-flex items-center gap-1">
+<button class="p-1.5 rounded hover:bg-surface-card text-primary" onclick="pingSingle('SW-DIST-FL03-EAST', this)" title="Poll Sekarang">
+<span class="material-symbols-outlined text-[18px]">sync</span>
+</button>
+<button class="p-1.5 rounded hover:bg-surface-card text-text-secondary" title="Detail Perangkat">
+<span class="material-symbols-outlined text-[18px]">visibility</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 6: AP-OPENSPACE-FL03 (Unreachable) -->
+<tr class="device-row bg-status-unreachable-surface/40 hover:bg-status-unreachable-surface transition-colors" data-location="Lantai 3" data-status="unreachable" data-type="Access Point">
+<td class="py-space-md px-space-md">
+<span class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-status-unreachable text-on-error font-telemetry-badge text-telemetry-badge">
+<span class="w-1.5 h-1.5 rounded-full bg-on-error"></span>
+                UNREACHABLE
+              </span>
+</td>
+<td class="py-space-md px-space-md font-semibold text-text-primary">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px] text-status-unreachable">alt_route</span>
+<div>
+<div class="font-body-md font-bold text-text-primary">AP-OPENSPACE-FL03</div>
+<span class="font-telemetry-data text-[11px] text-text-muted">Ubiquiti U6-Pro</span>
+</div>
+</div>
+</td>
+<td class="py-space-md px-space-md font-telemetry-data">
+<div class="text-text-primary font-bold">192.168.30.46</div>
+<div class="text-text-muted text-[11px]">74:83:C2:11:AB:95</div>
+</td>
+<td class="py-space-md px-space-md">
+<span class="px-2 py-0.5 rounded bg-surface-container text-text-primary font-telemetry-badge text-[11px]">Access Point</span>
+</td>
+<td class="py-space-md px-space-md text-text-secondary">
+              Lantai 3 • Open Space Area
+            </td>
+<td class="py-space-md px-space-md">
+<span class="font-telemetry-badge text-[11px] text-status-unreachable font-semibold">ICMP via Transit</span>
+</td>
+<td class="py-space-md px-space-md font-telemetry-data text-status-unreachable font-bold">
+              Parent Node Down
+            </td>
+<td class="py-space-md px-space-md font-telemetry-data text-text-muted text-[12px]">
+              8 mnt lalu
+            </td>
+<td class="py-space-md px-space-md text-right">
+<div class="inline-flex items-center gap-1">
+<button class="p-1.5 rounded hover:bg-surface-card text-primary" onclick="pingSingle('AP-OPENSPACE-FL03', this)" title="Poll Sekarang">
+<span class="material-symbols-outlined text-[18px]">sync</span>
+</button>
+<button class="p-1.5 rounded hover:bg-surface-card text-text-secondary" title="Detail Perangkat">
+<span class="material-symbols-outlined text-[18px]">visibility</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 7: GW-GATEWAY-DC01 (Online - Sehat) -->
+<tr class="device-row hover:bg-surface-card-subtle transition-colors" data-location="Data Center" data-status="online" data-type="Server">
+<td class="py-space-md px-space-md">
+<span class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-status-online-surface text-status-online font-telemetry-badge text-telemetry-badge">
+<span class="w-1.5 h-1.5 rounded-full bg-status-online"></span>
+                ONLINE
+              </span>
+</td>
+<td class="py-space-md px-space-md font-semibold text-text-primary">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px] text-primary">dns</span>
+<div>
+<div class="font-body-md font-bold text-text-primary">GW-GATEWAY-DC01</div>
+<span class="font-telemetry-data text-[11px] text-text-muted">Fortinet FortiGate 200F</span>
+</div>
+</div>
+</td>
+<td class="py-space-md px-space-md font-telemetry-data">
+<div class="text-text-primary font-bold">192.168.1.1</div>
+<div class="text-text-muted text-[11px]">90:6C:AC:44:8E:10</div>
+</td>
+<td class="py-space-md px-space-md">
+<span class="px-2 py-0.5 rounded bg-surface-container text-text-primary font-telemetry-badge text-[11px]">Firewall / GW</span>
+</td>
+<td class="py-space-md px-space-md text-text-secondary">
+              Data Center • Rack-A01
+            </td>
+<td class="py-space-md px-space-md">
+<span class="font-telemetry-badge text-[11px] text-primary font-semibold">BGP + SNMP v3</span>
+</td>
+<td class="py-space-md px-space-md font-telemetry-data text-status-online font-bold">
+              0.8 ms • 0% loss
+            </td>
+<td class="py-space-md px-space-md font-telemetry-data text-text-muted text-[12px]">
+              18 hari lalu
+            </td>
+<td class="py-space-md px-space-md text-right">
+<div class="inline-flex items-center gap-1">
+<button class="p-1.5 rounded hover:bg-surface-container text-primary" onclick="pingSingle('GW-GATEWAY-DC01', this)" title="Poll Sekarang">
+<span class="material-symbols-outlined text-[18px]">sync</span>
+</button>
+<button class="p-1.5 rounded hover:bg-surface-container text-text-secondary" title="Detail Perangkat">
+<span class="material-symbols-outlined text-[18px]">visibility</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 8: SW-CORE-DC01 (Online) -->
+<tr class="device-row hover:bg-surface-card-subtle transition-colors" data-location="Data Center" data-status="online" data-type="Switch">
+<td class="py-space-md px-space-md">
+<span class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-status-online-surface text-status-online font-telemetry-badge text-telemetry-badge">
+<span class="w-1.5 h-1.5 rounded-full bg-status-online"></span>
+                ONLINE
+              </span>
+</td>
+<td class="py-space-md px-space-md font-semibold text-text-primary">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px] text-primary">hub</span>
+<div>
+<div class="font-body-md font-bold text-text-primary">SW-CORE-DC01</div>
+<span class="font-telemetry-data text-[11px] text-text-muted">Cisco Nexus 93180YC-EX</span>
+</div>
+</div>
+</td>
+<td class="py-space-md px-space-md font-telemetry-data">
+<div class="text-text-primary font-bold">192.168.1.2</div>
+<div class="text-text-muted text-[11px]">00:2A:70:99:C1:44</div>
+</td>
+<td class="py-space-md px-space-md">
+<span class="px-2 py-0.5 rounded bg-surface-container text-text-primary font-telemetry-badge text-[11px]">Core Switch</span>
+</td>
+<td class="py-space-md px-space-md text-text-secondary">
+              Data Center • Rack-A02
+            </td>
+<td class="py-space-md px-space-md">
+<span class="font-telemetry-badge text-[11px] text-primary font-semibold">SNMP v3 Polling</span>
+</td>
+<td class="py-space-md px-space-md font-telemetry-data text-status-online font-bold">
+              1.2 ms • 0% loss
+            </td>
+<td class="py-space-md px-space-md font-telemetry-data text-text-muted text-[12px]">
+              44 hari lalu
+            </td>
+<td class="py-space-md px-space-md text-right">
+<div class="inline-flex items-center gap-1">
+<button class="p-1.5 rounded hover:bg-surface-container text-primary" onclick="pingSingle('SW-CORE-DC01', this)" title="Poll Sekarang">
+<span class="material-symbols-outlined text-[18px]">sync</span>
+</button>
+<button class="p-1.5 rounded hover:bg-surface-container text-text-secondary" title="Detail Perangkat">
+<span class="material-symbols-outlined text-[18px]">visibility</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 9: AP-LOBBY-FL01 (Online) -->
+<tr class="device-row hover:bg-surface-card-subtle transition-colors" data-location="Lantai 1" data-status="online" data-type="Access Point">
+<td class="py-space-md px-space-md">
+<span class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-status-online-surface text-status-online font-telemetry-badge text-telemetry-badge">
+<span class="w-1.5 h-1.5 rounded-full bg-status-online"></span>
+                ONLINE
+              </span>
+</td>
+<td class="py-space-md px-space-md font-semibold text-text-primary">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px] text-telemetry-cyan">wifi</span>
+<div>
+<div class="font-body-md font-bold text-text-primary">AP-LOBBY-FL01</div>
+<span class="font-telemetry-data text-[11px] text-text-muted">Ubiquiti UniFi U6 Pro</span>
+</div>
+</div>
+</td>
+<td class="py-space-md px-space-md font-telemetry-data">
+<div class="text-text-primary font-bold">192.168.30.10</div>
+<div class="text-text-muted text-[11px]">74:83:C2:55:09:88</div>
+</td>
+<td class="py-space-md px-space-md">
+<span class="px-2 py-0.5 rounded bg-surface-container text-text-primary font-telemetry-badge text-[11px]">Access Point</span>
+</td>
+<td class="py-space-md px-space-md text-text-secondary">
+              Lantai 1 • Main Reception
+            </td>
+<td class="py-space-md px-space-md">
+<span class="font-telemetry-badge text-[11px] text-primary font-semibold">ICMP 2s Ping</span>
+</td>
+<td class="py-space-md px-space-md font-telemetry-data text-status-online font-bold">
+              3.4 ms • 0% loss
+            </td>
+<td class="py-space-md px-space-md font-telemetry-data text-text-muted text-[12px]">
+              12 hari lalu
+            </td>
+<td class="py-space-md px-space-md text-right">
+<div class="inline-flex items-center gap-1">
+<button class="p-1.5 rounded hover:bg-surface-container text-primary" onclick="pingSingle('AP-LOBBY-FL01', this)" title="Poll Sekarang">
+<span class="material-symbols-outlined text-[18px]">sync</span>
+</button>
+<button class="p-1.5 rounded hover:bg-surface-container text-text-secondary" title="Detail Perangkat">
+<span class="material-symbols-outlined text-[18px]">visibility</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 10: CCTV-LOBBY-MAIN (Online) -->
+<tr class="device-row hover:bg-surface-card-subtle transition-colors" data-location="Lantai 1" data-status="online" data-type="CCTV">
+<td class="py-space-md px-space-md">
+<span class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-status-online-surface text-status-online font-telemetry-badge text-telemetry-badge">
+<span class="w-1.5 h-1.5 rounded-full bg-status-online"></span>
+                ONLINE
+              </span>
+</td>
+<td class="py-space-md px-space-md font-semibold text-text-primary">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px] text-text-secondary">videocam</span>
+<div>
+<div class="font-body-md font-bold text-text-primary">CCTV-LOBBY-MAIN</div>
+<span class="font-telemetry-data text-[11px] text-text-muted">Hikvision Dome 4K H.265</span>
+</div>
+</div>
+</td>
+<td class="py-space-md px-space-md font-telemetry-data">
+<div class="text-text-primary font-bold">192.168.40.10</div>
+<div class="text-text-muted text-[11px]">BC:92:68:55:00:44</div>
+</td>
+<td class="py-space-md px-space-md">
+<span class="px-2 py-0.5 rounded bg-surface-container text-text-primary font-telemetry-badge text-[11px]">CCTV Camera</span>
+</td>
+<td class="py-space-md px-space-md text-text-secondary">
+              Lantai 1 • Entrance Turnstile
+            </td>
+<td class="py-space-md px-space-md">
+<span class="font-telemetry-badge text-[11px] text-primary font-semibold">RTSP + TCP 554</span>
+</td>
+<td class="py-space-md px-space-md font-telemetry-data text-status-online font-bold">
+              6.1 ms • 0% loss
+            </td>
+<td class="py-space-md px-space-md font-telemetry-data text-text-muted text-[12px]">
+              21 hari lalu
+            </td>
+<td class="py-space-md px-space-md text-right">
+<div class="inline-flex items-center gap-1">
+<button class="p-1.5 rounded hover:bg-surface-container text-primary" onclick="pingSingle('CCTV-LOBBY-MAIN', this)" title="Poll Sekarang">
+<span class="material-symbols-outlined text-[18px]">sync</span>
+</button>
+<button class="p-1.5 rounded hover:bg-surface-container text-text-secondary" title="Detail Perangkat">
+<span class="material-symbols-outlined text-[18px]">visibility</span>
+</button>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Table Pagination & Footer Meta -->
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-space-md pt-space-xs">
+<div class="font-body-sm text-body-sm text-text-secondary">
+        Menampilkan <span class="font-bold text-text-primary" id="visible-count">10</span> dari 148 perangkat aktif terkonfigurasi.
+      </div>
+<div class="flex items-center gap-space-xs">
+<button class="px-space-md py-1.5 rounded-lg bg-surface-card-subtle hover:bg-surface-container text-text-secondary font-body-sm disabled:opacity-50" disabled="">
+          Sebelumnya
+        </button>
+<button class="px-3 py-1.5 rounded-lg bg-primary text-on-primary font-telemetry-badge text-telemetry-badge">1</button>
+<button class="px-3 py-1.5 rounded-lg bg-surface-card-subtle hover:bg-surface-container text-text-secondary font-telemetry-badge text-telemetry-badge">2</button>
+<button class="px-3 py-1.5 rounded-lg bg-surface-card-subtle hover:bg-surface-container text-text-secondary font-telemetry-badge text-telemetry-badge">3</button>
+<button class="px-space-md py-1.5 rounded-lg bg-surface-card-subtle hover:bg-surface-container text-text-secondary font-body-sm">
+          Berikutnya
+        </button>
+</div>
+</div>
+</div>
+<!-- Operational Diagnostics Toast / Popover Simulation -->
+<div class="fixed bottom-6 right-6 z-50 transform translate-y-32 opacity-0 transition-all duration-300 pointer-events-none rounded-xl bg-surface-card p-space-md shadow-xl flex items-center gap-space-md" id="diagnostic-toast">
+<div class="w-10 h-10 rounded-lg bg-status-online-surface flex items-center justify-center text-status-online" id="toast-icon-bg">
+<span class="material-symbols-outlined text-[20px]" id="toast-icon">check_circle</span>
+</div>
+<div class="flex flex-col">
+<span class="font-headline-sm text-[14px] font-bold text-text-primary" id="toast-title">Scan Completed</span>
+<span class="font-body-sm text-[12px] text-text-secondary font-telemetry-data" id="toast-desc">ICMP response 192.168.10.1: Unreachable</span>
+</div>
+</div>
+</div>
+<script>
+  let activeStatusFilter = 'all';
+
+  function filterByStatus(status, btnElement) {
+    activeStatusFilter = status;
+    
+    // Update button states
+    const pills = document.querySelectorAll('#status-filters .filter-pill');
+    pills.forEach(p => {
+      p.className = 'filter-pill px-space-md py-1.5 rounded-full bg-surface-container-low text-text-secondary hover:bg-surface-container font-telemetry-badge text-telemetry-badge transition-all';
+    });
+
+    if (btnElement) {
+      if (status === 'all') {
+        btnElement.className = 'filter-pill px-space-md py-1.5 rounded-full bg-primary text-on-primary font-telemetry-badge text-telemetry-badge transition-all';
+      } else if (status === 'offline') {
+        btnElement.className = 'filter-pill px-space-md py-1.5 rounded-full bg-status-offline text-on-error font-telemetry-badge text-telemetry-badge transition-all';
+      } else if (status === 'unreachable') {
+        btnElement.className = 'filter-pill px-space-md py-1.5 rounded-full bg-status-unreachable text-on-error font-telemetry-badge text-telemetry-badge transition-all';
+      } else if (status === 'online') {
+        btnElement.className = 'filter-pill px-space-md py-1.5 rounded-full bg-status-online text-on-primary font-telemetry-badge text-telemetry-badge transition-all';
+      }
+    }
+    
+    applyFilters();
+  }
+
+  function applyFilters() {
+    const locationVal = document.getElementById('location-select').value;
+    const typeVal = document.getElementById('type-select').value;
+    const searchQuery = document.getElementById('device-search').value.toLowerCase().trim();
+    
+    const rows = document.querySelectorAll('#network-table .device-row');
+    let visible = 0;
+
+    rows.forEach(row => {
+      const rowStatus = row.getAttribute('data-status');
+      const rowLocation = row.getAttribute('data-location');
+      const rowType = row.getAttribute('data-type');
+      const textContent = row.textContent.toLowerCase();
+
+      const statusMatch = (activeStatusFilter === 'all' || rowStatus === activeStatusFilter);
+      const locMatch = (locationVal === 'all' || rowLocation === locationVal);
+      const typeMatch = (typeVal === 'all' || rowType === typeVal);
+      const searchMatch = (searchQuery === '' || textContent.includes(searchQuery));
+
+      if (statusMatch && locMatch && typeMatch && searchMatch) {
+        row.style.display = '';
+        visible++;
+      } else {
+        row.style.display = 'none';
+      }
+    });
+
+    document.getElementById('visible-count').innerText = visible;
+  }
+
+  function searchTable() {
+    const input = document.getElementById('device-search');
+    const clearBtn = document.getElementById('search-clear');
+    if (input.value.length > 0) {
+      clearBtn.classList.remove('hidden');
+    } else {
+      clearBtn.classList.add('hidden');
+    }
+    applyFilters();
+  }
+
+  function clearSearch() {
+    const input = document.getElementById('device-search');
+    input.value = '';
+    document.getElementById('search-clear').classList.add('hidden');
+    applyFilters();
+  }
+
+  function triggerGlobalPing() {
+    const icon = document.getElementById('ping-icon');
+    icon.classList.add('animate-spin');
+    
+    showToast('Pinging Cluster Subnets...', 'Executing 148 concurrent ICMP & SNMP polls via Worker pool', false);
+
+    setTimeout(() => {
+      icon.classList.remove('animate-spin');
+      showToast('Scan Completed: 4 Nodes Offline', 'SW-CORE-FL03 remain unresponsive. Log tickets refreshed.', true);
+    }, 1800);
+  }
+
+  function diagnoseDevice(hostname) {
+    showToast(`Diagnosing ${hostname}`, `Sending 5x ICMP probe & SNMP sysDescr query...`, false);
+    setTimeout(() => {
+      showToast(`Diagnostic Done: ${hostname}`, `Status: Request Timeout. Interface LinkDown reported.`, true);
+    }, 1200);
+  }
+
+  function pingSingle(hostname, btn) {
+    const icon = btn.querySelector('.material-symbols-outlined');
+    icon.classList.add('animate-spin');
+    setTimeout(() => {
+      icon.classList.remove('animate-spin');
+      showToast(`Ping Polled: ${hostname}`, `Latency: 1.2ms | Jitter: 0.04ms | Loss: 0%`, false);
+    }, 800);
+  }
+
+  function toggleTvDisplay() {
+    const docEl = document.documentElement;
+    if (!document.fullscreenElement) {
+      docEl.requestFullscreen?.().catch(() => {});
+      showToast('TV Display Mode Diaktifkan', 'Resolusi full-viewport disiapkan untuk NOC command wall.', false);
+    } else {
+      document.exitFullscreen?.().catch(() => {});
+      showToast('TV Display Mode Dimatikan', 'Kembali ke tampilan standar dashboard.', false);
+    }
+  }
+
+  function showToast(title, desc, isAlert) {
+    const toast = document.getElementById('diagnostic-toast');
+    const toastTitle = document.getElementById('toast-title');
+    const toastDesc = document.getElementById('toast-desc');
+    const toastIcon = document.getElementById('toast-icon');
+    const iconBg = document.getElementById('toast-icon-bg');
+
+    toastTitle.innerText = title;
+    toastDesc.innerText = desc;
+
+    if (isAlert) {
+      iconBg.className = 'w-10 h-10 rounded-lg bg-status-offline-surface flex items-center justify-center text-status-offline';
+      toastIcon.innerText = 'error';
+    } else {
+      iconBg.className = 'w-10 h-10 rounded-lg bg-status-online-surface flex items-center justify-center text-status-online';
+      toastIcon.innerText = 'sensors';
+    }
+
+    toast.classList.remove('translate-y-32', 'opacity-0', 'pointer-events-none');
+    toast.classList.add('translate-y-0', 'opacity-100');
+
+    setTimeout(() => {
+      toast.classList.remove('translate-y-0', 'opacity-100');
+      toast.classList.add('translate-y-32', 'opacity-0', 'pointer-events-none');
+    }, 3500);
+  }
+</script></main></div></body></html>

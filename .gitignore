@@ -1,0 +1,48 @@
+# Environments & Secrets
+.env
+.env.*
+!.env.example
+.env.local
+.env.production
+.env.development
+*.env
+*.pem
+*.key
+*.cert
+
+# Logs & Debug
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+server.log
+
+# Node & Next.js
+node_modules/
+frontend/node_modules/
+.next/
+frontend/.next/
+out/
+build/
+dist/
+
+# Binaries & Executables
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+backend/wifitics-server.exe
+wifitics-server.exe
+
+# OS generated files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# IDE & Editor files
+.idea/
+.vscode/
+*.swp
+*.swo
+

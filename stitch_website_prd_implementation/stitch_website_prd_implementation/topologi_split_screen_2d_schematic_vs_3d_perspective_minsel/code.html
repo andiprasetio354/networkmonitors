@@ -1,0 +1,1033 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Topologi Split-Screen 2D Schematic vs 3D Perspective Minsel</title>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet"/>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/threejs/r125/three.min.js"></script>
+  <style>
+    body { font-family: 'Inter', sans-serif; background-color: #f8f9ff; color: #0b1c30; }
+    .blueprint-grid {
+      background-size: 20px 20px;
+      background-image: linear-gradient(to right, rgba(203, 213, 225, 0.4) 1px, transparent 1px),
+                        linear-gradient(to bottom, rgba(203, 213, 225, 0.4) 1px, transparent 1px);
+    }
+    .node-2d { cursor: pointer; transition: all 0.2s ease; }
+    .node-2d:hover rect.node-box { stroke: #0062ff; stroke-width: 2.5; filter: drop-shadow(0 4px 8px rgba(0,98,255,0.25)); }
+    .node-2d.active-node rect.node-box { stroke: #0062ff !important; stroke-width: 3.5 !important; filter: drop-shadow(0 0 10px rgba(0,98,255,0.5)); }
+    ::-webkit-scrollbar { width: 6px; height: 6px; }
+    ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+  </style>
+</head>
+<body class="min-h-screen bg-[#f8f9ff]">
+  <!-- Persistent Left Sidebar -->
+  <aside class="fixed left-0 top-0 h-full w-64 bg-white border-r border-slate-200 z-50 flex flex-col justify-between shadow-sm">
+    <div class="flex flex-col">
+      <div class="h-16 px-5 flex items-center gap-3 border-b border-slate-200">
+        <div class="w-8 h-8 rounded-lg bg-[#0062ff] flex items-center justify-center text-white font-bold text-lg">W</div>
+        <div class="flex flex-col">
+          <span class="font-bold text-slate-900 tracking-tight text-base font-['Space_Grotesk']">Wifitics</span>
+          <span class="text-[9px] font-bold text-[#0062ff] tracking-widest uppercase">NOC Commander v4.2</span>
+        </div>
+      </div>
+      <div class="px-5 py-3">
+        <span class="text-[10px] font-bold tracking-wider text-slate-400 uppercase">Telemetri & Operasional</span>
+      </div>
+      <nav class="flex flex-col gap-1 px-3">
+        <a href="#" class="flex items-center gap-3 px-3 py-2 rounded-lg text-slate-600 hover:bg-slate-100 text-sm font-medium transition-colors">
+          <span class="material-symbols-outlined text-[20px] text-slate-400">monitoring</span>
+          <span>Dashboard Utama</span>
+        </a>
+        <a href="#" class="flex items-center gap-3 px-3 py-2 rounded-lg text-slate-600 hover:bg-slate-100 text-sm font-medium transition-colors">
+          <span class="material-symbols-outlined text-[20px] text-slate-400">router</span>
+          <span>Manajemen Perangkat</span>
+        </a>
+        <a href="#" class="flex items-center gap-3 px-3 py-2 rounded-lg bg-[#0062ff] text-white text-sm font-semibold shadow-sm">
+          <span class="material-symbols-outlined text-[20px]">hub</span>
+          <span>Topologi Jaringan</span>
+        </a>
+        <a href="#" class="flex items-center gap-3 px-3 py-2 rounded-lg text-slate-600 hover:bg-slate-100 text-sm font-medium transition-colors">
+          <span class="material-symbols-outlined text-[20px] text-slate-400">receipt_long</span>
+          <span>Riwayat & Log Insiden</span>
+        </a>
+      </nav>
+      <div class="px-5 pt-6 pb-2">
+        <span class="text-[10px] font-bold tracking-wider text-slate-400 uppercase">Konfigurasi Sistem</span>
+      </div>
+      <nav class="flex flex-col gap-1 px-3">
+        <a href="#" class="flex items-center gap-3 px-3 py-2 rounded-lg text-slate-600 hover:bg-slate-100 text-sm font-medium transition-colors">
+          <span class="material-symbols-outlined text-[20px] text-slate-400">notifications_active</span>
+          <span>Pengaturan Notifikasi</span>
+        </a>
+        <a href="#" class="flex items-center gap-3 px-3 py-2 rounded-lg text-slate-600 hover:bg-slate-100 text-sm font-medium transition-colors">
+          <span class="material-symbols-outlined text-[20px] text-slate-400">settings_suggest</span>
+          <span>Pengaturan Sistem</span>
+        </a>
+      </nav>
+    </div>
+    <div class="p-3 m-3 rounded-xl bg-slate-50 border border-slate-200">
+      <div class="flex items-center justify-between text-xs">
+        <span class="text-slate-500 font-medium">Cluster Status</span>
+        <span class="text-emerald-700 bg-emerald-100 font-bold px-1.5 py-0.5 rounded text-[10px]">OPTIMAL</span>
+      </div>
+      <div class="flex items-center justify-between text-xs text-slate-600 mt-2 font-mono">
+        <span>Latency: <strong class="text-slate-800">14.2 ms</strong></span>
+        <span>Nodes: <strong class="text-[#0062ff]">148 / 152</strong></span>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Main Content Wrapper -->
+  <div class="pl-64">
+    <!-- Top Header -->
+    <header class="fixed top-0 left-64 right-0 h-16 bg-white/90 backdrop-blur border-b border-slate-200 z-40 flex items-center justify-between px-8">
+      <div class="flex items-center gap-4">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-50 border border-emerald-200 text-emerald-700 text-xs font-mono font-semibold">
+          <span class="relative flex h-2 w-2">
+            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-500 opacity-75"></span>
+            <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-600"></span>
+          </span>
+          <span>WebSocket Live • 2s refresh</span>
+        </div>
+        <div class="relative hidden md:block">
+          <span class="material-symbols-outlined absolute left-3 top-2 text-slate-400 text-sm">search</span>
+          <input type="text" placeholder="Quick IP, MAC, Subnet (e.g. 10.10.0.1)..." class="pl-8 pr-3 py-1.5 w-72 rounded-lg bg-slate-50 border border-slate-200 text-xs focus:outline-none focus:border-[#0062ff]"/>
+        </div>
+      </div>
+      <div class="flex items-center gap-4">
+        <button class="relative p-2 rounded-lg hover:bg-slate-100 text-slate-600">
+          <span class="material-symbols-outlined text-[20px]">notifications</span>
+          <span class="absolute top-1 right-1 w-4 h-4 rounded-full bg-rose-500 text-white text-[9px] flex items-center justify-center font-bold">4</span>
+        </button>
+        <div class="h-6 w-px bg-slate-200"></div>
+        <div class="flex items-center gap-2">
+          <div class="w-8 h-8 rounded-full bg-slate-900 text-white font-bold flex items-center justify-center text-xs">OP</div>
+          <div class="flex flex-col text-left">
+            <span class="text-xs font-bold text-slate-900 leading-tight">IT Admin Ops</span>
+            <span class="text-[9px] text-slate-400 font-mono">ROOT • NOC-1</span>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Page Body -->
+    <main class="pt-20 px-8 pb-12">
+      <!-- Title & Mode Bar -->
+      <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-4 mb-6">
+        <div>
+          <div class="flex items-center gap-1.5 text-xs text-slate-500 font-mono mb-1">
+            <span>Telemetri & Operasional</span>
+            <span class="material-symbols-outlined text-xs">chevron_right</span>
+            <span class="text-[#0062ff] font-semibold">Dual-View Topologi Minsel</span>
+          </div>
+          <div class="flex items-center gap-4 flex-wrap">
+            <h1 class="text-2xl font-bold text-slate-900 tracking-tight font-['Space_Grotesk']">Topologi Split-Screen: 2D Schematic vs 3D Perspective</h1>
+            <!-- Segmented View Mode -->
+            <div class="inline-flex items-center p-1 rounded-xl bg-white border border-slate-200 shadow-sm" id="view-mode-tabs">
+              <button class="mode-tab flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-bold bg-[#0062ff] text-white shadow-sm transition-all" data-mode="split">
+                <span class="material-symbols-outlined text-[16px]">vertical_split</span>
+                <span>Split View: 2D + 3D</span>
+              </button>
+              <button class="mode-tab flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold text-slate-600 hover:text-slate-900 transition-all" data-mode="2d">
+                <span class="material-symbols-outlined text-[16px]">schema</span>
+                <span>2D Schematic Only</span>
+              </button>
+              <button class="mode-tab flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold text-slate-600 hover:text-slate-900 transition-all" data-mode="3d">
+                <span class="material-symbols-outlined text-[16px]">view_in_ar</span>
+                <span>3D Perspective Only</span>
+              </button>
+            </div>
+          </div>
+        </div>
+        <!-- Actions -->
+        <div class="flex items-center gap-2 flex-wrap">
+          <button id="btn-reset-views" class="flex items-center gap-1 px-3 py-2 rounded-lg bg-white border border-slate-200 text-slate-700 text-xs font-semibold hover:bg-slate-50 shadow-sm transition-colors">
+            <span class="material-symbols-outlined text-sm">crop_free</span>
+            <span>Reset Tampilan</span>
+          </button>
+          <button id="btn-toggle-traffic" class="flex items-center gap-1 px-3 py-2 rounded-lg bg-white border border-slate-200 text-slate-700 text-xs font-semibold hover:bg-slate-50 shadow-sm transition-colors">
+            <span class="material-symbols-outlined text-sm text-[#0062ff]" id="traffic-icon">electric_bolt</span>
+            <span id="traffic-status-text">Simulasi Trafik: Aktif</span>
+          </button>
+          <button id="btn-save-topology" class="flex items-center gap-1 px-3.5 py-2 rounded-lg bg-[#0062ff] text-white text-xs font-bold hover:bg-blue-700 shadow-sm transition-all">
+            <span class="material-symbols-outlined text-sm">save</span>
+            <span>Simpan Denah Topologi</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Color Legend & Dual Sync Banner -->
+      <div class="flex items-center justify-between flex-wrap gap-4 bg-white p-3.5 rounded-xl border border-slate-200 shadow-sm mb-6">
+        <div class="flex items-center gap-3 flex-wrap text-xs">
+          <span class="text-slate-400 font-bold uppercase text-[11px] font-['Space_Grotesk']">Legenda Jalur Transmisi:</span>
+          <div class="flex items-center gap-2 px-2.5 py-1 rounded-md bg-slate-50 border border-slate-200 font-mono text-slate-700">
+            <span class="w-3.5 h-1 rounded bg-slate-900 inline-block"></span>
+            <span>Line Lama (Coaxial/UTP)</span>
+            <span class="text-slate-400 text-[10px]">7 Link</span>
+          </div>
+          <div class="flex items-center gap-2 px-2.5 py-1 rounded-md bg-blue-50 border border-blue-200 font-mono text-[#0062ff] font-semibold">
+            <span class="w-3.5 h-1.5 rounded bg-[#0062ff] inline-block shadow-[0_0_6px_rgba(0,98,255,0.7)]"></span>
+            <span>Line FO (Fiber Optic Trunk)</span>
+            <span class="bg-[#0062ff] text-white px-1.5 py-0.2 rounded text-[10px]">11 Core</span>
+          </div>
+          <div class="flex items-center gap-2 px-2.5 py-1 rounded-md bg-amber-50 border border-amber-200 font-mono text-amber-700 font-semibold">
+            <span class="w-3.5 h-1.5 rounded bg-amber-500 inline-block shadow-[0_0_6px_rgba(245,158,11,0.7)]"></span>
+            <span>Plan Line Baru (Proyeksi)</span>
+            <span class="bg-amber-100 text-amber-800 px-1.5 py-0.2 rounded text-[10px]">3 Proyeksi</span>
+          </div>
+        </div>
+        <div class="flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-50 border border-emerald-200 text-emerald-700 text-xs font-mono">
+          <span class="material-symbols-outlined text-[15px] animate-spin">sync</span>
+          <span>Dual-Sync Realtime: Klik node 2D/3D tersinkronisasi otomatis</span>
+        </div>
+      </div>
+
+      <!-- SPLIT CONTAINER: 2D Blueprint vs 3D Perspective -->
+      <div id="split-grid-wrapper" class="grid grid-cols-1 xl:grid-cols-2 gap-6 mb-8 transition-all duration-300">
+        <!-- LEFT PANEL: 2D Blueprint Schematic -->
+        <div id="panel-2d" class="flex flex-col bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
+          <div class="px-4 py-3 bg-slate-50 border-b border-slate-200 flex items-center justify-between">
+            <div class="flex items-center gap-2">
+              <span class="p-1.5 rounded-md bg-blue-100 text-[#0062ff]">
+                <span class="material-symbols-outlined text-[18px]">schema</span>
+              </span>
+              <div>
+                <h3 class="text-sm font-bold text-slate-900 leading-none font-['Space_Grotesk']">2D Schematic Blueprint (Diagram Minsel Asli)</h3>
+                <span class="text-[10px] text-slate-500 font-mono">Layout presisi switch hub lapangan & trunk Sasa Minsel</span>
+              </div>
+            </div>
+            <div class="flex items-center gap-1">
+              <button id="btn-zoom-in" class="p-1 rounded-md hover:bg-slate-200 text-slate-600" title="Zoom In"><span class="material-symbols-outlined text-sm">zoom_in</span></button>
+              <button id="btn-zoom-out" class="p-1 rounded-md hover:bg-slate-200 text-slate-600" title="Zoom Out"><span class="material-symbols-outlined text-sm">zoom_out</span></button>
+              <button id="btn-zoom-reset" class="p-1 rounded-md hover:bg-slate-200 text-slate-600" title="Paskan Layar"><span class="material-symbols-outlined text-sm">fit_screen</span></button>
+            </div>
+          </div>
+          <!-- 2D Canvas Viewport -->
+          <div class="relative w-full h-[600px] bg-slate-50 blueprint-grid overflow-auto p-4 select-none" id="viewport-2d">
+            <!-- Blueprint Watermarks -->
+            <div class="absolute top-4 left-4 z-10 pointer-events-none">
+              <span class="text-xs font-bold text-slate-800 font-mono tracking-tight block">DIAGRAM SWITCH HUB JARINGAN MINSEL</span>
+              <span class="text-[9px] text-slate-500 uppercase tracking-widest block font-mono">Sistem Distribusi Kabel LAN & Fiber Optic</span>
+            </div>
+            <div class="absolute top-4 right-4 z-10 pointer-events-none text-right opacity-80">
+              <span class="text-xl font-black text-rose-600 italic tracking-tighter block leading-none font-['Space_Grotesk']">Sasa</span>
+              <span class="text-[9px] text-slate-500 italic block font-medium">Melezatkan!</span>
+            </div>
+
+            <!-- SVG Diagram Schematic -->
+            <svg id="svg-diagram" class="w-full h-full min-w-[800px] min-h-[580px] transition-transform duration-200" viewBox="0 0 950 680">
+              <defs>
+                <filter id="glow-fo" x="-20%" y="-20%" width="140%" height="140%">
+                  <feDropShadow dx="0" dy="0" stdDeviation="2.5" flood-color="#0062ff"/>
+                </filter>
+                <filter id="glow-plan" x="-20%" y="-20%" width="140%" height="140%">
+                  <feDropShadow dx="0" dy="0" stdDeviation="2" flood-color="#f97316"/>
+                </filter>
+              </defs>
+
+              <!-- 1. JALUR CABLE: LINE FO (Thick Blue #0062ff) -->
+              <g class="cable-fo-lines" fill="none" stroke="#0062ff" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" filter="url(#glow-fo)">
+                <path d="M 360 210 L 360 250 L 310 250 L 310 420 L 305 420"/>
+                <path d="M 330 270 L 250 270 L 250 160 L 280 160"/>
+                <path d="M 400 250 L 570 250 L 570 290"/>
+                <path d="M 410 270 L 410 380 L 460 380"/>
+                <path d="M 305 270 L 305 520 L 260 520"/>
+                <path d="M 480 400 L 480 420 L 670 420 L 670 490"/>
+                <path d="M 220 535 L 85 535"/>
+                <path d="M 260 170 L 310 170"/>
+              </g>
+
+              <!-- 2. JALUR CABLE: LINE LAMA (Solid Dark Charcoal #1e293b) -->
+              <g class="cable-lama-lines" fill="none" stroke="#1e293b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M 255 190 L 255 240"/>
+                <path d="M 245 345 L 245 320"/>
+                <path d="M 445 210 L 400 210"/>
+                <path d="M 445 225 L 400 225"/>
+                <path d="M 445 240 L 400 240"/>
+                <path d="M 505 225 L 545 225 L 545 200 L 615 200"/>
+                <path d="M 605 200 L 605 230 L 640 230"/>
+                <path d="M 710 200 L 765 200 L 765 225"/>
+                <path d="M 820 200 L 875 200 L 875 225"/>
+                <path d="M 395 150 L 415 150 L 415 130 L 445 130"/>
+                <path d="M 475 110 L 475 90 L 545 90"/>
+                <path d="M 505 130 L 545 130"/>
+                <path d="M 395 325 L 435 325"/>
+                <path d="M 505 325 L 545 325"/>
+                <path d="M 610 315 L 640 315"/>
+                <path d="M 675 345 L 675 375"/>
+                <path d="M 505 375 L 545 375"/>
+                <path d="M 465 410 L 465 435"/>
+                <path d="M 465 470 L 465 505"/>
+                <path d="M 360 545 L 360 580" stroke-dasharray="3,3"/>
+                <path d="M 325 620 L 305 620 L 305 490 L 325 490"/>
+                <path d="M 305 560 L 165 560 L 165 635 L 130 635" stroke-dasharray="3,3"/>
+                <path d="M 255 550 L 255 585"/>
+                <path d="M 395 620 L 435 620"/>
+                <path d="M 505 620 L 545 620"/>
+                <path d="M 255 465 L 255 495"/>
+                <path d="M 150 465 L 150 455 L 220 455"/>
+                <path d="M 45 495 L 45 475"/>
+              </g>
+
+              <!-- 3. JALUR CABLE: PLAN LINE BARU (Bright Orange #f97316) -->
+              <g class="cable-plan-lines" fill="none" stroke="#f97316" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" filter="url(#glow-plan)">
+                <path d="M 325 150 L 290 150"/>
+                <path d="M 395 380 L 435 380"/>
+                <path d="M 605 330 L 640 330"/>
+                <path d="M 150 500 L 150 535 L 220 535" stroke-dasharray="5,3"/>
+                <path d="M 305 520 L 325 520"/>
+              </g>
+
+              <!-- ================= 2D SCHEMATIC NODES ================= -->
+              <!-- 1. Central Core: R. SERVER -->
+              <g class="node-2d active-node" data-id="server" data-name="R. SERVER (PUSAT)" transform="translate(320, 180)">
+                <rect class="node-box" x="0" y="0" width="85" height="70" rx="8" fill="#ffffff" stroke="#0062ff" stroke-width="3.5"/>
+                <rect x="12" y="10" width="26" height="35" rx="3" fill="#1e293b"/>
+                <line x1="16" y1="18" x2="34" y2="18" stroke="#38bdf8" stroke-width="1.5"/>
+                <line x1="16" y1="25" x2="34" y2="25" stroke="#38bdf8" stroke-width="1.5"/>
+                <line x1="16" y1="32" x2="34" y2="32" stroke="#38bdf8" stroke-width="1.5"/>
+                <rect x="47" y="10" width="26" height="35" rx="3" fill="#1e293b"/>
+                <line x1="51" y1="18" x2="69" y2="18" stroke="#38bdf8" stroke-width="1.5"/>
+                <line x1="51" y1="25" x2="69" y2="25" stroke="#38bdf8" stroke-width="1.5"/>
+                <line x1="51" y1="32" x2="69" y2="32" stroke="#38bdf8" stroke-width="1.5"/>
+                <text x="42.5" y="60" text-anchor="middle" fill="#0f172a" font-family="'Space Grotesk', sans-serif" font-size="10" font-weight="700">R. SERVER</text>
+              </g>
+
+              <!-- 2. Switch 24 FO Pos Sec 1 -->
+              <g class="node-2d" data-id="pos_sec_1" data-name="SWITCH 24 PORT FO - POS SEC 1" transform="translate(215, 130)">
+                <rect class="node-box" x="0" y="0" width="75" height="42" rx="6" fill="#ffffff" stroke="#0062ff" stroke-width="2.5"/>
+                <rect x="15" y="6" width="45" height="10" rx="2" fill="#0f172a"/>
+                <circle cx="22" cy="11" r="1.5" fill="#10b981"/>
+                <circle cx="29" cy="11" r="1.5" fill="#10b981"/>
+                <circle cx="36" cy="11" r="1.5" fill="#38bdf8"/>
+                <circle cx="43" cy="11" r="1.5" fill="#38bdf8"/>
+                <circle cx="50" cy="11" r="1.5" fill="#38bdf8"/>
+                <text x="37.5" y="27" text-anchor="middle" fill="#0062ff" font-family="'JetBrains Mono', monospace" font-size="6.5" font-weight="700">SW 24 PORT FO</text>
+                <text x="37.5" y="37" text-anchor="middle" fill="#475569" font-family="'Space Grotesk', sans-serif" font-size="7.5" font-weight="600">POS SEC 1</text>
+              </g>
+
+              <!-- 3. Genset Switch -->
+              <g class="node-2d" data-id="genset" data-name="SWITCH 24 PORT POE - GENSET" transform="translate(325, 130)">
+                <rect class="node-box" x="0" y="0" width="75" height="38" rx="6" fill="#ffffff" stroke="#94a3b8" stroke-width="1.8"/>
+                <text x="37.5" y="16" text-anchor="middle" fill="#334155" font-family="'JetBrains Mono', monospace" font-size="6.5">SW 24 PORT POE</text>
+                <text x="37.5" y="30" text-anchor="middle" fill="#475569" font-family="'Space Grotesk', sans-serif" font-size="8" font-weight="600">GENSET</text>
+              </g>
+
+              <!-- 4. Area DC -->
+              <g class="node-2d" data-id="area_dc" data-name="SWITCH 24 PORT POE - AREA DC" transform="translate(215, 225)">
+                <rect class="node-box" x="0" y="0" width="72" height="38" rx="6" fill="#ffffff" stroke="#94a3b8" stroke-width="1.8"/>
+                <text x="36" y="16" text-anchor="middle" fill="#334155" font-family="'JetBrains Mono', monospace" font-size="6.5">SW 24 PORT POE</text>
+                <text x="36" y="30" text-anchor="middle" fill="#475569" font-family="'Space Grotesk', sans-serif" font-size="8" font-weight="600">AREA DC</text>
+              </g>
+
+              <!-- 5. Aseptic Lama -->
+              <g class="node-2d" data-id="aseptic_lama" data-name="SWITCH 8 PORT - ASEPTIC LAMA" transform="translate(215, 320)">
+                <rect class="node-box" x="0" y="0" width="72" height="38" rx="6" fill="#ffffff" stroke="#94a3b8" stroke-width="1.8"/>
+                <text x="36" y="16" text-anchor="middle" fill="#334155" font-family="'JetBrains Mono', monospace" font-size="6.5">SWITCH 8 PORT</text>
+                <text x="36" y="30" text-anchor="middle" fill="#475569" font-family="'Space Grotesk', sans-serif" font-size="8" font-weight="600">ASEPTIC LAMA</text>
+              </g>
+
+              <!-- 6. Office 3 Switch -->
+              <g class="node-2d" data-id="office" data-name="3 SWITCH 16 PORT - OFFICE" transform="translate(445, 205)">
+                <rect class="node-box" x="0" y="0" width="70" height="44" rx="6" fill="#ffffff" stroke="#94a3b8" stroke-width="1.8"/>
+                <text x="35" y="15" text-anchor="middle" fill="#334155" font-family="'JetBrains Mono', monospace" font-size="6">3 SW 16 PORT</text>
+                <line x1="8" y1="21" x2="62" y2="21" stroke="#cbd5e1"/>
+                <line x1="8" y1="27" x2="62" y2="27" stroke="#cbd5e1"/>
+                <text x="35" y="38" text-anchor="middle" fill="#475569" font-family="'Space Grotesk', sans-serif" font-size="8" font-weight="600">OFFICE</text>
+              </g>
+
+              <!-- 7. QA QC -->
+              <g class="node-2d" data-id="qa_qc" data-name="SWITCH 8 PORT - QA QC" transform="translate(545, 205)">
+                <rect class="node-box" x="0" y="0" width="68" height="38" rx="6" fill="#ffffff" stroke="#94a3b8" stroke-width="1.8"/>
+                <text x="34" y="16" text-anchor="middle" fill="#334155" font-family="'JetBrains Mono', monospace" font-size="6.5">SWITCH 8 PORT</text>
+                <text x="34" y="30" text-anchor="middle" fill="#475569" font-family="'Space Grotesk', sans-serif" font-size="8" font-weight="600">QA QC</text>
+              </g>
+
+              <!-- 8. Decon TCA (FO) -->
+              <g class="node-2d" data-id="decon_tca" data-name="SWITCH 24 PORT FO - DECON TCA" transform="translate(545, 300)">
+                <rect class="node-box" x="0" y="0" width="72" height="42" rx="6" fill="#ffffff" stroke="#0062ff" stroke-width="2.5"/>
+                <text x="36" y="18" text-anchor="middle" fill="#0062ff" font-family="'JetBrains Mono', monospace" font-size="7" font-weight="700">SW 24 PORT FO</text>
+                <text x="36" y="32" text-anchor="middle" fill="#475569" font-family="'Space Grotesk', sans-serif" font-size="8" font-weight="600">DECON TCA</text>
+              </g>
+
+              <!-- 9. R. Meeting WHS FG (FO) -->
+              <g class="node-2d" data-id="r_meeting_whs" data-name="SWITCH 24 PORT FO - R. MEETING WHS FG" transform="translate(440, 360)">
+                <rect class="node-box" x="0" y="0" width="74" height="42" rx="6" fill="#ffffff" stroke="#0062ff" stroke-width="2.5"/>
+                <text x="37" y="18" text-anchor="middle" fill="#0062ff" font-family="'JetBrains Mono', monospace" font-size="7" font-weight="700">SW 24 PORT FO</text>
+                <text x="37" y="32" text-anchor="middle" fill="#475569" font-family="'Space Grotesk', sans-serif" font-size="7.5" font-weight="600">R. MEETING WHS</text>
+              </g>
+
+              <!-- 10. WHS Sparepart (FO) -->
+              <g class="node-2d" data-id="whs_sparepart" data-name="SWITCH 24 PORT FO - WHS SPAREPART" transform="translate(220, 505)">
+                <rect class="node-box" x="0" y="0" width="74" height="42" rx="6" fill="#ffffff" stroke="#0062ff" stroke-width="2.5"/>
+                <text x="37" y="18" text-anchor="middle" fill="#0062ff" font-family="'JetBrains Mono', monospace" font-size="7" font-weight="700">SW 24 PORT FO</text>
+                <text x="37" y="32" text-anchor="middle" fill="#475569" font-family="'Space Grotesk', sans-serif" font-size="8" font-weight="600">WHS SPAREPART</text>
+              </g>
+
+              <!-- 11. WWTP (FO) -->
+              <g class="node-2d" data-id="wwtp" data-name="SWITCH 24 PORT FO - WWTP" transform="translate(640, 490)">
+                <rect class="node-box" x="0" y="0" width="72" height="42" rx="6" fill="#ffffff" stroke="#0062ff" stroke-width="2.5"/>
+                <text x="36" y="18" text-anchor="middle" fill="#0062ff" font-family="'JetBrains Mono', monospace" font-size="7" font-weight="700">SW 24 PORT FO</text>
+                <text x="36" y="32" text-anchor="middle" fill="#475569" font-family="'Space Grotesk', sans-serif" font-size="8.5" font-weight="600">WWTP</text>
+              </g>
+
+              <!-- 12. Pos Sec 2 (FO) -->
+              <g class="node-2d" data-id="pos_sec_2" data-name="SWITCH 8 PORT POE - POS SEC 2" transform="translate(20, 515)">
+                <rect class="node-box" x="0" y="0" width="70" height="42" rx="6" fill="#ffffff" stroke="#0062ff" stroke-width="2.5"/>
+                <text x="35" y="18" text-anchor="middle" fill="#0062ff" font-family="'JetBrains Mono', monospace" font-size="7" font-weight="700">SW 24 PORT FO</text>
+                <text x="35" y="32" text-anchor="middle" fill="#475569" font-family="'Space Grotesk', sans-serif" font-size="8" font-weight="600">POS SEC 2</text>
+              </g>
+
+              <!-- 13. Nanostation M2 Wireless Link -->
+              <g class="node-2d" data-id="nanostation_m2" data-name="NANOSTATION M2 - WIRELESS LINK" transform="translate(325, 500)">
+                <rect class="node-box" x="0" y="0" width="68" height="44" rx="6" fill="#ffffff" stroke="#94a3b8" stroke-width="1.8"/>
+                <circle cx="34" cy="15" r="4" fill="#0284c7"/>
+                <text x="34" y="29" text-anchor="middle" fill="#334155" font-family="'JetBrains Mono', monospace" font-size="6" font-weight="700">NANOSTATION M2</text>
+                <text x="34" y="39" text-anchor="middle" fill="#475569" font-family="'Space Grotesk', sans-serif" font-size="7.5">END POINT</text>
+              </g>
+            </svg>
+
+            <!-- 2D Selected Node Floating Pill -->
+            <div class="absolute bottom-4 left-4 z-20 bg-white/95 backdrop-blur px-3 py-1.5 rounded-lg border border-slate-200 shadow-md flex items-center gap-2 text-xs font-mono">
+              <span class="w-2 h-2 rounded-full bg-[#0062ff] animate-ping"></span>
+              <span class="text-slate-500">2D Terpilih:</span>
+              <span class="font-bold text-[#0062ff]" id="pill-selected-2d">R. SERVER (PUSAT)</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- RIGHT PANEL: 3D Perspective View (Three.js) -->
+        <div id="panel-3d" class="flex flex-col bg-slate-950 rounded-2xl border border-slate-800 shadow-xl overflow-hidden relative">
+          <div class="px-4 py-3 bg-slate-900 border-b border-slate-800 flex items-center justify-between text-slate-200">
+            <div class="flex items-center gap-2">
+              <span class="p-1.5 rounded-md bg-cyan-950 text-cyan-400">
+                <span class="material-symbols-outlined text-[18px]">view_in_ar</span>
+              </span>
+              <div>
+                <h3 class="text-sm font-bold text-white leading-none font-['Space_Grotesk']">3D Perspective View (WebGL Engine)</h3>
+                <span class="text-[10px] text-slate-400 font-mono">Three.js Orbit Camera • Geser & Wiring Simpul 3D</span>
+              </div>
+            </div>
+            <div class="flex items-center gap-2">
+              <span class="text-[9px] font-mono bg-slate-800 text-cyan-400 px-2 py-0.5 rounded border border-cyan-800/40">GLSL SHADERS ACTIVE</span>
+              <span class="text-[9px] font-mono text-emerald-400 bg-slate-800 px-2 py-0.5 rounded">60 FPS</span>
+            </div>
+          </div>
+
+          <!-- 3D Canvas Viewport -->
+          <div class="relative w-full h-[600px] bg-slate-950 overflow-hidden" id="canvas-3d-container">
+            <!-- Floating HUD Left: Mini Telemetry -->
+            <div class="absolute top-4 left-4 z-20 bg-slate-900/90 backdrop-blur p-3 rounded-xl border border-slate-800 text-slate-200 text-xs font-mono pointer-events-auto shadow-lg max-w-[220px]">
+              <div class="flex items-center justify-between pb-1 mb-1 border-b border-slate-800 text-[10px]">
+                <span class="text-slate-400 uppercase font-bold">Spatial Cluster</span>
+                <span class="text-cyan-400 font-bold">ONLINE</span>
+              </div>
+              <div class="space-y-1 text-[11px]">
+                <div class="flex justify-between">
+                  <span class="text-slate-400">Total Nodes:</span>
+                  <span class="text-emerald-400 font-bold">22 Switched</span>
+                </div>
+                <div class="flex justify-between">
+                  <span class="text-slate-400">FO Trunk:</span>
+                  <span class="text-cyan-400 font-bold">11 Jalur</span>
+                </div>
+                <div class="flex justify-between">
+                  <span class="text-slate-400">Plan Baru:</span>
+                  <span class="text-amber-400 font-bold">3 Proyeksi</span>
+                </div>
+              </div>
+              <div class="mt-2 pt-1.5 border-t border-slate-800 text-[9px] text-slate-400">
+                <span>Core Latency: <strong class="text-emerald-400">1.18 ms</strong></span>
+              </div>
+            </div>
+
+            <!-- Floating HUD Right: 3D Interactivity Modes -->
+            <div class="absolute top-4 right-4 z-20 flex items-center gap-1 bg-slate-900/90 backdrop-blur p-1 rounded-xl border border-slate-800 shadow-lg">
+              <button class="px-2.5 py-1 rounded-lg bg-[#0062ff] text-white text-xs font-semibold" id="btn-mode-drag">Mode Geser (Drag)</button>
+              <button class="px-2.5 py-1 rounded-lg text-slate-400 hover:text-white text-xs font-semibold" id="btn-mode-orbit">Orbit Kamera</button>
+            </div>
+
+            <!-- Floating HUD Bottom Right: Current 3D Selection -->
+            <div class="absolute bottom-4 right-4 z-20 bg-slate-900/90 backdrop-blur px-3 py-1.5 rounded-lg border border-slate-800 text-slate-400 text-xs font-mono flex items-center gap-2">
+              <span>3D TARGET:</span>
+              <span class="text-cyan-400 font-bold" id="pill-selected-3d">R. SERVER (PUSAT)</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- WORKBENCH MANAGEMENT: ROUTING MANAGER & INSPECTOR -->
+      <div class="grid grid-cols-1 xl:grid-cols-12 gap-6">
+        <!-- Routing Manager Table (7 Cols) -->
+        <div class="xl:col-span-7 bg-white rounded-2xl p-6 border border-slate-200 shadow-sm flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between pb-4 mb-4 border-b border-slate-200">
+              <div class="flex items-center gap-2.5">
+                <div class="p-2 rounded-lg bg-blue-50 text-[#0062ff]">
+                  <span class="material-symbols-outlined text-[20px]">hub</span>
+                </div>
+                <div>
+                  <h2 class="text-base font-bold text-slate-900 font-['Space_Grotesk']">Manajemen Jalur Kabel (Routing Manager)</h2>
+                  <p class="text-xs text-slate-500">Konektivitas antar switch Minsel & kontrol pergantian tipe kabel</p>
+                </div>
+              </div>
+              <span class="text-xs font-mono font-bold text-[#0062ff] bg-blue-50 px-2.5 py-1 rounded-lg border border-blue-200">21 Link Total</span>
+            </div>
+
+            <!-- Table Filters -->
+            <div class="flex items-center gap-3 mb-4">
+              <div class="relative flex-1">
+                <span class="material-symbols-outlined absolute left-3 top-2.5 text-slate-400 text-sm">search</span>
+                <input type="text" id="input-search-route" placeholder="Cari Switch Asal / Tujuan (misal: R. SERVER, SPAREPART)..." class="w-full pl-8 pr-3 py-1.5 text-xs bg-slate-50 rounded-lg border border-slate-200 focus:outline-none focus:border-[#0062ff]"/>
+              </div>
+              <select id="select-filter-cable" class="text-xs bg-slate-50 border border-slate-200 rounded-lg px-3 py-1.5 focus:outline-none cursor-pointer">
+                <option value="all">Semua Tipe Kabel</option>
+                <option value="fo">Line FO (Trunk)</option>
+                <option value="lama">Line Lama (UTP)</option>
+                <option value="plan">Plan Line Baru</option>
+              </select>
+            </div>
+
+            <!-- Table Content -->
+            <div class="overflow-x-auto rounded-xl border border-slate-200">
+              <table class="w-full text-left text-xs" id="table-routes">
+                <thead>
+                  <tr class="bg-slate-50 text-slate-500 uppercase font-mono text-[10px] border-b border-slate-200">
+                    <th class="py-2.5 px-3">Asal Node (Port)</th>
+                    <th class="py-2.5 px-3">Tujuan Node</th>
+                    <th class="py-2.5 px-3">Tipe Kabel</th>
+                    <th class="py-2.5 px-3">Status Link</th>
+                    <th class="py-2.5 px-3 text-right">Aksi</th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-slate-100 font-sans" id="table-route-rows">
+                  <tr class="hover:bg-slate-50 transition-colors cursor-pointer" data-from="server" data-to="pos_sec_1" data-type="fo">
+                    <td class="py-2.5 px-3"><div class="font-bold text-slate-900">R. SERVER MINSEL</div><div class="text-[10px] font-mono text-slate-400">Port SFP-1</div></td>
+                    <td class="py-2.5 px-3"><div class="font-bold text-slate-900">SWITCH 24 PORT FO</div><div class="text-[10px] font-mono text-slate-400">Port SFP-12 (Pos Sec 1)</div></td>
+                    <td class="py-2.5 px-3"><span class="px-2 py-0.5 rounded font-mono text-[10px] bg-blue-600 text-white font-bold">Line FO (Trunk)</span></td>
+                    <td class="py-2.5 px-3"><span class="text-emerald-700 bg-emerald-100 px-2 py-0.5 rounded text-[10px] font-bold">10 Gbps UP</span></td>
+                    <td class="py-2.5 px-3 text-right"><button class="p-1 hover:bg-slate-200 rounded text-slate-500 hover:text-[#0062ff]" title="Ganti Tipe"><span class="material-symbols-outlined text-sm">cached</span></button></td>
+                  </tr>
+                  <tr class="hover:bg-slate-50 transition-colors cursor-pointer" data-from="pos_sec_1" data-to="genset" data-type="plan">
+                    <td class="py-2.5 px-3"><div class="font-bold text-slate-900">POS SEC 1</div><div class="text-[10px] font-mono text-slate-400">Port SFP-8</div></td>
+                    <td class="py-2.5 px-3"><div class="font-bold text-slate-900">SWITCH 24 POE (GENSET)</div><div class="text-[10px] font-mono text-slate-400">Substation Hub</div></td>
+                    <td class="py-2.5 px-3"><span class="px-2 py-0.5 rounded font-mono text-[10px] bg-amber-500 text-white font-bold">Plan Line Baru</span></td>
+                    <td class="py-2.5 px-3"><span class="text-amber-800 bg-amber-100 px-2 py-0.5 rounded text-[10px] font-bold">Proyeksi Jalur</span></td>
+                    <td class="py-2.5 px-3 text-right"><button class="p-1 hover:bg-slate-200 rounded text-slate-500 hover:text-[#0062ff]" title="Ganti Tipe"><span class="material-symbols-outlined text-sm">cached</span></button></td>
+                  </tr>
+                  <tr class="hover:bg-slate-50 transition-colors cursor-pointer" data-from="server" data-to="whs_sparepart" data-type="fo">
+                    <td class="py-2.5 px-3"><div class="font-bold text-slate-900">R. SERVER MINSEL</div><div class="text-[10px] font-mono text-slate-400">Port SFP-4</div></td>
+                    <td class="py-2.5 px-3"><div class="font-bold text-slate-900">WHS SPAREPART</div><div class="text-[10px] font-mono text-slate-400">Switch 24 FO</div></td>
+                    <td class="py-2.5 px-3"><span class="px-2 py-0.5 rounded font-mono text-[10px] bg-blue-600 text-white font-bold">Line FO (Trunk)</span></td>
+                    <td class="py-2.5 px-3"><span class="text-emerald-700 bg-emerald-100 px-2 py-0.5 rounded text-[10px] font-bold">1 Gbps UP</span></td>
+                    <td class="py-2.5 px-3 text-right"><button class="p-1 hover:bg-slate-200 rounded text-slate-500 hover:text-[#0062ff]" title="Ganti Tipe"><span class="material-symbols-outlined text-sm">cached</span></button></td>
+                  </tr>
+                  <tr class="hover:bg-slate-50 transition-colors cursor-pointer" data-from="whs_sparepart" data-to="aseptic_lama" data-type="lama">
+                    <td class="py-2.5 px-3"><div class="font-bold text-slate-900">WHS SPAREPART</div><div class="text-[10px] font-mono text-slate-400">Port Eth-14</div></td>
+                    <td class="py-2.5 px-3"><div class="font-bold text-slate-900">ASEPTIC LAMA</div><div class="text-[10px] font-mono text-slate-400">Switch 8 Port</div></td>
+                    <td class="py-2.5 px-3"><span class="px-2 py-0.5 rounded font-mono text-[10px] bg-slate-600 text-white font-bold">Line Lama (UTP)</span></td>
+                    <td class="py-2.5 px-3"><span class="text-emerald-700 bg-emerald-100 px-2 py-0.5 rounded text-[10px] font-bold">100 Mbps UP</span></td>
+                    <td class="py-2.5 px-3 text-right"><button class="p-1 hover:bg-slate-200 rounded text-slate-500 hover:text-[#0062ff]" title="Ganti Tipe"><span class="material-symbols-outlined text-sm">cached</span></button></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div class="flex items-center justify-between pt-4 mt-4 border-t border-slate-200 text-xs text-slate-400">
+            <span>Menampilkan tautan kabel aktif topologi Minsel</span>
+            <span class="font-mono">Sinkronisasi Peta 100%</span>
+          </div>
+        </div>
+
+        <!-- Selected Node Inspector (5 Cols) -->
+        <div class="xl:col-span-5 bg-white rounded-2xl p-6 border border-slate-200 shadow-sm flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between pb-4 mb-4 border-b border-slate-200">
+              <div class="flex items-center gap-3">
+                <div class="p-2 rounded-lg bg-slate-100 text-[#0062ff]">
+                  <span class="material-symbols-outlined text-[20px]">router</span>
+                </div>
+                <div>
+                  <div class="flex items-center gap-2">
+                    <h3 class="text-base font-bold text-slate-900 font-['Space_Grotesk']" id="inspector-title">R. SERVER (PUSAT)</h3>
+                    <span class="px-1.5 py-0.2 rounded text-[10px] font-mono bg-emerald-100 text-emerald-700 font-bold" id="inspector-status">ONLINE</span>
+                  </div>
+                  <p class="text-xs text-slate-500 font-mono" id="inspector-subtitle">Core Data Center • 10.10.0.1 • 48 Port FO</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Telemetry Cards -->
+            <div class="grid grid-cols-2 gap-3 mb-4">
+              <div class="p-3 rounded-xl bg-slate-50 border border-slate-200">
+                <span class="text-[10px] uppercase font-bold text-slate-400 block font-mono">Port Utilization</span>
+                <span class="text-lg font-bold text-slate-900 font-['Space_Grotesk'] block mt-1" id="stat-ports">38 / 48</span>
+                <div class="w-full bg-slate-200 h-1.5 rounded-full mt-2 overflow-hidden">
+                  <div class="bg-[#0062ff] h-full w-[79%]"></div>
+                </div>
+              </div>
+              <div class="p-3 rounded-xl bg-slate-50 border border-slate-200">
+                <span class="text-[10px] uppercase font-bold text-slate-400 block font-mono">Transceiver SFP</span>
+                <span class="text-lg font-bold text-slate-900 font-['Space_Grotesk'] block mt-1" id="stat-sfp">-2.8 dBm</span>
+                <span class="text-[10px] font-mono text-emerald-600 font-semibold block mt-1">Normal 1310nm Single-Mode</span>
+              </div>
+            </div>
+
+            <!-- 3D Coordinates Vector -->
+            <div class="p-3 rounded-xl bg-slate-50 border border-slate-200 mb-4">
+              <span class="text-[10px] font-bold text-slate-400 uppercase font-mono block mb-2">3D Spatial Vector Coordinates</span>
+              <div class="grid grid-cols-3 gap-2 font-mono text-xs text-center">
+                <div class="bg-white p-1.5 rounded border border-slate-200">
+                  <span class="text-[9px] text-slate-400 block">X</span>
+                  <span class="font-bold text-slate-800" id="coord-val-x">-60.0</span>
+                </div>
+                <div class="bg-white p-1.5 rounded border border-slate-200">
+                  <span class="text-[9px] text-slate-400 block">Y</span>
+                  <span class="font-bold text-slate-800">0.0</span>
+                </div>
+                <div class="bg-white p-1.5 rounded border border-slate-200">
+                  <span class="text-[9px] text-slate-400 block">Z</span>
+                  <span class="font-bold text-slate-800" id="coord-val-z">-40.0</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Port Connections -->
+            <div>
+              <span class="text-[10px] font-bold text-slate-400 uppercase font-mono block mb-2">Tautan Terkoneksi:</span>
+              <div class="space-y-1.5 text-xs" id="inspector-links">
+                <div class="flex items-center justify-between p-2 rounded-lg bg-slate-50 border border-slate-200">
+                  <span class="font-semibold text-slate-800">→ SWITCH 24 FO POS SEC 1</span>
+                  <span class="text-blue-600 font-mono text-[10px] font-bold">Line FO Trunk</span>
+                </div>
+                <div class="flex items-center justify-between p-2 rounded-lg bg-slate-50 border border-slate-200">
+                  <span class="font-semibold text-slate-800">→ DECON TCA</span>
+                  <span class="text-blue-600 font-mono text-[10px] font-bold">Line FO Trunk</span>
+                </div>
+                <div class="flex items-center justify-between p-2 rounded-lg bg-slate-50 border border-slate-200">
+                  <span class="font-semibold text-slate-800">→ WHS SPAREPART</span>
+                  <span class="text-blue-600 font-mono text-[10px] font-bold">Line FO Trunk</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Inspector Action Buttons -->
+          <div class="flex items-center gap-2 pt-4 border-t border-slate-200">
+            <button id="btn-ping-test" class="flex-1 py-2 px-3 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-800 text-xs font-bold transition-colors flex items-center justify-center gap-1">
+              <span class="material-symbols-outlined text-sm text-[#0062ff]">network_check</span>
+              <span>Ping Sweep</span>
+            </button>
+            <button id="btn-focus-node" class="flex-1 py-2 px-3 rounded-lg bg-[#0062ff] hover:bg-blue-700 text-white text-xs font-bold transition-colors flex items-center justify-center gap-1">
+              <span class="material-symbols-outlined text-sm">my_location</span>
+              <span>Fokuskan 3D</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <!-- Notification Toast -->
+  <div id="toast-box" class="fixed bottom-6 right-6 bg-slate-900 text-white px-4 py-3 rounded-xl shadow-2xl z-50 flex items-center gap-3 transition-all duration-300 translate-y-20 opacity-0 pointer-events-none">
+    <span class="material-symbols-outlined text-emerald-400 text-lg" id="toast-icon">check_circle</span>
+    <div class="flex flex-col">
+      <span class="text-xs font-bold" id="toast-title">Berhasil</span>
+      <span class="text-[11px] text-slate-300" id="toast-desc">Tampilan tersinkronisasi.</span>
+    </div>
+  </div>
+
+  <!-- Three.js + Dual-View Orchestration Script -->
+  <script>
+    (function initSplitView() {
+      // Toast notification helper
+      const toast = document.getElementById('toast-box');
+      const toastTitle = document.getElementById('toast-title');
+      const toastDesc = document.getElementById('toast-desc');
+      const toastIcon = document.getElementById('toast-icon');
+      function showToast(title, desc, icon = 'check_circle') {
+        if (!toast) return;
+        toastTitle.textContent = title;
+        toastDesc.textContent = desc;
+        toastIcon.textContent = icon;
+        toast.classList.remove('translate-y-20', 'opacity-0', 'pointer-events-none');
+        setTimeout(() => {
+          toast.classList.add('translate-y-20', 'opacity-0', 'pointer-events-none');
+        }, 3000);
+      }
+
+      // View Mode Toggle (Split, 2D only, 3D only)
+      const wrapper = document.getElementById('split-grid-wrapper');
+      const panel2D = document.getElementById('panel-2d');
+      const panel3D = document.getElementById('panel-3d');
+      const tabs = document.querySelectorAll('.mode-tab');
+
+      tabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+          tabs.forEach(t => {
+            t.className = 'mode-tab flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold text-slate-600 hover:text-slate-900 transition-all';
+          });
+          tab.className = 'mode-tab flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-bold bg-[#0062ff] text-white shadow-sm transition-all';
+          const mode = tab.dataset.mode;
+          if (mode === 'split') {
+            wrapper.className = 'grid grid-cols-1 xl:grid-cols-2 gap-6 mb-8 transition-all duration-300';
+            panel2D.classList.remove('hidden');
+            panel3D.classList.remove('hidden');
+            showToast('Mode Split View Aktif', 'Menampilkan 2D Blueprint dan 3D Perspective berdampingan.', 'vertical_split');
+          } else if (mode === '2d') {
+            wrapper.className = 'grid grid-cols-1 gap-6 mb-8 transition-all duration-300';
+            panel2D.classList.remove('hidden');
+            panel3D.classList.add('hidden');
+            showToast('Mode 2D Schematic', 'Hanya menampilkan denah diagram teknis Minsel.', 'schema');
+          } else if (mode === '3d') {
+            wrapper.className = 'grid grid-cols-1 gap-6 mb-8 transition-all duration-300';
+            panel2D.classList.add('hidden');
+            panel3D.classList.remove('hidden');
+            showToast('Mode 3D Perspective', 'Hanya menampilkan simulasi WebGL 3D interaktif.', 'view_in_ar');
+          }
+          if (onWindowResize) onWindowResize();
+        });
+      });
+
+      // 2D Zoom Controls
+      const svgDiagram = document.getElementById('svg-diagram');
+      let zoomLevel = 1;
+      document.getElementById('btn-zoom-in')?.addEventListener('click', () => {
+        zoomLevel = Math.min(zoomLevel + 0.15, 2.0);
+        svgDiagram.style.transform = `scale(${zoomLevel})`;
+      });
+      document.getElementById('btn-zoom-out')?.addEventListener('click', () => {
+        zoomLevel = Math.max(zoomLevel - 0.15, 0.7);
+        svgDiagram.style.transform = `scale(${zoomLevel})`;
+      });
+      document.getElementById('btn-zoom-reset')?.addEventListener('click', () => {
+        zoomLevel = 1;
+        svgDiagram.style.transform = 'scale(1)';
+        showToast('Zoom Di-reset', 'Ukuran 2D kembali standar.', 'fit_screen');
+      });
+
+      // Three.js 3D Scene Setup
+      const container3D = document.getElementById('canvas-3d-container');
+      const width = container3D.clientWidth || 600;
+      const height = container3D.clientHeight || 600;
+
+      const scene = new THREE.Scene();
+      scene.background = new THREE.Color(0x020617);
+
+      const camera = new THREE.PerspectiveCamera(45, width / height, 0.1, 2000);
+      let camRadius = 650;
+      let camTheta = Math.PI * 0.25;
+      let camPhi = Math.PI * 0.35;
+      function updateCam() {
+        camera.position.x = camRadius * Math.sin(camPhi) * Math.sin(camTheta);
+        camera.position.y = camRadius * Math.cos(camPhi);
+        camera.position.z = camRadius * Math.sin(camPhi) * Math.cos(camTheta);
+        camera.lookAt(0, 0, 0);
+      }
+      updateCam();
+
+      const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+      renderer.setSize(width, height);
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+      container3D.appendChild(renderer.domElement);
+
+      // Lights & Grid
+      const ambientLight = new THREE.AmbientLight(0xffffff, 0.8);
+      scene.add(ambientLight);
+      const dirLight = new THREE.DirectionalLight(0x38bdf8, 1.2);
+      dirLight.position.set(200, 350, 200);
+      scene.add(dirLight);
+
+      const gridHelper = new THREE.GridHelper(1000, 30, 0x1e293b, 0x0f172a);
+      gridHelper.position.y = -2;
+      scene.add(gridHelper);
+
+      // Nodes Data
+      const nodeDefinitions = [
+        { id: 'server', label: 'R. SERVER (PUSAT)', x: -50, z: -40, type: 'core', ports: '48 Port FO', sfp: '-2.8 dBm' },
+        { id: 'pos_sec_1', label: 'SWITCH 24 FO - POS SEC 1', x: -240, z: -130, type: 'fo', ports: '24 Port FO', sfp: '-3.2 dBm' },
+        { id: 'genset', label: 'SWITCH 24 POE - GENSET', x: -120, z: -130, type: 'poe', ports: '24 Port PoE', sfp: '-4.1 dBm' },
+        { id: 'area_dc', label: 'SWITCH 24 POE - AREA DC', x: -240, z: -40, type: 'poe', ports: '24 Port PoE', sfp: '-3.5 dBm' },
+        { id: 'aseptic_lama', label: 'SWITCH 8 PORT - ASEPTIC LAMA', x: -240, z: 60, type: 'std', ports: '8 Port', sfp: '-4.8 dBm' },
+        { id: 'office', label: '3 SWITCH 16 PORT - OFFICE', x: -20, z: 30, type: 'bundle', ports: '3x 16 Port', sfp: '-3.0 dBm' },
+        { id: 'qa_qc', label: 'SWITCH 8 PORT - QA QC', x: 100, z: 30, type: 'std', ports: '8 Port', sfp: '-4.2 dBm' },
+        { id: 'decon_tca', label: 'SWITCH 24 FO - DECON TCA', x: 120, z: 100, type: 'fo', ports: '24 Port FO', sfp: '-3.6 dBm' },
+        { id: 'r_meeting_whs', label: 'SWITCH 24 FO - R. MEETING WHS', x: -20, z: 150, type: 'fo', ports: '24 Port FO', sfp: '-3.9 dBm' },
+        { id: 'whs_sparepart', label: 'SWITCH 24 FO - WHS SPAREPART', x: -240, z: 220, type: 'fo', ports: '24 Port FO', sfp: '-3.8 dBm' },
+        { id: 'wwtp', label: 'SWITCH 24 FO - WWTP', x: 200, z: 240, type: 'fo', ports: '24 Port FO', sfp: '-5.0 dBm' },
+        { id: 'pos_sec_2', label: 'SWITCH 8 POE - POS SEC 2', x: -380, z: 220, type: 'poe', ports: '8 Port PoE', sfp: '-4.0 dBm' },
+        { id: 'nanostation_m2', label: 'NANOSTATION M2 - WIRELESS LINK', x: -110, z: 220, type: 'ap', ports: 'AirMax 2.4G', sfp: '-62 dBm' }
+      ];
+
+      const nodesGroup = new THREE.Group();
+      const cablesGroup = new THREE.Group();
+      scene.add(cablesGroup);
+      scene.add(nodesGroup);
+
+      const nodeMeshMap = new Map();
+
+      // Build 3D Switch Meshes
+      nodeDefinitions.forEach(n => {
+        const holder = new THREE.Group();
+        holder.position.set(n.x, 0, n.z);
+        holder.userData = n;
+
+        // Base plate
+        const padGeo = new THREE.CylinderGeometry(20, 22, 2, 24);
+        const padMat = new THREE.MeshBasicMaterial({ color: n.type === 'core' ? 0x0062ff : 0x1e293b, transparent: true, opacity: 0.8 });
+        const pad = new THREE.Mesh(padGeo, padMat);
+        holder.add(pad);
+
+        // Chassis Box
+        const isCore = n.type === 'core';
+        const geo = new THREE.BoxGeometry(isCore ? 34 : 28, isCore ? 40 : 12, isCore ? 26 : 18);
+        const mat = new THREE.MeshPhongMaterial({
+          color: isCore ? 0x004cca : n.type === 'fo' ? 0x0f172a : 0x334155,
+          specular: 0x0062ff,
+          shininess: 40
+        });
+        const mesh = new THREE.Mesh(geo, mat);
+        mesh.position.y = isCore ? 20 : 6;
+        holder.add(mesh);
+
+        // LED Face
+        const ledGeo = new THREE.BoxGeometry(isCore ? 30 : 24, 4, 1);
+        const ledMat = new THREE.MeshBasicMaterial({ color: n.type === 'fo' ? 0x00d2ff : 0x10b981 });
+        const led = new THREE.Mesh(ledGeo, ledMat);
+        led.position.set(0, isCore ? 20 : 6, isCore ? 13.5 : 9.5);
+        holder.add(led);
+
+        nodesGroup.add(holder);
+        nodeMeshMap.set(n.id, holder);
+      });
+
+      // Build Cables
+      const cableDefinitions = [
+        { from: 'server', to: 'pos_sec_1', type: 'fo' },
+        { from: 'pos_sec_1', to: 'genset', type: 'plan' },
+        { from: 'pos_sec_1', to: 'area_dc', type: 'lama' },
+        { from: 'area_dc', to: 'aseptic_lama', type: 'lama' },
+        { from: 'server', to: 'office', type: 'fo' },
+        { from: 'office', to: 'qa_qc', type: 'lama' },
+        { from: 'server', to: 'decon_tca', type: 'fo' },
+        { from: 'server', to: 'r_meeting_whs', type: 'fo' },
+        { from: 'r_meeting_whs', to: 'wwtp', type: 'fo' },
+        { from: 'r_meeting_whs', to: 'nanostation_m2', type: 'plan' },
+        { from: 'server', to: 'whs_sparepart', type: 'fo' },
+        { from: 'whs_sparepart', to: 'pos_sec_2', type: 'fo' },
+        { from: 'whs_sparepart', to: 'aseptic_lama', type: 'lama' }
+      ];
+
+      function rebuild3DCables() {
+        while (cablesGroup.children.length > 0) {
+          cablesGroup.remove(cablesGroup.children[0]);
+        }
+        cableDefinitions.forEach(link => {
+          const f = nodeMeshMap.get(link.from);
+          const t = nodeMeshMap.get(link.to);
+          if (!f || !t) return;
+          const p1 = f.position.clone().add(new THREE.Vector3(0, 6, 0));
+          const p2 = t.position.clone().add(new THREE.Vector3(0, 6, 0));
+          const midX = (p1.x + p2.x) / 2;
+          const midZ = (p1.z + p2.z) / 2;
+          const dist = p1.distanceTo(p2);
+          const midY = 10 + Math.min(dist * 0.1, 30);
+          const mid = new THREE.Vector3(midX, midY, midZ);
+          const curve = new THREE.CatmullRomCurve3([p1, mid, p2]);
+
+          let color = 0x475569;
+          let r = 1.2;
+          if (link.type === 'fo') { color = 0x0062ff; r = 2.0; }
+          else if (link.type === 'plan') { color = 0xf97316; r = 1.8; }
+
+          const tubeGeo = new THREE.TubeGeometry(curve, 20, r, 6, false);
+          const tubeMat = new THREE.MeshPhongMaterial({
+            color: color,
+            emissive: link.type === 'fo' ? 0x0033aa : link.type === 'plan' ? 0x882200 : 0x000000
+          });
+          const tube = new THREE.Mesh(tubeGeo, tubeMat);
+          cablesGroup.add(tube);
+        });
+      }
+      rebuild3DCables();
+
+      // DUAL SYNCHRONIZATION FUNCTION
+      const pill2D = document.getElementById('pill-selected-2d');
+      const pill3D = document.getElementById('pill-selected-3d');
+      const inspectorTitle = document.getElementById('inspector-title');
+      const inspectorSubtitle = document.getElementById('inspector-subtitle');
+      const statPorts = document.getElementById('stat-ports');
+      const statSfp = document.getElementById('stat-sfp');
+      const coordValX = document.getElementById('coord-val-x');
+      const coordValZ = document.getElementById('coord-val-z');
+
+      function selectNodeSync(nodeId) {
+        const found = nodeDefinitions.find(n => n.id === nodeId);
+        if (!found) return;
+
+        // 1. Highlight in 2D
+        document.querySelectorAll('.node-2d').forEach(el => {
+          if (el.dataset.id === nodeId) {
+            el.classList.add('active-node');
+          } else {
+            el.classList.remove('active-node');
+          }
+        });
+
+        // 2. Pulse / Highlight in 3D
+        nodesGroup.children.forEach(group => {
+          const pad = group.children[0];
+          if (group.userData.id === nodeId) {
+            pad.material.color.setHex(0x00d2ff);
+            pad.scale.set(1.4, 1.4, 1.4);
+          } else {
+            pad.material.color.setHex(group.userData.type === 'core' ? 0x0062ff : 0x1e293b);
+            pad.scale.set(1, 1, 1);
+          }
+        });
+
+        // 3. Update HUD & Inspector
+        if (pill2D) pill2D.textContent = found.label;
+        if (pill3D) pill3D.textContent = found.label;
+        if (inspectorTitle) inspectorTitle.textContent = found.label;
+        if (inspectorSubtitle) inspectorSubtitle.textContent = `IP: 10.10.${nodeId.length}.1 • ${found.ports}`;
+        if (statPorts) statPorts.textContent = found.ports.includes('48') ? '38 / 48' : found.ports.includes('24') ? '19 / 24' : '6 / 8';
+        if (statSfp) statSfp.textContent = found.sfp;
+        if (coordValX) coordValX.textContent = found.x.toFixed(1);
+        if (coordValZ) coordValZ.textContent = found.z.toFixed(1);
+
+        showToast('Node Tersinkronisasi', `${found.label} ter-highlight serentak di 2D & 3D.`, 'sync');
+      }
+
+      // 2D Node Click Listener
+      document.querySelectorAll('.node-2d').forEach(el => {
+        el.addEventListener('click', () => {
+          selectNodeSync(el.dataset.id);
+        });
+      });
+
+      // 3D Raycasting & Dragging / Orbit
+      const raycaster = new THREE.Raycaster();
+      const mouse = new THREE.Vector2();
+      let isDragging = false;
+      let isOrbiting = false;
+      let dragNode = null;
+      let prevX = 0, prevY = 0;
+      const plane = new THREE.Plane(new THREE.Vector3(0, 1, 0), 0);
+      const hitPoint = new THREE.Vector3();
+
+      const dom3D = renderer.domElement;
+      dom3D.addEventListener('pointerdown', (e) => {
+        const rect = dom3D.getBoundingClientRect();
+        mouse.x = ((e.clientX - rect.left) / rect.width) * 2 - 1;
+        mouse.y = -((e.clientY - rect.top) / rect.height) * 2 + 1;
+        raycaster.setFromCamera(mouse, camera);
+
+        const hits = [];
+        nodesGroup.children.forEach(group => {
+          const inter = raycaster.intersectObjects(group.children, true);
+          if (inter.length > 0) hits.push(group);
+        });
+
+        if (hits.length > 0) {
+          isDragging = true;
+          dragNode = hits[0];
+          selectNodeSync(dragNode.userData.id);
+        } else {
+          isOrbiting = true;
+          prevX = e.clientX;
+          prevY = e.clientY;
+        }
+      });
+
+      dom3D.addEventListener('pointermove', (e) => {
+        const rect = dom3D.getBoundingClientRect();
+        mouse.x = ((e.clientX - rect.left) / rect.width) * 2 - 1;
+        mouse.y = -((e.clientY - rect.top) / rect.height) * 2 + 1;
+
+        if (isDragging && dragNode) {
+          raycaster.setFromCamera(mouse, camera);
+          if (raycaster.ray.intersectPlane(plane, hitPoint)) {
+            dragNode.position.x = hitPoint.x;
+            dragNode.position.z = hitPoint.z;
+            dragNode.userData.x = hitPoint.x;
+            dragNode.userData.z = hitPoint.z;
+            if (coordValX) coordValX.textContent = hitPoint.x.toFixed(1);
+            if (coordValZ) coordValZ.textContent = hitPoint.z.toFixed(1);
+            rebuild3DCables();
+          }
+        } else if (isOrbiting) {
+          const dx = e.clientX - prevX;
+          const dy = e.clientY - prevY;
+          camTheta -= dx * 0.005;
+          camPhi = Math.max(0.1, Math.min(Math.PI / 2.05, camPhi - dy * 0.005));
+          prevX = e.clientX;
+          prevY = e.clientY;
+          updateCam();
+        }
+      });
+
+      window.addEventListener('pointerup', () => {
+        isDragging = false;
+        isOrbiting = false;
+        dragNode = null;
+      });
+
+      dom3D.addEventListener('wheel', (e) => {
+        e.preventDefault();
+        camRadius = Math.max(250, Math.min(1000, camRadius + e.deltaY * 0.7));
+        updateCam();
+      }, { passive: false });
+
+      // Table Row click sync
+      document.querySelectorAll('#table-route-rows tr').forEach(row => {
+        row.addEventListener('click', () => {
+          const fromId = row.dataset.from;
+          if (fromId) selectNodeSync(fromId);
+        });
+      });
+
+      // Actions
+      document.getElementById('btn-reset-views')?.addEventListener('click', () => {
+        zoomLevel = 1;
+        if (svgDiagram) svgDiagram.style.transform = 'scale(1)';
+        camRadius = 650;
+        camTheta = Math.PI * 0.25;
+        camPhi = Math.PI * 0.35;
+        updateCam();
+        showToast('Tampilan Di-reset', 'Orbit 3D dan Skematik 2D kembali ke posisi awal.', 'crop_free');
+      });
+
+      document.getElementById('btn-save-topology')?.addEventListener('click', () => {
+        showToast('Topologi Tersimpan', 'Koordinat spasial 2D & 3D berhasil disimpan ke server.', 'cloud_done');
+      });
+
+      document.getElementById('btn-ping-test')?.addEventListener('click', () => {
+        showToast('Ping Sweep Berhasil', 'Uptime 99.98%, RTT: 1.12 ms ke R. SERVER.', 'network_check');
+      });
+
+      // Resize
+      function onWindowResize() {
+        const w = container3D.clientWidth || 600;
+        const h = container3D.clientHeight || 600;
+        camera.aspect = w / h;
+        camera.updateProjectionMatrix();
+        renderer.setSize(w, h);
+      }
+      window.addEventListener('resize', onWindowResize);
+
+      // Render Loop
+      function animate() {
+        requestAnimationFrame(animate);
+        renderer.render(scene, camera);
+      }
+      animate();
+    })();
+  </script>
+</body>
+</html>

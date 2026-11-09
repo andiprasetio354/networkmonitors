@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width,initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      background: #000;
+    }
+  </style>
+</head>
+<body>
+<!-- STITCH_THREEJS_START:ANIMATION_13 class="fixed inset-0 w-full h-full bg-transparent" -->
+<div class="fixed inset-0 w-full h-full bg-transparent" style="display:block;">
+<script src="https://ajax.googleapis.com/ajax/libs/threejs/r125/three.min.js"></script>
+<div id="threejs-container-ANIMATION_13" style="width:100%;height:100%"></div>
+<script>
+(function() {
+  const container = document.getElementById('threejs-container-ANIMATION_13');
+  const devicePixelRatio = window.devicePixelRatio || 1;
+  // Three.js Interactive 3D Network Topology Map (Diagram Switch Hub Jaringan Minsel)
+const width = container.clientWidth || window.innerWidth;
+const height = container.clientHeight || window.innerHeight;
+
+const scene = new THREE.Scene();
+scene.background = new THREE.Color(0x0b1120);
+
+// Camera Setup (Isometric Angle)
+const camera = new THREE.PerspectiveCamera(45, width / height, 0.1, 2000);
+camera.position.set(0, 480, 520);
+camera.lookAt(0, 0, 0);
+
+const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+renderer.setSize(width, height);
+renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+renderer.shadowMap.enabled = true;
+renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+container.appendChild(renderer.domElement);
+
+// Lighting
+const ambientLight = new THREE.AmbientLight(0xffffff, 0.85);
+scene.add(ambientLight);
+
+const dirLight = new THREE.DirectionalLight(0x38bdf8, 1.2);
+dirLight.position.set(200, 400, 200);
+dirLight.castShadow = true;
+scene.add(dirLight);
+
+const bluePointLight = new THREE.PointLight(0x0062ff, 2.5, 800);
+bluePointLight.position.set(0, 150, 0);
+scene.add(bluePointLight);
+
+// Floor Grid
+const gridHelper = new THREE.GridHelper(1200, 40, 0x1e293b, 0x0f172a);
+gridHelper.position.y = -2;
+scene.add(gridHelper);
+
+// Groups
+const nodesGroup = new THREE.Group();
+const cablesGroup = new THREE.Group();
+const particlesGroup = new THREE.Group();
+scene.add(cablesGroup);
+scene.add(nodesGroup);
+scene.add(particlesGroup);
+
+// Node Definitions from Diagram Minsel
+const rawNodes = [
+  { id: 'server', label: 'R. SERVER (PUSAT)', type: 'core_server', x: -60, z: -40, ports: '48 Port FO', status: 'online', ip: '10.10.0.1' },
+  { id: 'pos_sec_1', label: 'SWITCH 24 PORT FO - POS SEC 1', type: 'switch_fo', x: -280, z: -140, ports: '24 Port FO', status: 'online', ip: '10.10.1.1' },
+  { id: 'area_dc', label: 'SWITCH 24 PORT POE - AREA DC', type: 'switch_poe', x: -280, z: -40, ports: '24 Port PoE', status: 'online', ip: '10.10.1.2' },
+  { id: 'aseptic_lama', label: 'SWITCH 8 PORT - ASEPTIC LAMA', type: 'switch_std', x: -280, z: 60, ports: '8 Port', status: 'online', ip: '10.10.1.3' },
+  { id: 'genset', label: 'SWITCH 24 PORT POE - GENSET', type: 'switch_poe', x: -130, z: -140, ports: '24 Port PoE', status: 'online', ip: '10.10.2.1' },
+  { id: 'r_meeting', label: 'SWITCH 24 PORT POE - R. MEETING', type: 'switch_poe', x: -100, z: 60, ports: '24 Port PoE', status: 'online', ip: '10.10.2.2' },
+  { id: 'r_server_gh', label: 'SWITCH 8 PORT POE - R. SERVER GH', type: 'switch_poe', x: 20, z: -140, ports: '8 Port PoE', status: 'online', ip: '10.10.3.1' },
+  { id: 'gh_lt2', label: 'SWITCH 16 PORT POE - GH LT.2', type: 'switch_poe', x: 120, z: -210, ports: '16 Port PoE', status: 'online', ip: '10.10.3.2' },
+  { id: 'gh_lt1', label: 'SWITCH 8 PORT POE - GH LT.1', type: 'switch_poe', x: 120, z: -140, ports: '8 Port PoE', status: 'online', ip: '10.10.3.3' },
+  { id: 'office', label: '3 SWITCH 16 PORT - OFFICE', type: 'switch_bundle', x: -20, z: 20, ports: '3x 16 Port', status: 'online', ip: '10.10.4.1' },
+  { id: 'qa_qc', label: 'SWITCH 8 PORT - QA QC', type: 'switch_std', x: 110, z: 20, ports: '8 Port', status: 'online', ip: '10.10.4.2' },
+  { id: 'admin_qa_qc', label: 'SWITCH 8 PORT POE - ADMIN QA QC', type: 'switch_poe', x: 210, z: 20, ports: '8 Port PoE', status: 'online', ip: '10.10.4.3' },
+  { id: 'lab_kimia', label: 'SWITCH 8 PORT - LAB KIMIA', type: 'switch_std', x: 300, z: 20, ports: '8 Port', status: 'online', ip: '10.10.4.4' },
+  { id: 'lab_mikro', label: 'SWITCH 8 PORT - LAB MIKRO', type: 'switch_std', x: 390, z: 20, ports: '8 Port', status: 'online', ip: '10.10.4.5' },
+  { id: 'decon_tca', label: 'SWITCH 24 PORT FO - DECON TCA', type: 'switch_fo', x: 130, z: 100, ports: '24 Port FO', status: 'warning', ip: '10.10.5.1' },
+  { id: 'adm_prd', label: 'SWITCH 16 PORT POE - ADM PRD', type: 'switch_poe', x: 230, z: 100, ports: '16 Port PoE', status: 'online', ip: '10.10.5.2' },
+  { id: 'sparepart_tca', label: 'SWITCH 8 PORT - SPAREPART TCA', type: 'switch_std', x: 230, z: 180, ports: '8 Port', status: 'online', ip: '10.10.5.3' },
+  { id: 'r_meeting_whs', label: 'SWITCH 24 PORT FO - R. MEETING WHS FG', type: 'switch_fo', x: -20, z: 160, ports: '24 Port FO', status: 'online', ip: '10.10.6.1' },
+  { id: 'whs_sparepart', label: 'SWITCH 24 PORT FO - WHS SPAREPART', type: 'switch_fo', x: -280, z: 240, ports: '24 Port FO', status: 'online', ip: '10.10.7.1' },
+  { id: 'pos_sec_2', label: 'SWITCH 8 PORT POE - POS SEC 2', type: 'switch_poe', x: -430, z: 240, ports: '8 Port PoE', status: 'online', ip: '10.10.7.2' },
+  { id: 'wwtp', label: 'SWITCH 24 PORT FO - WWTP', type: 'switch_fo', x: 230, z: 260, ports: '24 Port FO', status: 'offline', ip: '10.10.8.1' },
+  { id: 'nanostation_m2', label: 'NANOSTATION M2 - WIRELESS LINK', type: 'ap_wireless', x: -120, z: 240, ports: 'AirMax 2.4GHz', status: 'online', ip: '10.10.9.1' }
+];
+
+// Cable Links matching Diagram Legend:
+// 'line_lama' = black / silver line
+// 'line_fo' = glowing electric blue line
+// 'plan_baru' = glowing vibrant orange line
+let cablesData = [
+  { from: 'server', to: 'pos_sec_1', type: 'line_fo', active: true },
+  { from: 'pos_sec_1', to: 'genset', type: 'plan_baru', active: true },
+  { from: 'pos_sec_1', to: 'area_dc', type: 'line_lama', active: true },
+  { from: 'server', to: 'r_server_gh', type: 'line_lama', active: true },
+  { from: 'r_server_gh', to: 'gh_lt2', type: 'line_lama', active: true },
+  { from: 'r_server_gh', to: 'gh_lt1', type: 'line_lama', active: true },
+  { from: 'server', to: 'office', type: 'line_fo', active: true },
+  { from: 'office', to: 'qa_qc', type: 'line_lama', active: true },
+  { from: 'office', to: 'admin_qa_qc', type: 'line_lama', active: true },
+  { from: 'office', to: 'lab_kimia', type: 'line_lama', active: true },
+  { from: 'office', to: 'lab_mikro', type: 'line_lama', active: true },
+  { from: 'server', to: 'decon_tca', type: 'line_fo', active: true },
+  { from: 'decon_tca', to: 'adm_prd', type: 'plan_baru', active: true },
+  { from: 'adm_prd', to: 'sparepart_tca', type: 'line_lama', active: true },
+  { from: 'server', to: 'r_meeting', type: 'line_fo', active: true },
+  { from: 'server', to: 'r_meeting_whs', type: 'line_fo', active: true },
+  { from: 'r_meeting_whs', to: 'wwtp', type: 'line_fo', active: true },
+  { from: 'r_meeting_whs', to: 'nanostation_m2', type: 'plan_baru', active: true },
+  { from: 'server', to: 'whs_sparepart', type: 'line_fo', active: true },
+  { from: 'whs_sparepart', to: 'pos_sec_2', type: 'line_fo', active: true },
+  { from: 'whs_sparepart', to: 'aseptic_lama', type: 'line_lama', active: true }
+];
+
+// Text label canvas generator
+function createLabelSprite(text, subtext, status) {
+  const canvas = document.createElement('canvas');
+  canvas.width = 512;
+  canvas.height = 160;
+  const ctx = canvas.getContext('2d');
+
+  // Badge background
+  ctx.fillStyle = 'rgba(15, 23, 42, 0.9)';
+  ctx.roundRect ? ctx.roundRect(10, 10, 492, 140, 16) : ctx.fillRect(10, 10, 492, 140);
+  ctx.fill();
+
+  ctx.lineWidth = 4;
+  ctx.strokeStyle = status === 'offline' ? '#ef4444' : status === 'warning' ? '#f59e0b' : '#0062ff';
+  ctx.stroke();
+
+  // Status indicator dot
+  ctx.beginPath();
+  ctx.arc(40, 50, 12, 0, Math.PI * 2);
+  ctx.fillStyle = status === 'offline' ? '#ef4444' : status === 'warning' ? '#f59e0b' : '#10b981';
+  ctx.fill();
+
+  // Text
+  ctx.fillStyle = '#ffffff';
+  ctx.font = 'bold 26px sans-serif';
+  ctx.fillText(text, 68, 58);
+
+  ctx.fillStyle = '#94a3b8';
+  ctx.font = '20px monospace';
+  ctx.fillText(subtext, 68, 108);
+
+  const texture = new THREE.CanvasTexture(canvas);
+  const spriteMaterial = new THREE.SpriteMaterial({ map: texture, transparent: true });
+  const sprite = new THREE.Sprite(spriteMaterial);
+  sprite.scale.set(65, 20, 1);
+  return sprite;
+}
+
+const nodeMeshMap = new Map();
+
+// Build 3D Rack / Switch Geometry
+rawNodes.forEach(node => {
+  const nodeHolder = new THREE.Group();
+  nodeHolder.position.set(node.x, 0, node.z);
+  nodeHolder.userData = { ...node };
+
+  let mainMesh;
+  if (node.type === 'core_server') {
+    // Twin Blade Rack Cabinets
+    const rackGeo = new THREE.BoxGeometry(32, 54, 28);
+    const rackMat = new THREE.MeshPhongMaterial({ color: 0x1e293b, specular: 0x0062ff, shininess: 40 });
+    const rack1 = new THREE.Mesh(rackGeo, rackMat);
+    rack1.position.set(-16, 27, 0);
+    rack1.castShadow = true;
+
+    const rack2 = rack1.clone();
+    rack2.position.set(16, 27, 0);
+
+    // Glowing front server blades
+    const bladeGeo = new THREE.BoxGeometry(28, 48, 2);
+    const bladeMat = new THREE.MeshBasicMaterial({ color: 0x00d2ff });
+    const blade = new THREE.Mesh(bladeGeo, bladeMat);
+    blade.position.set(-16, 27, 14.5);
+    const blade2 = blade.clone();
+    blade2.position.set(16, 27, 14.5);
+
+    nodeHolder.add(rack1, rack2, blade, blade2);
+    mainMesh = rack1;
+  } else if (node.type === 'switch_fo') {
+    // 24 Port Fiber Switch (Chassis with deep blue / neon FO accent)
+    const swGeo = new THREE.BoxGeometry(40, 14, 24);
+    const swMat = new THREE.MeshPhongMaterial({ color: 0x0f172a, specular: 0x0062ff, shininess: 50 });
+    const sw = new THREE.Mesh(swGeo, swMat);
+    sw.position.y = 7;
+    sw.castShadow = true;
+
+    // FO Glowing Front Rim
+    const foBezelGeo = new THREE.BoxGeometry(38, 8, 2);
+    const foBezelMat = new THREE.MeshBasicMaterial({ color: node.status === 'offline' ? 0xef4444 : 0x0062ff });
+    const bezel = new THREE.Mesh(foBezelGeo, foBezelMat);
+    bezel.position.set(0, 7, 12.2);
+
+    nodeHolder.add(sw, bezel);
+    mainMesh = sw;
+  } else if (node.type === 'ap_wireless') {
+    // Ubiquiti Nanostation M2 Tower
+    const poleGeo = new THREE.CylinderGeometry(2, 2, 45, 16);
+    const poleMat = new THREE.MeshPhongMaterial({ color: 0x475569 });
+    const pole = new THREE.Mesh(poleGeo, poleMat);
+    pole.position.y = 22.5;
+
+    const antGeo = new THREE.BoxGeometry(10, 24, 6);
+    const antMat = new THREE.MeshPhongMaterial({ color: 0xffffff });
+    const ant = new THREE.Mesh(antGeo, antMat);
+    ant.position.set(0, 32, 4);
+
+    nodeHolder.add(pole, ant);
+    mainMesh = ant;
+  } else {
+    // Standard Switch 8 / 16 / 24 PoE
+    const swGeo = new THREE.BoxGeometry(34, 11, 20);
+    const swMat = new THREE.MeshPhongMaterial({
+      color: node.type === 'switch_poe' ? 0x1e3a8a : 0x334155,
+      specular: 0x64748b,
+      shininess: 30
+    });
+    const sw = new THREE.Mesh(swGeo, swMat);
+    sw.position.y = 5.5;
+    sw.castShadow = true;
+
+    // Status LED strip
+    const ledGeo = new THREE.BoxGeometry(30, 3, 1.5);
+    const ledMat = new THREE.MeshBasicMaterial({
+      color: node.type === 'switch_poe' ? 0x38bdf8 : 0x94a3b8
+    });
+    const led = new THREE.Mesh(ledGeo, ledMat);
+    led.position.set(0, 5.5, 10.2);
+
+    nodeHolder.add(sw, led);
+    mainMesh = sw;
+  }
+
+  // Base platform pad
+  const padGeo = new THREE.CylinderGeometry(28, 30, 2, 32);
+  const padMat = new THREE.MeshBasicMaterial({
+    color: node.status === 'offline' ? 0xef4444 : node.status === 'warning' ? 0xf59e0b : 0x1e293b,
+    transparent: true,
+    opacity: 0.65
+  });
+  const pad = new THREE.Mesh(padGeo, padMat);
+  pad.position.y = 0.5;
+  nodeHolder.add(pad);
+
+  // Label Sprite floating on top
+  const labelSprite = createLabelSprite(node.label, `${node.ip} • ${node.ports}`, node.status);
+  labelSprite.position.set(0, node.type === 'core_server' ? 68 : 34, 0);
+  nodeHolder.add(labelSprite);
+
+  nodesGroup.add(nodeHolder);
+  nodeMeshMap.set(node.id, nodeHolder);
+});
+
+// Render dynamic cable paths
+const cableCurves = [];
+function rebuildCables() {
+  while (cablesGroup.children.length > 0) {
+    const c = cablesGroup.children[0];
+    cablesGroup.remove(c);
+  }
+  cableCurves.length = 0;
+
+  cablesData.forEach((link, idx) => {
+    const fromNode = nodeMeshMap.get(link.from);
+    const toNode = nodeMeshMap.get(link.to);
+    if (!fromNode || !toNode) return;
+
+    const p1 = fromNode.position.clone().add(new THREE.Vector3(0, 7, 0));
+    const p2 = toNode.position.clone().add(new THREE.Vector3(0, 7, 0));
+
+    // Curved arched midpoint for high visibility
+    const midX = (p1.x + p2.x) / 2;
+    const midZ = (p1.z + p2.z) / 2;
+    const dist = p1.distanceTo(p2);
+    const midY = 12 + Math.min(dist * 0.12, 35);
+    const mid = new THREE.Vector3(midX, midY, midZ);
+
+    const curve = new THREE.CatmullRomCurve3([p1, mid, p2]);
+    cableCurves.push({ curve, type: link.type, active: link.active });
+
+    let cableColor = 0x64748b; // line lama
+    let cableRadius = 1.2;
+    if (link.type === 'line_fo') {
+      cableColor = 0x0062ff; // Blue FO
+      cableRadius = 2.0;
+    } else if (link.type === 'plan_baru') {
+      cableColor = 0xf97316; // Orange Plan Baru
+      cableRadius = 1.8;
+    }
+
+    const tubeGeo = new THREE.TubeGeometry(curve, 28, cableRadius, 8, false);
+    const tubeMat = new THREE.MeshPhongMaterial({
+      color: cableColor,
+      emissive: link.type === 'line_fo' ? 0x0044cc : link.type === 'plan_baru' ? 0x9a3412 : 0x000000,
+      specular: 0xffffff,
+      shininess: 60
+    });
+    const tubeMesh = new THREE.Mesh(tubeGeo, tubeMat);
+    tubeMesh.userData = { linkIndex: idx, isCable: true };
+    cablesGroup.add(tubeMesh);
+  });
+}
+rebuildCables();
+
+// Light pulse particles on Fiber & Plan Baru cables
+const particleCount = 45;
+const packetSpheres = [];
+const packetMatFO = new THREE.MeshBasicMaterial({ color: 0x38bdf8 });
+const packetMatOrange = new THREE.MeshBasicMaterial({ color: 0xffedd5 });
+
+for (let i = 0; i < particleCount; i++) {
+  const pMesh = new THREE.Mesh(new THREE.SphereGeometry(1.6, 8, 8), packetMatFO);
+  particlesGroup.add(pMesh);
+  packetSpheres.push({
+    mesh: pMesh,
+    cableIndex: i % cablesData.length,
+    t: (i / particleCount)
+  });
+}
+
+// Interaction & Dragging Controls
+let selectedNode = null;
+let isDragging = false;
+let dragPlane = new THREE.Plane(new THREE.Vector3(0, 1, 0), 0);
+let raycaster = new THREE.Raycaster();
+let mouse = new THREE.Vector2();
+let planeIntersect = new THREE.Vector3();
+let dragOffset = new THREE.Vector3();
+
+// Pan / Orbit Camera State
+let isOrbiting = false;
+let prevMouseX = 0;
+let prevMouseY = 0;
+let camRadius = 700;
+let camAngleTheta = Math.PI * 0.25;
+let camAnglePhi = Math.PI * 0.35;
+
+function updateCameraPos() {
+  camera.position.x = camRadius * Math.sin(camAnglePhi) * Math.sin(camAngleTheta);
+  camera.position.y = camRadius * Math.cos(camAnglePhi);
+  camera.position.z = camRadius * Math.sin(camAnglePhi) * Math.cos(camAngleTheta);
+  camera.lookAt(0, 0, 0);
+}
+
+const domElement = renderer.domElement;
+
+domElement.addEventListener('pointerdown', (e) => {
+  const rect = domElement.getBoundingClientRect();
+  mouse.x = ((e.clientX - rect.left) / rect.width) * 2 - 1;
+  mouse.y = -((e.clientY - rect.top) / rect.height) * 2 + 1;
+
+  raycaster.setFromCamera(mouse, camera);
+
+  // Check node hit
+  const nodeIntersects = [];
+  nodesGroup.children.forEach(group => {
+    const hits = raycaster.intersectObjects(group.children, true);
+    if (hits.length > 0) {
+      nodeIntersects.push({ group, hit: hits[0] });
+    }
+  });
+
+  if (nodeIntersects.length > 0 && e.button === 0) {
+    isDragging = true;
+    selectedNode = nodeIntersects[0].group;
+    if (raycaster.ray.intersectPlane(dragPlane, planeIntersect)) {
+      dragOffset.copy(selectedNode.position).sub(planeIntersect);
+    }
+    window.dispatchEvent(new CustomEvent('nodeSelected', { detail: selectedNode.userData }));
+  } else {
+    isOrbiting = true;
+    prevMouseX = e.clientX;
+    prevMouseY = e.clientY;
+  }
+});
+
+domElement.addEventListener('pointermove', (e) => {
+  const rect = domElement.getBoundingClientRect();
+  mouse.x = ((e.clientX - rect.left) / rect.width) * 2 - 1;
+  mouse.y = -((e.clientY - rect.top) / rect.height) * 2 + 1;
+
+  if (isDragging && selectedNode) {
+    raycaster.setFromCamera(mouse, camera);
+    if (raycaster.ray.intersectPlane(dragPlane, planeIntersect)) {
+      selectedNode.position.x = planeIntersect.x + dragOffset.x;
+      selectedNode.position.z = planeIntersect.z + dragOffset.z;
+      selectedNode.userData.x = selectedNode.position.x;
+      selectedNode.userData.z = selectedNode.position.z;
+      rebuildCables();
+    }
+  } else if (isOrbiting) {
+    const dx = e.clientX - prevMouseX;
+    const dy = e.clientY - prevMouseY;
+    camAngleTheta -= dx * 0.006;
+    camAnglePhi = Math.max(0.1, Math.min(Math.PI / 2.05, camAnglePhi - dy * 0.006));
+    prevMouseX = e.clientX;
+    prevMouseY = e.clientY;
+    updateCameraPos();
+  }
+});
+
+window.addEventListener('pointerup', () => {
+  isDragging = false;
+  isOrbiting = false;
+});
+
+domElement.addEventListener('wheel', (e) => {
+  e.preventDefault();
+  camRadius = Math.max(250, Math.min(1200, camRadius + e.deltaY * 0.8));
+  updateCameraPos();
+}, { passive: false });
+
+// Global Hook to add/switch cable & move positions from UI buttons
+window.networkTopologyAPI = {
+  resetCamera: () => {
+    camRadius = 700;
+    camAngleTheta = Math.PI * 0.25;
+    camAnglePhi = Math.PI * 0.35;
+    updateCameraPos();
+  },
+  cycleCableType: (index) => {
+    const types = ['line_lama', 'line_fo', 'plan_baru'];
+    const cur = cablesData[index].type;
+    const next = types[(types.indexOf(cur) + 1) % types.length];
+    cablesData[index].type = next;
+    rebuildCables();
+    return next;
+  },
+  reconnectCable: (cableIdx, newToNodeId) => {
+    if (cablesData[cableIdx]) {
+      cablesData[cableIdx].to = newToNodeId;
+      rebuildCables();
+    }
+  },
+  addNewCable: (fromId, toId, type) => {
+    cablesData.push({ from: fromId, to: toId, type: type || 'plan_baru', active: true });
+    rebuildCables();
+  },
+  getCables: () => cablesData,
+  getNodes: () => rawNodes
+};
+
+// Resize
+window.addEventListener('resize', () => {
+  const w = container.clientWidth || window.innerWidth;
+  const h = container.clientHeight || window.innerHeight;
+  camera.aspect = w / h;
+  camera.updateProjectionMatrix();
+  renderer.setSize(w, h);
+});
+
+// Animation Loop
+let clock = new THREE.Clock();
+function animate() {
+  requestAnimationFrame(animate);
+  const delta = clock.getDelta();
+  const time = clock.getElapsedTime();
+
+  // Packet movement on active lines
+  packetSpheres.forEach(p => {
+    if (cableCurves.length === 0) return;
+    const curveInfo = cableCurves[p.cableIndex % cableCurves.length];
+    if (!curveInfo) return;
+
+    p.t = (p.t + delta * 0.25) % 1;
+    const pt = curveInfo.curve.getPoint(p.t);
+    p.mesh.position.copy(pt);
+    p.mesh.material = curveInfo.type === 'plan_baru' ? packetMatOrange : packetMatFO;
+  });
+
+  // Soft hover pulsation on switches
+  nodesGroup.children.forEach((nodeGroup, i) => {
+    const pad = nodeGroup.children[nodeGroup.children.length - 2];
+    if (pad && pad.material) {
+      pad.material.opacity = 0.5 + 0.25 * Math.sin(time * 2.5 + i);
+    }
+  });
+
+  renderer.render(scene, camera);
+}
+animate();
+
+})();
+</script>
+</div>
+<!-- STITCH_THREEJS_END:ANIMATION_13 -->
+</body>
+</html>

@@ -1,0 +1,1306 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_dashboard" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@500;600;700&amp;family=Space+Grotesk:wght@500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config={darkMode:"class",theme:{extend:{colors:{"on-secondary-fixed-variant":"#004d67","on-tertiary-fixed-variant":"#314865","status-online":"#10B981","secondary-fixed":"#c2e8ff","on-tertiary-container":"#f0f4ff","status-maintenance-surface":"#EEF2FF","surface-container-high":"#dce9ff","surface-canvas":"#F4F7FB","surface-container-highest":"#d3e4fe","inverse-primary":"#b4c5ff","surface-tint":"#0053da","tertiary-container":"#5a7190","on-background":"#0b1c30","on-secondary-container":"#004b65","tertiary-fixed-dim":"#b0c8eb","on-surface":"#0b1c30","text-muted":"#94A3B8","surface-container-lowest":"#ffffff","secondary-fixed-dim":"#75d1ff","primary":"#004cca","primary-fixed":"#dbe1ff","on-secondary":"#ffffff","secondary-container":"#00c1fd","on-primary-fixed-variant":"#003ea8","status-maintenance":"#6366F1","on-secondary-fixed":"#001e2b","status-unreachable":"#F59E0B","surface":"#f8f9ff","on-error-container":"#93000a","border-strong":"#CBD5E1","tertiary":"#415976","on-primary":"#ffffff","telemetry-cyan":"#00C2FF","status-online-surface":"#ECFDF5","on-surface-variant":"#424656","on-primary-fixed":"#00174b","status-offline-glow":"#F87171","surface-variant":"#d3e4fe","on-primary-container":"#f3f3ff","primary-container":"#0062ff","error-container":"#ffdad6","status-unreachable-surface":"#FFFBEB","primary-fixed-dim":"#b4c5ff","surface-card-subtle":"#F8FAFC","border-subtle":"#E2E8F0","outline-variant":"#c2c6d9","tertiary-fixed":"#d2e4ff","on-error":"#ffffff","status-online-glow":"#34D399","surface-container-low":"#eff4ff","status-offline-surface":"#FEF2F2","secondary":"#006688","outline":"#737687","on-tertiary":"#ffffff","surface-bright":"#f8f9ff","surface-card":"#FFFFFF","error":"#ba1a1a","on-tertiary-fixed":"#001c37","text-primary":"#0F172A","inverse-on-surface":"#eaf1ff","inverse-surface":"#213145","surface-container":"#e5eeff","text-secondary":"#475569","background":"#f8f9ff","surface-dim":"#cbdbf5","status-offline":"#EF4444"},borderRadius:{DEFAULT:"0.25rem",lg:"0.5rem",xl:"0.75rem",full:"9999px"},spacing:{"space-2xl":"3rem","margin-desktop":"2rem","space-xs":"0.25rem","space-xl":"2rem","margin":"1rem","space-lg":"1.25rem","gutter":"1rem","margin-tablet":"1.5rem","space-sm":"0.5rem","gutter-desktop":"1.5rem","space-md":"0.75rem"},fontFamily:{"telemetry-badge":["JetBrains Mono"],"body-md":["Inter"],"headline-md":["Space Grotesk"],"headline-lg":["Space Grotesk"],"body-lg":["Inter"],"body-sm":["Inter"],"headline-lg-mobile":["Space Grotesk"],"label-caps":["Space Grotesk"],"display-hero":["Space Grotesk"],"headline-sm":["Space Grotesk"],"telemetry-data":["JetBrains Mono"]},fontSize:{"telemetry-badge":["11px",{lineHeight:"14px",letterSpacing:"0.05em",fontWeight:"700"}],"body-md":["14px",{lineHeight:"20px",fontWeight:"400"}],"headline-md":["24px",{lineHeight:"32px",letterSpacing:"-0.01em",fontWeight:"600"}],"headline-lg":["32px",{lineHeight:"40px",letterSpacing:"-0.02em",fontWeight:"700"}],"body-lg":["16px",{lineHeight:"24px",fontWeight:"400"}],"body-sm":["12px",{lineHeight:"16px",fontWeight:"400"}],"headline-lg-mobile":["26px",{lineHeight:"34px",letterSpacing:"-0.01em",fontWeight:"700"}],"label-caps":["11px",{lineHeight:"16px",letterSpacing:"0.08em",fontWeight:"700"}],"display-hero":["48px",{lineHeight:"56px",letterSpacing:"-0.03em",fontWeight:"700"}],"headline-sm":["18px",{lineHeight:"26px",letterSpacing:"0em",fontWeight:"600"}],"telemetry-data":["13px",{lineHeight:"18px",letterSpacing:"-0.01em",fontWeight:"600"}]}}}};</script></head><body class="bg-surface-canvas font-body-md text-on-surface"><aside class="fixed left-0 top-0 h-full w-72 bg-surface-card border-r border-border-subtle z-50 flex flex-col justify-between shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="flex flex-col"><div class="h-16 px-gutter flex items-center gap-space-sm border-b border-border-subtle"><img alt="Wifitics Logo" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/ALJJyrBLmPbDo2Pety1K2Xjnfrst_J5RLW6g3C6a7sYxJzV86k4rlcBPsGfZFHZeyw0u9hkpQfijeJNN0INrfHbSfi6Ik2oCMze9JGzaRGfSuQ5UGK2o66GYZo-sLjPqQRN_OAnA_5ktS1hPtoYzwDEWTQqX5jeaH9J5RKbHKxValFzgAWWn3iTTskCWlIyulGFS1tTZuML1rSHvJawLI5l2o8D5BNA3piakKf9arVRZOg"/><div class="flex flex-col"><span class="font-headline-sm text-headline-sm font-bold text-on-surface tracking-tight">Wifitics</span><span class="font-label-caps text-label-caps uppercase text-telemetry-cyan font-bold tracking-widest text-[9px] leading-[10px]">NOC Commander v4.2</span></div></div><div class="px-space-md py-space-sm"><div class="px-space-sm py-space-xs font-label-caps text-label-caps uppercase text-text-muted">Telemetri &amp; Operasional</div></div><nav class="flex flex-col gap-space-xs px-space-md" data-active-classes="bg-primary-container text-on-primary font-semibold shadow-[0_2px_8px_rgba(0,98,255,0.3)]"><a class="flex items-center gap-space-md px-space-md py-space-sm rounded-lg text-text-secondary hover:bg-surface-container-low hover:text-on-surface transition-all group" data-path="dashboard-utama" href="#"><span class="material-symbols-outlined text-[20px] text-text-muted group-hover:text-primary transition-colors">monitoring</span><span class="font-body-md text-body-md">Dashboard Utama</span></a><a class="flex items-center gap-space-md px-space-md py-space-sm rounded-lg text-text-secondary hover:bg-surface-container-low hover:text-on-surface transition-all group" data-path="manajemen-perangkat" href="#"><span class="material-symbols-outlined text-[20px] text-text-muted group-hover:text-primary transition-colors">router</span><span class="font-body-md text-body-md">Manajemen Perangkat</span></a><a class="flex items-center gap-space-md px-space-md py-space-sm rounded-lg text-text-secondary hover:bg-surface-container-low hover:text-on-surface transition-all group" data-path="topologi-jaringan" href="#"><span class="material-symbols-outlined text-[20px] text-text-muted group-hover:text-primary transition-colors">hub</span><span class="font-body-md text-body-md">Topologi Jaringan</span></a><a class="flex items-center gap-space-md px-space-md py-space-sm rounded-lg text-text-secondary hover:bg-surface-container-low hover:text-on-surface transition-all group" data-path="riwayat-log-insiden" href="#"><span class="material-symbols-outlined text-[20px] text-text-muted group-hover:text-primary transition-colors">receipt_long</span><span class="font-body-md text-body-md">Riwayat &amp; Log Insiden</span></a></nav><div class="px-space-md pt-space-lg pb-space-xs"><div class="px-space-sm py-space-xs font-label-caps text-label-caps uppercase text-text-muted">Konfigurasi Sistem</div></div><nav class="flex flex-col gap-space-xs px-space-md" data-active-classes="bg-primary-container text-on-primary font-semibold shadow-[0_2px_8px_rgba(0,98,255,0.3)]"><a class="flex items-center gap-space-md px-space-md py-space-sm rounded-lg text-text-secondary hover:bg-surface-container-low hover:text-on-surface transition-all group" data-path="pengaturan-notifikasi" href="#"><span class="material-symbols-outlined text-[20px] text-text-muted group-hover:text-primary transition-colors">notifications_active</span><span class="font-body-md text-body-md">Pengaturan Notifikasi</span></a><a class="flex items-center gap-space-md px-space-md py-space-sm rounded-lg text-text-secondary hover:bg-surface-container-low hover:text-on-surface transition-all group" data-path="pengaturan-sistem" href="#"><span class="material-symbols-outlined text-[20px] text-text-muted group-hover:text-primary transition-colors">settings_suggest</span><span class="font-body-md text-body-md">Pengaturan Sistem</span></a></nav></div><div class="p-space-md m-space-md rounded-xl bg-surface-card-subtle border border-border-subtle flex flex-col gap-space-xs"><div class="flex items-center justify-between"><span class="font-label-caps text-label-caps uppercase text-text-muted">Cluster Status</span><span class="font-telemetry-badge text-telemetry-badge text-status-online bg-status-online-surface px-space-xs py-0.5 rounded border border-status-online/20">OPTIMAL</span></div><div class="flex items-center justify-between text-body-sm font-body-sm text-text-secondary mt-space-xs"><span>Avg Latency</span><span class="font-telemetry-data text-telemetry-data text-on-surface font-semibold">14.2 ms</span></div><div class="flex items-center justify-between text-body-sm font-body-sm text-text-secondary"><span>Active Nodes</span><span class="font-telemetry-data text-telemetry-data text-primary font-semibold">148 / 152</span></div></div></aside><div class="pl-72"><header class="fixed top-0 left-72 right-0 h-16 bg-surface-card/90 backdrop-blur-xl border-b border-border-subtle z-40 flex items-center justify-between px-margin-desktop"><div class="flex items-center gap-gutter"><div class="inline-flex items-center gap-space-xs px-space-md py-1 rounded-full bg-status-online-surface border border-status-online/30 text-status-online font-telemetry-badge text-telemetry-badge shadow-[0_0_10px_rgba(16,185,129,0.2)]"><span class="relative flex h-2 w-2"><span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-status-online opacity-75"></span><span class="relative inline-flex rounded-full h-2 w-2 bg-status-online"></span></span><span>WebSocket Connected • 2s refresh</span></div><div class="relative hidden lg:flex items-center"><span class="material-symbols-outlined absolute left-space-md text-text-muted text-[18px]">search</span><input class="pl-10 pr-space-md py-1.5 w-80 rounded-lg bg-surface-canvas border border-border-subtle font-body-sm text-body-sm text-on-surface placeholder:text-text-muted focus:outline-none focus:border-primary focus:ring-2 focus:ring-telemetry-cyan/20 transition-all font-telemetry-data" placeholder="Quick IP, MAC, Subnet (e.g. 192.168.1.0/24)..." type="text"/></div></div><div class="flex items-center gap-space-lg"><button class="relative p-space-sm rounded-lg hover:bg-surface-container-low text-text-secondary hover:text-on-surface transition-colors" type="button"><span class="material-symbols-outlined text-[22px]">notifications</span><span class="absolute top-1.5 right-1.5 flex h-4 min-w-[16px] items-center justify-center rounded-full bg-status-offline px-1 font-telemetry-badge text-[10px] font-bold text-on-error ring-2 ring-surface-card">4</span></button><div class="h-6 w-px bg-border-subtle"></div><div class="flex items-center gap-space-md pl-space-xs"><div class="flex flex-col text-right hidden sm:flex"><span class="font-body-md text-body-md font-semibold text-on-surface leading-tight">IT Admin Ops</span><span class="font-label-caps text-[10px] text-text-muted uppercase font-bold">Root Access • NOC-1</span></div><img alt="Profile" class="w-8 h-8 rounded-full object-cover ring-2 ring-primary/20" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDoViGmDXBPNNL36RDP3LK8gw4MmOX4DCp5-4AcNpqqjwUkY-vtFfeA4xtCNQnuJBLi9i2JUMgqkgFnkvy_AC4KlEE7Z0Qn9kZfiVC5xlcdM_nnAUtk7A7YGiLJQ26FLkCrz9W6BwAhuV36UBRqQvB3C_x3Idb_UIoMDwLv9v1c3BELwnE2W2WEyMyyBEtqchYYQQEoyOAtuCP4zey60mXBYz85Ksa1rbGlDtjYQQ"/></div></div></header><main class="w-full pt-16 bg-surface-canvas min-h-screen px-margin-desktop py-space-xl"><div class="flex flex-col w-full">
+<!-- SUB-BAR / HEADER SECTION -->
+<div class="flex flex-col lg:flex-row lg:items-center justify-between gap-space-md mb-space-lg">
+<div class="flex flex-col gap-space-xs">
+<div class="flex items-center gap-space-xs font-telemetry-badge text-body-sm text-text-muted">
+<span>Telemetri &amp; Operasional</span>
+<span class="material-symbols-outlined text-[14px]">chevron_right</span>
+<span class="text-primary font-semibold">Topologi 3D Jaringan Minsel</span>
+</div>
+<div class="flex items-center gap-space-md flex-wrap">
+<h1 class="font-headline-md text-headline-md font-bold text-on-surface tracking-tight">Topologi 3D Interaktif &amp; Visualisasi Kabel Switch Minsel</h1>
+<span class="inline-flex items-center gap-1.5 px-space-sm py-0.5 rounded-full bg-surface-container-high text-primary font-telemetry-badge text-telemetry-badge">
+<span class="material-symbols-outlined text-[13px]">view_in_ar</span> Three.js WebGL Engine v4.2
+        </span>
+</div>
+</div>
+<!-- ACTION BUTTON GROUP -->
+<div class="flex items-center gap-space-sm flex-wrap">
+<button class="flex items-center gap-space-xs px-space-md py-2 rounded-lg bg-surface-card hover:bg-surface-container-low text-text-primary font-body-md font-medium shadow-sm transition-all" id="btn-reset-cam">
+<span class="material-symbols-outlined text-[18px] text-text-secondary">crop_free</span>
+<span>Reset Kamera 3D</span>
+</button>
+<button class="flex items-center gap-space-xs px-space-md py-2 rounded-lg bg-secondary text-on-secondary hover:bg-secondary/90 font-body-md font-medium shadow-sm transition-all" id="btn-add-cable">
+<span class="material-symbols-outlined text-[18px]">add_link</span>
+<span>+ Sambung Kabel Baru</span>
+</button>
+<button class="flex items-center gap-space-xs px-space-md py-2 rounded-lg bg-surface-card hover:bg-surface-container-low text-text-primary font-body-md font-medium shadow-sm transition-all" id="btn-sim-traffic">
+<span class="material-symbols-outlined text-[18px] text-telemetry-cyan" id="traffic-icon">electric_bolt</span>
+<span id="traffic-text">Simulasi Trafik: Aktif</span>
+</button>
+<button class="flex items-center gap-space-xs px-space-md py-2 rounded-lg bg-primary-container text-on-primary hover:shadow-[0_4px_14px_rgba(0,98,255,0.35)] font-body-md font-semibold transition-all shadow-sm" id="btn-save-layout">
+<span class="material-symbols-outlined text-[18px]">save</span>
+<span>Simpan Denah Topologi</span>
+</button>
+</div>
+</div>
+<!-- INTERACTIVE COLOR LEGEND BAR -->
+<div class="flex items-center justify-between flex-wrap gap-space-md bg-surface-card p-space-md rounded-xl shadow-sm mb-space-lg">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-text-muted text-[18px]">alt_route</span>
+<span class="font-label-caps text-label-caps uppercase text-text-muted">Kategori Jalur Transmisi Minsel:</span>
+</div>
+<div class="flex items-center gap-space-md flex-wrap">
+<!-- Line Lama -->
+<div class="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-surface-container-high text-on-surface font-telemetry-data text-body-sm cursor-pointer select-none transition-all hover:bg-surface-container">
+<span class="w-3 h-3 rounded-full bg-slate-500 inline-block"></span>
+<span class="font-semibold">Line Lama (Kabel Coaxial/UTP)</span>
+<span class="font-telemetry-badge text-[11px] text-text-muted bg-surface-card px-1.5 py-0.5 rounded">7 Link</span>
+</div>
+<!-- Line FO -->
+<div class="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-surface-container-high text-primary font-telemetry-data text-body-sm cursor-pointer select-none transition-all hover:bg-surface-container">
+<span class="w-3 h-3 rounded-full bg-primary-container shadow-[0_0_8px_rgba(0,98,255,0.8)] inline-block"></span>
+<span class="font-semibold">Line FO (Fiber Optic Trunk)</span>
+<span class="font-telemetry-badge text-[11px] text-on-primary bg-primary-container px-1.5 py-0.5 rounded">11 Core</span>
+</div>
+<!-- Plan Line Baru -->
+<div class="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-surface-container-high text-amber-700 font-telemetry-data text-body-sm cursor-pointer select-none transition-all hover:bg-surface-container">
+<span class="w-3 h-3 rounded-full bg-amber-500 shadow-[0_0_8px_rgba(245,158,11,0.7)] inline-block"></span>
+<span class="font-semibold">Plan Line Baru (Proyeksi Jalur Baru)</span>
+<span class="font-telemetry-badge text-[11px] text-amber-800 bg-amber-100 px-1.5 py-0.5 rounded">3 Proyeksi</span>
+</div>
+</div>
+<div class="flex items-center gap-space-xs text-text-secondary text-body-sm">
+<span class="material-symbols-outlined text-[16px] text-status-online">sync</span>
+<span class="font-telemetry-badge text-telemetry-badge">Sinkronisasi Diagram Minsel Terverifikasi</span>
+</div>
+</div>
+<!-- 3D THREE.JS CONTAINER WITH FLOATING HUD -->
+<div class="relative w-full rounded-2xl overflow-hidden shadow-2xl bg-slate-950 mb-space-xl">
+<!-- Embedded Three.js custom component -->
+<!-- STITCH_THREEJS_START:ANIMATION_13 class="w-full h-[640px] block relative" -->
+<div class="w-full h-[640px] block relative" style="display:block;">
+<script src="https://ajax.googleapis.com/ajax/libs/threejs/r125/three.min.js"></script>
+<div id="threejs-container-ANIMATION_13" style="width:100%;height:100%"></div>
+<script>
+(function() {
+  const container = document.getElementById('threejs-container-ANIMATION_13');
+  const devicePixelRatio = window.devicePixelRatio || 1;
+  // Three.js Interactive 3D Network Topology Map (Diagram Switch Hub Jaringan Minsel)
+const width = container.clientWidth || window.innerWidth;
+const height = container.clientHeight || window.innerHeight;
+
+const scene = new THREE.Scene();
+scene.background = new THREE.Color(0x0b1120);
+
+// Camera Setup (Isometric Angle)
+const camera = new THREE.PerspectiveCamera(45, width / height, 0.1, 2000);
+camera.position.set(0, 480, 520);
+camera.lookAt(0, 0, 0);
+
+const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+renderer.setSize(width, height);
+renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+renderer.shadowMap.enabled = true;
+renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+container.appendChild(renderer.domElement);
+
+// Lighting
+const ambientLight = new THREE.AmbientLight(0xffffff, 0.85);
+scene.add(ambientLight);
+
+const dirLight = new THREE.DirectionalLight(0x38bdf8, 1.2);
+dirLight.position.set(200, 400, 200);
+dirLight.castShadow = true;
+scene.add(dirLight);
+
+const bluePointLight = new THREE.PointLight(0x0062ff, 2.5, 800);
+bluePointLight.position.set(0, 150, 0);
+scene.add(bluePointLight);
+
+// Floor Grid
+const gridHelper = new THREE.GridHelper(1200, 40, 0x1e293b, 0x0f172a);
+gridHelper.position.y = -2;
+scene.add(gridHelper);
+
+// Groups
+const nodesGroup = new THREE.Group();
+const cablesGroup = new THREE.Group();
+const particlesGroup = new THREE.Group();
+scene.add(cablesGroup);
+scene.add(nodesGroup);
+scene.add(particlesGroup);
+
+// Node Definitions from Diagram Minsel
+const rawNodes = [
+  { id: 'server', label: 'R. SERVER (PUSAT)', type: 'core_server', x: -60, z: -40, ports: '48 Port FO', status: 'online', ip: '10.10.0.1' },
+  { id: 'pos_sec_1', label: 'SWITCH 24 PORT FO - POS SEC 1', type: 'switch_fo', x: -280, z: -140, ports: '24 Port FO', status: 'online', ip: '10.10.1.1' },
+  { id: 'area_dc', label: 'SWITCH 24 PORT POE - AREA DC', type: 'switch_poe', x: -280, z: -40, ports: '24 Port PoE', status: 'online', ip: '10.10.1.2' },
+  { id: 'aseptic_lama', label: 'SWITCH 8 PORT - ASEPTIC LAMA', type: 'switch_std', x: -280, z: 60, ports: '8 Port', status: 'online', ip: '10.10.1.3' },
+  { id: 'genset', label: 'SWITCH 24 PORT POE - GENSET', type: 'switch_poe', x: -130, z: -140, ports: '24 Port PoE', status: 'online', ip: '10.10.2.1' },
+  { id: 'r_meeting', label: 'SWITCH 24 PORT POE - R. MEETING', type: 'switch_poe', x: -100, z: 60, ports: '24 Port PoE', status: 'online', ip: '10.10.2.2' },
+  { id: 'r_server_gh', label: 'SWITCH 8 PORT POE - R. SERVER GH', type: 'switch_poe', x: 20, z: -140, ports: '8 Port PoE', status: 'online', ip: '10.10.3.1' },
+  { id: 'gh_lt2', label: 'SWITCH 16 PORT POE - GH LT.2', type: 'switch_poe', x: 120, z: -210, ports: '16 Port PoE', status: 'online', ip: '10.10.3.2' },
+  { id: 'gh_lt1', label: 'SWITCH 8 PORT POE - GH LT.1', type: 'switch_poe', x: 120, z: -140, ports: '8 Port PoE', status: 'online', ip: '10.10.3.3' },
+  { id: 'office', label: '3 SWITCH 16 PORT - OFFICE', type: 'switch_bundle', x: -20, z: 20, ports: '3x 16 Port', status: 'online', ip: '10.10.4.1' },
+  { id: 'qa_qc', label: 'SWITCH 8 PORT - QA QC', type: 'switch_std', x: 110, z: 20, ports: '8 Port', status: 'online', ip: '10.10.4.2' },
+  { id: 'admin_qa_qc', label: 'SWITCH 8 PORT POE - ADMIN QA QC', type: 'switch_poe', x: 210, z: 20, ports: '8 Port PoE', status: 'online', ip: '10.10.4.3' },
+  { id: 'lab_kimia', label: 'SWITCH 8 PORT - LAB KIMIA', type: 'switch_std', x: 300, z: 20, ports: '8 Port', status: 'online', ip: '10.10.4.4' },
+  { id: 'lab_mikro', label: 'SWITCH 8 PORT - LAB MIKRO', type: 'switch_std', x: 390, z: 20, ports: '8 Port', status: 'online', ip: '10.10.4.5' },
+  { id: 'decon_tca', label: 'SWITCH 24 PORT FO - DECON TCA', type: 'switch_fo', x: 130, z: 100, ports: '24 Port FO', status: 'warning', ip: '10.10.5.1' },
+  { id: 'adm_prd', label: 'SWITCH 16 PORT POE - ADM PRD', type: 'switch_poe', x: 230, z: 100, ports: '16 Port PoE', status: 'online', ip: '10.10.5.2' },
+  { id: 'sparepart_tca', label: 'SWITCH 8 PORT - SPAREPART TCA', type: 'switch_std', x: 230, z: 180, ports: '8 Port', status: 'online', ip: '10.10.5.3' },
+  { id: 'r_meeting_whs', label: 'SWITCH 24 PORT FO - R. MEETING WHS FG', type: 'switch_fo', x: -20, z: 160, ports: '24 Port FO', status: 'online', ip: '10.10.6.1' },
+  { id: 'whs_sparepart', label: 'SWITCH 24 PORT FO - WHS SPAREPART', type: 'switch_fo', x: -280, z: 240, ports: '24 Port FO', status: 'online', ip: '10.10.7.1' },
+  { id: 'pos_sec_2', label: 'SWITCH 8 PORT POE - POS SEC 2', type: 'switch_poe', x: -430, z: 240, ports: '8 Port PoE', status: 'online', ip: '10.10.7.2' },
+  { id: 'wwtp', label: 'SWITCH 24 PORT FO - WWTP', type: 'switch_fo', x: 230, z: 260, ports: '24 Port FO', status: 'offline', ip: '10.10.8.1' },
+  { id: 'nanostation_m2', label: 'NANOSTATION M2 - WIRELESS LINK', type: 'ap_wireless', x: -120, z: 240, ports: 'AirMax 2.4GHz', status: 'online', ip: '10.10.9.1' }
+];
+
+// Cable Links matching Diagram Legend:
+// 'line_lama' = black / silver line
+// 'line_fo' = glowing electric blue line
+// 'plan_baru' = glowing vibrant orange line
+let cablesData = [
+  { from: 'server', to: 'pos_sec_1', type: 'line_fo', active: true },
+  { from: 'pos_sec_1', to: 'genset', type: 'plan_baru', active: true },
+  { from: 'pos_sec_1', to: 'area_dc', type: 'line_lama', active: true },
+  { from: 'server', to: 'r_server_gh', type: 'line_lama', active: true },
+  { from: 'r_server_gh', to: 'gh_lt2', type: 'line_lama', active: true },
+  { from: 'r_server_gh', to: 'gh_lt1', type: 'line_lama', active: true },
+  { from: 'server', to: 'office', type: 'line_fo', active: true },
+  { from: 'office', to: 'qa_qc', type: 'line_lama', active: true },
+  { from: 'office', to: 'admin_qa_qc', type: 'line_lama', active: true },
+  { from: 'office', to: 'lab_kimia', type: 'line_lama', active: true },
+  { from: 'office', to: 'lab_mikro', type: 'line_lama', active: true },
+  { from: 'server', to: 'decon_tca', type: 'line_fo', active: true },
+  { from: 'decon_tca', to: 'adm_prd', type: 'plan_baru', active: true },
+  { from: 'adm_prd', to: 'sparepart_tca', type: 'line_lama', active: true },
+  { from: 'server', to: 'r_meeting', type: 'line_fo', active: true },
+  { from: 'server', to: 'r_meeting_whs', type: 'line_fo', active: true },
+  { from: 'r_meeting_whs', to: 'wwtp', type: 'line_fo', active: true },
+  { from: 'r_meeting_whs', to: 'nanostation_m2', type: 'plan_baru', active: true },
+  { from: 'server', to: 'whs_sparepart', type: 'line_fo', active: true },
+  { from: 'whs_sparepart', to: 'pos_sec_2', type: 'line_fo', active: true },
+  { from: 'whs_sparepart', to: 'aseptic_lama', type: 'line_lama', active: true }
+];
+
+// Text label canvas generator
+function createLabelSprite(text, subtext, status) {
+  const canvas = document.createElement('canvas');
+  canvas.width = 512;
+  canvas.height = 160;
+  const ctx = canvas.getContext('2d');
+
+  // Badge background
+  ctx.fillStyle = 'rgba(15, 23, 42, 0.9)';
+  ctx.roundRect ? ctx.roundRect(10, 10, 492, 140, 16) : ctx.fillRect(10, 10, 492, 140);
+  ctx.fill();
+
+  ctx.lineWidth = 4;
+  ctx.strokeStyle = status === 'offline' ? '#ef4444' : status === 'warning' ? '#f59e0b' : '#0062ff';
+  ctx.stroke();
+
+  // Status indicator dot
+  ctx.beginPath();
+  ctx.arc(40, 50, 12, 0, Math.PI * 2);
+  ctx.fillStyle = status === 'offline' ? '#ef4444' : status === 'warning' ? '#f59e0b' : '#10b981';
+  ctx.fill();
+
+  // Text
+  ctx.fillStyle = '#ffffff';
+  ctx.font = 'bold 26px sans-serif';
+  ctx.fillText(text, 68, 58);
+
+  ctx.fillStyle = '#94a3b8';
+  ctx.font = '20px monospace';
+  ctx.fillText(subtext, 68, 108);
+
+  const texture = new THREE.CanvasTexture(canvas);
+  const spriteMaterial = new THREE.SpriteMaterial({ map: texture, transparent: true });
+  const sprite = new THREE.Sprite(spriteMaterial);
+  sprite.scale.set(65, 20, 1);
+  return sprite;
+}
+
+const nodeMeshMap = new Map();
+
+// Build 3D Rack / Switch Geometry
+rawNodes.forEach(node => {
+  const nodeHolder = new THREE.Group();
+  nodeHolder.position.set(node.x, 0, node.z);
+  nodeHolder.userData = { ...node };
+
+  let mainMesh;
+  if (node.type === 'core_server') {
+    // Twin Blade Rack Cabinets
+    const rackGeo = new THREE.BoxGeometry(32, 54, 28);
+    const rackMat = new THREE.MeshPhongMaterial({ color: 0x1e293b, specular: 0x0062ff, shininess: 40 });
+    const rack1 = new THREE.Mesh(rackGeo, rackMat);
+    rack1.position.set(-16, 27, 0);
+    rack1.castShadow = true;
+
+    const rack2 = rack1.clone();
+    rack2.position.set(16, 27, 0);
+
+    // Glowing front server blades
+    const bladeGeo = new THREE.BoxGeometry(28, 48, 2);
+    const bladeMat = new THREE.MeshBasicMaterial({ color: 0x00d2ff });
+    const blade = new THREE.Mesh(bladeGeo, bladeMat);
+    blade.position.set(-16, 27, 14.5);
+    const blade2 = blade.clone();
+    blade2.position.set(16, 27, 14.5);
+
+    nodeHolder.add(rack1, rack2, blade, blade2);
+    mainMesh = rack1;
+  } else if (node.type === 'switch_fo') {
+    // 24 Port Fiber Switch (Chassis with deep blue / neon FO accent)
+    const swGeo = new THREE.BoxGeometry(40, 14, 24);
+    const swMat = new THREE.MeshPhongMaterial({ color: 0x0f172a, specular: 0x0062ff, shininess: 50 });
+    const sw = new THREE.Mesh(swGeo, swMat);
+    sw.position.y = 7;
+    sw.castShadow = true;
+
+    // FO Glowing Front Rim
+    const foBezelGeo = new THREE.BoxGeometry(38, 8, 2);
+    const foBezelMat = new THREE.MeshBasicMaterial({ color: node.status === 'offline' ? 0xef4444 : 0x0062ff });
+    const bezel = new THREE.Mesh(foBezelGeo, foBezelMat);
+    bezel.position.set(0, 7, 12.2);
+
+    nodeHolder.add(sw, bezel);
+    mainMesh = sw;
+  } else if (node.type === 'ap_wireless') {
+    // Ubiquiti Nanostation M2 Tower
+    const poleGeo = new THREE.CylinderGeometry(2, 2, 45, 16);
+    const poleMat = new THREE.MeshPhongMaterial({ color: 0x475569 });
+    const pole = new THREE.Mesh(poleGeo, poleMat);
+    pole.position.y = 22.5;
+
+    const antGeo = new THREE.BoxGeometry(10, 24, 6);
+    const antMat = new THREE.MeshPhongMaterial({ color: 0xffffff });
+    const ant = new THREE.Mesh(antGeo, antMat);
+    ant.position.set(0, 32, 4);
+
+    nodeHolder.add(pole, ant);
+    mainMesh = ant;
+  } else {
+    // Standard Switch 8 / 16 / 24 PoE
+    const swGeo = new THREE.BoxGeometry(34, 11, 20);
+    const swMat = new THREE.MeshPhongMaterial({
+      color: node.type === 'switch_poe' ? 0x1e3a8a : 0x334155,
+      specular: 0x64748b,
+      shininess: 30
+    });
+    const sw = new THREE.Mesh(swGeo, swMat);
+    sw.position.y = 5.5;
+    sw.castShadow = true;
+
+    // Status LED strip
+    const ledGeo = new THREE.BoxGeometry(30, 3, 1.5);
+    const ledMat = new THREE.MeshBasicMaterial({
+      color: node.type === 'switch_poe' ? 0x38bdf8 : 0x94a3b8
+    });
+    const led = new THREE.Mesh(ledGeo, ledMat);
+    led.position.set(0, 5.5, 10.2);
+
+    nodeHolder.add(sw, led);
+    mainMesh = sw;
+  }
+
+  // Base platform pad
+  const padGeo = new THREE.CylinderGeometry(28, 30, 2, 32);
+  const padMat = new THREE.MeshBasicMaterial({
+    color: node.status === 'offline' ? 0xef4444 : node.status === 'warning' ? 0xf59e0b : 0x1e293b,
+    transparent: true,
+    opacity: 0.65
+  });
+  const pad = new THREE.Mesh(padGeo, padMat);
+  pad.position.y = 0.5;
+  nodeHolder.add(pad);
+
+  // Label Sprite floating on top
+  const labelSprite = createLabelSprite(node.label, `${node.ip} • ${node.ports}`, node.status);
+  labelSprite.position.set(0, node.type === 'core_server' ? 68 : 34, 0);
+  nodeHolder.add(labelSprite);
+
+  nodesGroup.add(nodeHolder);
+  nodeMeshMap.set(node.id, nodeHolder);
+});
+
+// Render dynamic cable paths
+const cableCurves = [];
+function rebuildCables() {
+  while (cablesGroup.children.length > 0) {
+    const c = cablesGroup.children[0];
+    cablesGroup.remove(c);
+  }
+  cableCurves.length = 0;
+
+  cablesData.forEach((link, idx) => {
+    const fromNode = nodeMeshMap.get(link.from);
+    const toNode = nodeMeshMap.get(link.to);
+    if (!fromNode || !toNode) return;
+
+    const p1 = fromNode.position.clone().add(new THREE.Vector3(0, 7, 0));
+    const p2 = toNode.position.clone().add(new THREE.Vector3(0, 7, 0));
+
+    // Curved arched midpoint for high visibility
+    const midX = (p1.x + p2.x) / 2;
+    const midZ = (p1.z + p2.z) / 2;
+    const dist = p1.distanceTo(p2);
+    const midY = 12 + Math.min(dist * 0.12, 35);
+    const mid = new THREE.Vector3(midX, midY, midZ);
+
+    const curve = new THREE.CatmullRomCurve3([p1, mid, p2]);
+    cableCurves.push({ curve, type: link.type, active: link.active });
+
+    let cableColor = 0x64748b; // line lama
+    let cableRadius = 1.2;
+    if (link.type === 'line_fo') {
+      cableColor = 0x0062ff; // Blue FO
+      cableRadius = 2.0;
+    } else if (link.type === 'plan_baru') {
+      cableColor = 0xf97316; // Orange Plan Baru
+      cableRadius = 1.8;
+    }
+
+    const tubeGeo = new THREE.TubeGeometry(curve, 28, cableRadius, 8, false);
+    const tubeMat = new THREE.MeshPhongMaterial({
+      color: cableColor,
+      emissive: link.type === 'line_fo' ? 0x0044cc : link.type === 'plan_baru' ? 0x9a3412 : 0x000000,
+      specular: 0xffffff,
+      shininess: 60
+    });
+    const tubeMesh = new THREE.Mesh(tubeGeo, tubeMat);
+    tubeMesh.userData = { linkIndex: idx, isCable: true };
+    cablesGroup.add(tubeMesh);
+  });
+}
+rebuildCables();
+
+// Light pulse particles on Fiber & Plan Baru cables
+const particleCount = 45;
+const packetSpheres = [];
+const packetMatFO = new THREE.MeshBasicMaterial({ color: 0x38bdf8 });
+const packetMatOrange = new THREE.MeshBasicMaterial({ color: 0xffedd5 });
+
+for (let i = 0; i < particleCount; i++) {
+  const pMesh = new THREE.Mesh(new THREE.SphereGeometry(1.6, 8, 8), packetMatFO);
+  particlesGroup.add(pMesh);
+  packetSpheres.push({
+    mesh: pMesh,
+    cableIndex: i % cablesData.length,
+    t: (i / particleCount)
+  });
+}
+
+// Interaction & Dragging Controls
+let selectedNode = null;
+let isDragging = false;
+let dragPlane = new THREE.Plane(new THREE.Vector3(0, 1, 0), 0);
+let raycaster = new THREE.Raycaster();
+let mouse = new THREE.Vector2();
+let planeIntersect = new THREE.Vector3();
+let dragOffset = new THREE.Vector3();
+
+// Pan / Orbit Camera State
+let isOrbiting = false;
+let prevMouseX = 0;
+let prevMouseY = 0;
+let camRadius = 700;
+let camAngleTheta = Math.PI * 0.25;
+let camAnglePhi = Math.PI * 0.35;
+
+function updateCameraPos() {
+  camera.position.x = camRadius * Math.sin(camAnglePhi) * Math.sin(camAngleTheta);
+  camera.position.y = camRadius * Math.cos(camAnglePhi);
+  camera.position.z = camRadius * Math.sin(camAnglePhi) * Math.cos(camAngleTheta);
+  camera.lookAt(0, 0, 0);
+}
+
+const domElement = renderer.domElement;
+
+domElement.addEventListener('pointerdown', (e) => {
+  const rect = domElement.getBoundingClientRect();
+  mouse.x = ((e.clientX - rect.left) / rect.width) * 2 - 1;
+  mouse.y = -((e.clientY - rect.top) / rect.height) * 2 + 1;
+
+  raycaster.setFromCamera(mouse, camera);
+
+  // Check node hit
+  const nodeIntersects = [];
+  nodesGroup.children.forEach(group => {
+    const hits = raycaster.intersectObjects(group.children, true);
+    if (hits.length > 0) {
+      nodeIntersects.push({ group, hit: hits[0] });
+    }
+  });
+
+  if (nodeIntersects.length > 0 && e.button === 0) {
+    isDragging = true;
+    selectedNode = nodeIntersects[0].group;
+    if (raycaster.ray.intersectPlane(dragPlane, planeIntersect)) {
+      dragOffset.copy(selectedNode.position).sub(planeIntersect);
+    }
+    window.dispatchEvent(new CustomEvent('nodeSelected', { detail: selectedNode.userData }));
+  } else {
+    isOrbiting = true;
+    prevMouseX = e.clientX;
+    prevMouseY = e.clientY;
+  }
+});
+
+domElement.addEventListener('pointermove', (e) => {
+  const rect = domElement.getBoundingClientRect();
+  mouse.x = ((e.clientX - rect.left) / rect.width) * 2 - 1;
+  mouse.y = -((e.clientY - rect.top) / rect.height) * 2 + 1;
+
+  if (isDragging && selectedNode) {
+    raycaster.setFromCamera(mouse, camera);
+    if (raycaster.ray.intersectPlane(dragPlane, planeIntersect)) {
+      selectedNode.position.x = planeIntersect.x + dragOffset.x;
+      selectedNode.position.z = planeIntersect.z + dragOffset.z;
+      selectedNode.userData.x = selectedNode.position.x;
+      selectedNode.userData.z = selectedNode.position.z;
+      rebuildCables();
+    }
+  } else if (isOrbiting) {
+    const dx = e.clientX - prevMouseX;
+    const dy = e.clientY - prevMouseY;
+    camAngleTheta -= dx * 0.006;
+    camAnglePhi = Math.max(0.1, Math.min(Math.PI / 2.05, camAnglePhi - dy * 0.006));
+    prevMouseX = e.clientX;
+    prevMouseY = e.clientY;
+    updateCameraPos();
+  }
+});
+
+window.addEventListener('pointerup', () => {
+  isDragging = false;
+  isOrbiting = false;
+});
+
+domElement.addEventListener('wheel', (e) => {
+  e.preventDefault();
+  camRadius = Math.max(250, Math.min(1200, camRadius + e.deltaY * 0.8));
+  updateCameraPos();
+}, { passive: false });
+
+// Global Hook to add/switch cable & move positions from UI buttons
+window.networkTopologyAPI = {
+  resetCamera: () => {
+    camRadius = 700;
+    camAngleTheta = Math.PI * 0.25;
+    camAnglePhi = Math.PI * 0.35;
+    updateCameraPos();
+  },
+  cycleCableType: (index) => {
+    const types = ['line_lama', 'line_fo', 'plan_baru'];
+    const cur = cablesData[index].type;
+    const next = types[(types.indexOf(cur) + 1) % types.length];
+    cablesData[index].type = next;
+    rebuildCables();
+    return next;
+  },
+  reconnectCable: (cableIdx, newToNodeId) => {
+    if (cablesData[cableIdx]) {
+      cablesData[cableIdx].to = newToNodeId;
+      rebuildCables();
+    }
+  },
+  addNewCable: (fromId, toId, type) => {
+    cablesData.push({ from: fromId, to: toId, type: type || 'plan_baru', active: true });
+    rebuildCables();
+  },
+  getCables: () => cablesData,
+  getNodes: () => rawNodes
+};
+
+// Resize
+window.addEventListener('resize', () => {
+  const w = container.clientWidth || window.innerWidth;
+  const h = container.clientHeight || window.innerHeight;
+  camera.aspect = w / h;
+  camera.updateProjectionMatrix();
+  renderer.setSize(w, h);
+});
+
+// Animation Loop
+let clock = new THREE.Clock();
+function animate() {
+  requestAnimationFrame(animate);
+  const delta = clock.getDelta();
+  const time = clock.getElapsedTime();
+
+  // Packet movement on active lines
+  packetSpheres.forEach(p => {
+    if (cableCurves.length === 0) return;
+    const curveInfo = cableCurves[p.cableIndex % cableCurves.length];
+    if (!curveInfo) return;
+
+    p.t = (p.t + delta * 0.25) % 1;
+    const pt = curveInfo.curve.getPoint(p.t);
+    p.mesh.position.copy(pt);
+    p.mesh.material = curveInfo.type === 'plan_baru' ? packetMatOrange : packetMatFO;
+  });
+
+  // Soft hover pulsation on switches
+  nodesGroup.children.forEach((nodeGroup, i) => {
+    const pad = nodeGroup.children[nodeGroup.children.length - 2];
+    if (pad && pad.material) {
+      pad.material.opacity = 0.5 + 0.25 * Math.sin(time * 2.5 + i);
+    }
+  });
+
+  renderer.render(scene, camera);
+}
+animate();
+
+})();
+</script>
+</div>
+<!-- STITCH_THREEJS_END:ANIMATION_13 -->
+<!-- FLOATING HUD: TOP LEFT (LIVE TELEMETRY) -->
+<div class="absolute top-4 left-4 z-20 flex flex-col gap-2 max-w-sm pointer-events-auto">
+<div class="bg-slate-900/90 backdrop-blur-md p-space-md rounded-xl shadow-xl text-slate-100">
+<div class="flex items-center justify-between gap-space-md pb-2 mb-2">
+<div class="flex items-center gap-1.5">
+<span class="relative flex h-2.5 w-2.5">
+<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-status-online opacity-75"></span>
+<span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-status-online"></span>
+</span>
+<span class="font-label-caps text-label-caps uppercase tracking-wider text-slate-300">NOC Live Telemetry</span>
+</div>
+<span class="font-telemetry-badge text-[10px] bg-slate-800 text-telemetry-cyan px-2 py-0.5 rounded">CLUSTER: MINSEL-HUB</span>
+</div>
+<div class="grid grid-cols-2 gap-x-4 gap-y-2 font-telemetry-data text-[12px]">
+<div class="flex justify-between">
+<span class="text-slate-400">Active Switches:</span>
+<span class="text-status-online font-bold">22 / 22 Node</span>
+</div>
+<div class="flex justify-between">
+<span class="text-slate-400">FO Trunk:</span>
+<span class="text-telemetry-cyan font-bold">11 Jalur</span>
+</div>
+<div class="flex justify-between">
+<span class="text-slate-400">Plan Baru:</span>
+<span class="text-amber-400 font-bold">3 Proyeksi</span>
+</div>
+<div class="flex justify-between">
+<span class="text-slate-400">Line Lama:</span>
+<span class="text-slate-400 font-bold">7 Link</span>
+</div>
+<div class="flex justify-between col-span-2 pt-1">
+<span class="text-slate-400">Aggregation Bandwidth:</span>
+<span class="text-status-online font-bold">4.82 Gbps / 10 Gbps</span>
+</div>
+</div>
+<!-- Ping sweep bar micro-visualizer -->
+<div class="mt-3 pt-2">
+<div class="flex justify-between text-[10px] font-telemetry-badge text-slate-400 mb-1">
+<span>CORE LATENCY (R. SERVER)</span>
+<span class="text-status-online">1.18 ms</span>
+</div>
+<div class="w-full h-1.5 bg-slate-800 rounded-full overflow-hidden flex">
+<div class="bg-status-online h-full w-[82%]"></div>
+<div class="bg-telemetry-cyan h-full w-[12%]"></div>
+<div class="bg-amber-400 h-full w-[6%]"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- FLOATING HUD: TOP RIGHT (QUICK MODES & CONTROLS GUIDE) -->
+<div class="absolute top-4 right-4 z-20 flex flex-col items-end gap-2 pointer-events-auto">
+<div class="bg-slate-900/90 backdrop-blur-md p-1.5 rounded-xl shadow-xl flex items-center gap-1">
+<button class="mode-tab-btn flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-primary-container text-on-primary font-body-sm font-semibold transition-all" id="mode-drag">
+<span class="material-symbols-outlined text-[16px]">drag_pan</span>
+<span>Mode Geser (Drag Node)</span>
+</button>
+<button class="mode-tab-btn flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-slate-300 hover:text-white font-body-sm transition-all" id="mode-wire">
+<span class="material-symbols-outlined text-[16px]">cable</span>
+<span>Mode Wiring Kabel</span>
+</button>
+<button class="mode-tab-btn flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-slate-300 hover:text-white font-body-sm transition-all" id="mode-inspect">
+<span class="material-symbols-outlined text-[16px]">troubleshoot</span>
+<span>Mode Inspeksi</span>
+</button>
+</div>
+<!-- Interaction Tip Card -->
+<div class="bg-slate-900/85 backdrop-blur-md px-3 py-2 rounded-lg text-slate-300 shadow-md text-[11px] font-body-sm flex items-center gap-2 max-w-sm">
+<span class="material-symbols-outlined text-telemetry-cyan text-[16px] shrink-0">mouse</span>
+<span><strong>Tips:</strong> Klik &amp; tahan kiri untuk orbit kamera 3D. Klik &amp; geser node switch untuk reposisi koordinat topology secara live.</span>
+</div>
+</div>
+<!-- FLOATING HUD: BOTTOM LEFT (LAYER FILTER CHECKBOXES) -->
+<div class="absolute bottom-4 left-4 z-20 bg-slate-900/90 backdrop-blur-md p-space-md rounded-xl shadow-xl text-slate-200 pointer-events-auto">
+<span class="font-label-caps text-label-caps uppercase text-slate-400 block mb-2">Filter Layer Visualisasi:</span>
+<div class="flex flex-col sm:flex-row gap-4 font-body-sm">
+<label class="flex items-center gap-2 cursor-pointer select-none hover:text-white">
+<input checked="" class="rounded bg-slate-800 text-primary-container focus:ring-0 w-4 h-4 cursor-pointer" id="toggle-fo" type="checkbox"/>
+<span class="flex items-center gap-1.5">
+<span class="w-2.5 h-2.5 rounded-full bg-primary-container"></span>
+            Tampilkan Line FO (11)
+          </span>
+</label>
+<label class="flex items-center gap-2 cursor-pointer select-none hover:text-white">
+<input checked="" class="rounded bg-slate-800 text-slate-500 focus:ring-0 w-4 h-4 cursor-pointer" id="toggle-old" type="checkbox"/>
+<span class="flex items-center gap-1.5">
+<span class="w-2.5 h-2.5 rounded-full bg-slate-500"></span>
+            Tampilkan Line Lama (7)
+          </span>
+</label>
+<label class="flex items-center gap-2 cursor-pointer select-none hover:text-white">
+<input checked="" class="rounded bg-slate-800 text-amber-500 focus:ring-0 w-4 h-4 cursor-pointer" id="toggle-plan" type="checkbox"/>
+<span class="flex items-center gap-1.5">
+<span class="w-2.5 h-2.5 rounded-full bg-amber-500"></span>
+            Tampilkan Plan Baru (3)
+          </span>
+</label>
+</div>
+</div>
+<!-- FLOATING HUD: BOTTOM RIGHT (3D SCENE METADATA BADGE) -->
+<div class="absolute bottom-4 right-4 z-20 bg-slate-900/90 backdrop-blur-md px-3 py-1.5 rounded-lg text-slate-400 font-telemetry-badge text-[11px] flex items-center gap-3">
+<span>GRID: 250m x 180m</span>
+<span>•</span>
+<span>RENDER: 60 FPS</span>
+<span>•</span>
+<span class="text-status-online">SHADERS: GLSL ACTIVE</span>
+</div>
+</div>
+<!-- WORKBENCH MANAGEMENT PANEL: ROUTING & DEVICE INSPECTOR -->
+<div class="grid grid-cols-1 xl:grid-cols-12 gap-space-lg">
+<!-- COLUMN 1: ROUTING CONTROL TABLE (7 COLS) -->
+<div class="xl:col-span-7 bg-surface-card rounded-2xl shadow-sm p-space-lg flex flex-col justify-between">
+<div>
+<div class="flex items-center justify-between pb-space-md mb-space-md">
+<div class="flex items-center gap-space-sm">
+<div class="p-2 rounded-lg bg-surface-container text-primary">
+<span class="material-symbols-outlined text-[20px]">hub</span>
+</div>
+<div>
+<h2 class="font-headline-sm text-headline-sm font-bold text-on-surface">Manajemen Jalur Kabel (Routing Manager)</h2>
+<p class="font-body-sm text-body-sm text-text-secondary">Daftar konektivitas antar node switch Minsel &amp; kontrol switching kabel</p>
+</div>
+</div>
+<div class="flex items-center gap-space-xs font-telemetry-badge text-body-sm text-primary">
+<span class="material-symbols-outlined text-[16px]">cable</span>
+<span id="route-count">21 Link Total</span>
+</div>
+</div>
+<!-- SEARCH / FILTER ROW -->
+<div class="flex items-center gap-space-md mb-space-md">
+<div class="relative flex-1">
+<span class="material-symbols-outlined absolute left-3 top-2.5 text-text-muted text-[18px]">search</span>
+<input class="w-full pl-9 pr-3 py-2 bg-surface-canvas rounded-lg text-body-sm font-telemetry-data focus:outline-none focus:bg-surface-card shadow-inner" id="cable-search" placeholder="Cari Switch Asal/Tujuan (misal: R. SERVER, SPAREPART)..." type="text"/>
+</div>
+<select class="bg-surface-canvas px-3 py-2 rounded-lg text-body-sm font-body-md text-text-secondary focus:outline-none cursor-pointer" id="filter-type">
+<option value="all">Semua Tipe Kabel</option>
+<option value="FO">Line FO (Trunk)</option>
+<option value="Lama">Line Lama (UTP/Coax)</option>
+<option value="Plan">Plan Line Baru</option>
+</select>
+</div>
+<!-- ROUTING TABLE -->
+<div class="overflow-x-auto rounded-xl">
+<table class="w-full text-left" id="routing-table">
+<thead>
+<tr class="bg-surface-card-subtle font-label-caps text-label-caps text-text-muted uppercase">
+<th class="py-2.5 px-3">Asal Node (Port)</th>
+<th class="py-2.5 px-3">Tujuan Node</th>
+<th class="py-2.5 px-3">Tipe Kabel</th>
+<th class="py-2.5 px-3">Status Link</th>
+<th class="py-2.5 px-3 text-right">Aksi Interaktif</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-transparent font-body-sm" id="table-body">
+<!-- Row 1: R. Server -> Switch 24 FO -->
+<tr class="hover:bg-surface-container-low transition-colors duration-150" data-cable-type="FO" data-row-id="1">
+<td class="py-3 px-3">
+<div class="font-semibold text-on-surface">R. SERVER MINSEL</div>
+<div class="font-telemetry-data text-[11px] text-text-muted">Port SFP-1 (Core A)</div>
+</td>
+<td class="py-3 px-3">
+<div class="font-semibold text-on-surface">SWITCH 24 PORT FO</div>
+<div class="font-telemetry-data text-[11px] text-text-muted">Port SFP-12</div>
+</td>
+<td class="py-3 px-3">
+<span class="cable-badge inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full font-telemetry-badge text-[11px] bg-primary text-on-primary">
+<span class="w-1.5 h-1.5 rounded-full bg-white animate-pulse"></span> Line FO (Trunk)
+                  </span>
+</td>
+<td class="py-3 px-3">
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded font-telemetry-badge text-[10px] text-status-online bg-status-online-surface font-semibold">
+<span class="w-1.5 h-1.5 rounded-full bg-status-online"></span> 10 Gbps UP
+                  </span>
+</td>
+<td class="py-3 px-3 text-right">
+<div class="flex items-center justify-end gap-1">
+<button class="cycle-cable-btn p-1.5 rounded hover:bg-surface-container text-text-secondary hover:text-primary transition-colors" title="Ganti Tipe Kabel">
+<span class="material-symbols-outlined text-[18px]">cached</span>
+</button>
+<button class="reroute-btn p-1.5 rounded hover:bg-surface-container text-text-secondary hover:text-secondary transition-colors" title="Pindah Port/Tujuan">
+<span class="material-symbols-outlined text-[18px]">swap_horiz</span>
+</button>
+<button class="disconnect-btn p-1.5 rounded hover:bg-status-offline-surface text-text-secondary hover:text-status-offline transition-colors" title="Lepas Sambungan">
+<span class="material-symbols-outlined text-[18px]">link_off</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 2: Switch 24 FO -> WHS Sparepart -->
+<tr class="hover:bg-surface-container-low transition-colors duration-150" data-cable-type="FO" data-row-id="2">
+<td class="py-3 px-3">
+<div class="font-semibold text-on-surface">SWITCH 24 PORT FO</div>
+<div class="font-telemetry-data text-[11px] text-text-muted">Port SFP-2</div>
+</td>
+<td class="py-3 px-3">
+<div class="font-semibold text-on-surface">WHS SPAREPART</div>
+<div class="font-telemetry-data text-[11px] text-text-muted">Switch 8P Gigabit</div>
+</td>
+<td class="py-3 px-3">
+<span class="cable-badge inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full font-telemetry-badge text-[11px] bg-primary text-on-primary">
+<span class="w-1.5 h-1.5 rounded-full bg-white"></span> Line FO (Trunk)
+                  </span>
+</td>
+<td class="py-3 px-3">
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded font-telemetry-badge text-[10px] text-status-online bg-status-online-surface font-semibold">
+<span class="w-1.5 h-1.5 rounded-full bg-status-online"></span> 1 Gbps UP
+                  </span>
+</td>
+<td class="py-3 px-3 text-right">
+<div class="flex items-center justify-end gap-1">
+<button class="cycle-cable-btn p-1.5 rounded hover:bg-surface-container text-text-secondary hover:text-primary transition-colors" title="Ganti Tipe Kabel">
+<span class="material-symbols-outlined text-[18px]">cached</span>
+</button>
+<button class="reroute-btn p-1.5 rounded hover:bg-surface-container text-text-secondary hover:text-secondary transition-colors" title="Pindah Port/Tujuan">
+<span class="material-symbols-outlined text-[18px]">swap_horiz</span>
+</button>
+<button class="disconnect-btn p-1.5 rounded hover:bg-status-offline-surface text-text-secondary hover:text-status-offline transition-colors" title="Lepas Sambungan">
+<span class="material-symbols-outlined text-[18px]">link_off</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 3: Switch 24 POE Genset -> POS SEC 1 (Line Lama) -->
+<tr class="hover:bg-surface-container-low transition-colors duration-150" data-cable-type="Lama" data-row-id="3">
+<td class="py-3 px-3">
+<div class="font-semibold text-on-surface">SWITCH 24 POE (GENSET)</div>
+<div class="font-telemetry-data text-[11px] text-text-muted">Port Eth-09</div>
+</td>
+<td class="py-3 px-3">
+<div class="font-semibold text-on-surface">POS SEC 1</div>
+<div class="font-telemetry-data text-[11px] text-text-muted">Access Point Mesh</div>
+</td>
+<td class="py-3 px-3">
+<span class="cable-badge inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full font-telemetry-badge text-[11px] bg-slate-600 text-white">
+<span class="w-1.5 h-1.5 rounded-full bg-slate-300"></span> Line Lama (UTP)
+                  </span>
+</td>
+<td class="py-3 px-3">
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded font-telemetry-badge text-[10px] text-status-online bg-status-online-surface font-semibold">
+<span class="w-1.5 h-1.5 rounded-full bg-status-online"></span> 100 Mbps UP
+                  </span>
+</td>
+<td class="py-3 px-3 text-right">
+<div class="flex items-center justify-end gap-1">
+<button class="cycle-cable-btn p-1.5 rounded hover:bg-surface-container text-text-secondary hover:text-primary transition-colors" title="Ganti Tipe Kabel">
+<span class="material-symbols-outlined text-[18px]">cached</span>
+</button>
+<button class="reroute-btn p-1.5 rounded hover:bg-surface-container text-text-secondary hover:text-secondary transition-colors" title="Pindah Port/Tujuan">
+<span class="material-symbols-outlined text-[18px]">swap_horiz</span>
+</button>
+<button class="disconnect-btn p-1.5 rounded hover:bg-status-offline-surface text-text-secondary hover:text-status-offline transition-colors" title="Lepas Sambungan">
+<span class="material-symbols-outlined text-[18px]">link_off</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 4: Switch 24 FO -> WWTP (Plan Line Baru) -->
+<tr class="hover:bg-surface-container-low transition-colors duration-150" data-cable-type="Plan" data-row-id="4">
+<td class="py-3 px-3">
+<div class="font-semibold text-on-surface">SWITCH 24 PORT FO</div>
+<div class="font-telemetry-data text-[11px] text-text-muted">Port SFP-8 (Plan)</div>
+</td>
+<td class="py-3 px-3">
+<div class="font-semibold text-on-surface">WWTP CONTROL ROOM</div>
+<div class="font-telemetry-data text-[11px] text-text-muted">Edge Switch Sub-Station</div>
+</td>
+<td class="py-3 px-3">
+<span class="cable-badge inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full font-telemetry-badge text-[11px] bg-amber-500 text-white shadow-sm">
+<span class="w-1.5 h-1.5 rounded-full bg-white"></span> Plan Line Baru
+                  </span>
+</td>
+<td class="py-3 px-3">
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded font-telemetry-badge text-[10px] text-amber-700 bg-status-unreachable-surface font-semibold">
+<span class="w-1.5 h-1.5 rounded-full bg-amber-500"></span> Proyeksi Jalur
+                  </span>
+</td>
+<td class="py-3 px-3 text-right">
+<div class="flex items-center justify-end gap-1">
+<button class="cycle-cable-btn p-1.5 rounded hover:bg-surface-container text-text-secondary hover:text-primary transition-colors" title="Ganti Tipe Kabel">
+<span class="material-symbols-outlined text-[18px]">cached</span>
+</button>
+<button class="reroute-btn p-1.5 rounded hover:bg-surface-container text-text-secondary hover:text-secondary transition-colors" title="Pindah Port/Tujuan">
+<span class="material-symbols-outlined text-[18px]">swap_horiz</span>
+</button>
+<button class="disconnect-btn p-1.5 rounded hover:bg-status-offline-surface text-text-secondary hover:text-status-offline transition-colors" title="Lepas Sambungan">
+<span class="material-symbols-outlined text-[18px]">link_off</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 5: Switch Genset -> NANOSTATION M2 -->
+<tr class="hover:bg-surface-container-low transition-colors duration-150" data-cable-type="Lama" data-row-id="5">
+<td class="py-3 px-3">
+<div class="font-semibold text-on-surface">SWITCH 24 POE (GENSET)</div>
+<div class="font-telemetry-data text-[11px] text-text-muted">Port Eth-22 (PoE 24V)</div>
+</td>
+<td class="py-3 px-3">
+<div class="font-semibold text-on-surface">NANOSTATION M2 (LINK P2P)</div>
+<div class="font-telemetry-data text-[11px] text-text-muted">Tower Radio Silo</div>
+</td>
+<td class="py-3 px-3">
+<span class="cable-badge inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full font-telemetry-badge text-[11px] bg-slate-600 text-white">
+<span class="w-1.5 h-1.5 rounded-full bg-slate-300"></span> Line Lama (UTP)
+                  </span>
+</td>
+<td class="py-3 px-3">
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded font-telemetry-badge text-[10px] text-status-online bg-status-online-surface font-semibold">
+<span class="w-1.5 h-1.5 rounded-full bg-status-online"></span> 300 Mbps Link
+                  </span>
+</td>
+<td class="py-3 px-3 text-right">
+<div class="flex items-center justify-end gap-1">
+<button class="cycle-cable-btn p-1.5 rounded hover:bg-surface-container text-text-secondary hover:text-primary transition-colors" title="Ganti Tipe Kabel">
+<span class="material-symbols-outlined text-[18px]">cached</span>
+</button>
+<button class="reroute-btn p-1.5 rounded hover:bg-surface-container text-text-secondary hover:text-secondary transition-colors" title="Pindah Port/Tujuan">
+<span class="material-symbols-outlined text-[18px]">swap_horiz</span>
+</button>
+<button class="disconnect-btn p-1.5 rounded hover:bg-status-offline-surface text-text-secondary hover:text-status-offline transition-colors" title="Lepas Sambungan">
+<span class="material-symbols-outlined text-[18px]">link_off</span>
+</button>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<!-- TABLE FOOTER PAGINATION/SUMMARY -->
+<div class="flex items-center justify-between pt-space-md mt-space-md text-body-sm text-text-muted">
+<span>Menampilkan 5 dari 21 tautan kabel switch</span>
+<div class="flex items-center gap-space-xs font-telemetry-data">
+<button class="px-2.5 py-1 rounded bg-surface-container text-on-surface hover:bg-surface-container-high transition-colors">1</button>
+<button class="px-2.5 py-1 rounded hover:bg-surface-container-low transition-colors">2</button>
+<button class="px-2.5 py-1 rounded hover:bg-surface-container-low transition-colors">3</button>
+<button class="px-2.5 py-1 rounded hover:bg-surface-container-low transition-colors">&gt;</button>
+</div>
+</div>
+</div>
+<!-- COLUMN 2: SELECTED DEVICE INSPECTOR (5 COLS) -->
+<div class="xl:col-span-5 bg-surface-card rounded-2xl shadow-sm p-space-lg flex flex-col justify-between">
+<div>
+<div class="flex items-center justify-between pb-space-md mb-space-md">
+<div class="flex items-center gap-space-sm">
+<div class="p-2 rounded-lg bg-surface-container-high text-primary">
+<span class="material-symbols-outlined text-[20px]">router</span>
+</div>
+<div>
+<div class="flex items-center gap-2">
+<h3 class="font-headline-sm text-headline-sm font-bold text-on-surface" id="inspector-name">SWITCH 24 PORT FO</h3>
+<span class="px-2 py-0.5 rounded font-telemetry-badge text-[10px] text-status-online bg-status-online-surface">ACTIVE</span>
+</div>
+<p class="font-telemetry-data text-body-sm text-text-muted">Core Fiber Aggregator • Rack 01-A (R. SERVER)</p>
+</div>
+</div>
+<button class="px-2.5 py-1 rounded-lg bg-surface-container hover:bg-surface-container-high text-text-secondary text-body-sm font-medium transition-colors" id="btn-quick-switch">
+            Ganti Node
+          </button>
+</div>
+<!-- TELEMETRY SNAPSHOT TILES -->
+<div class="grid grid-cols-2 gap-space-md mb-space-lg">
+<div class="bg-surface-canvas p-space-md rounded-xl">
+<div class="flex items-center justify-between text-text-muted text-body-sm font-label-caps uppercase">
+<span>Port Utilization</span>
+<span class="material-symbols-outlined text-[16px] text-primary">lan</span>
+</div>
+<div class="mt-2 flex items-baseline gap-2">
+<span class="font-headline-md text-headline-md font-bold text-on-surface" id="stat-ports">18 / 24</span>
+<span class="font-telemetry-data text-body-sm text-status-online font-semibold">75%</span>
+</div>
+<div class="w-full bg-surface-container rounded-full h-1.5 mt-2">
+<div class="bg-primary h-1.5 rounded-full w-3/4"></div>
+</div>
+</div>
+<div class="bg-surface-canvas p-space-md rounded-xl">
+<div class="flex items-center justify-between text-text-muted text-body-sm font-label-caps uppercase">
+<span>Transceiver SFP</span>
+<span class="material-symbols-outlined text-[16px] text-telemetry-cyan">lightbulb</span>
+</div>
+<div class="mt-2 flex items-baseline gap-2">
+<span class="font-headline-md text-headline-md font-bold text-on-surface" id="stat-sfp">-3.2 dBm</span>
+<span class="font-telemetry-badge text-[10px] text-status-online bg-status-online-surface px-1.5 py-0.5 rounded">NORMAL</span>
+</div>
+<div class="font-telemetry-data text-[11px] text-text-secondary mt-1">1310nm Single-Mode Fiber</div>
+</div>
+</div>
+<!-- PHYSICAL COORD & METRICS -->
+<div class="bg-surface-canvas p-space-md rounded-xl mb-space-lg flex flex-col gap-space-sm">
+<div class="flex items-center justify-between font-label-caps text-label-caps uppercase text-text-muted">
+<span>3D Spatial Coordinates</span>
+<span class="text-primary font-telemetry-badge">Vector3(X, Y, Z)</span>
+</div>
+<div class="grid grid-cols-3 gap-space-sm">
+<div class="bg-surface-card p-2 rounded-lg text-center">
+<span class="text-[10px] text-text-muted block font-telemetry-badge">POS X</span>
+<input class="w-full text-center font-telemetry-data font-bold text-on-surface bg-transparent focus:outline-none" id="coord-x" type="number" value="142.5"/>
+</div>
+<div class="bg-surface-card p-2 rounded-lg text-center">
+<span class="text-[10px] text-text-muted block font-telemetry-badge">POS Y</span>
+<input class="w-full text-center font-telemetry-data font-bold text-on-surface bg-transparent focus:outline-none" id="coord-y" type="number" value="18.0"/>
+</div>
+<div class="bg-surface-card p-2 rounded-lg text-center">
+<span class="text-[10px] text-text-muted block font-telemetry-badge">POS Z</span>
+<input class="w-full text-center font-telemetry-data font-bold text-on-surface bg-transparent focus:outline-none" id="coord-z" type="number" value="-88.4"/>
+</div>
+</div>
+<div class="flex items-center justify-between text-body-sm font-telemetry-data pt-1 text-text-secondary">
+<span>Ping Sweep Uptime:</span>
+<span class="text-on-surface font-semibold">99.98% (1.2 ms avg)</span>
+</div>
+</div>
+<!-- REAL TIME CONNECTION LIST FOR SELECTED SWITCH -->
+<div class="mb-space-md">
+<span class="font-label-caps text-label-caps uppercase text-text-muted block mb-2">Connected Ports Map (Minsel Switch Diagram):</span>
+<div class="space-y-1.5">
+<div class="flex items-center justify-between p-2 rounded-lg bg-surface-card-subtle text-body-sm">
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-primary"></span>
+<span class="font-medium text-on-surface">R. SERVER MINSEL (Uplink 10G)</span>
+</div>
+<span class="font-telemetry-badge text-[11px] text-text-muted">Port SFP 1/1</span>
+</div>
+<div class="flex items-center justify-between p-2 rounded-lg bg-surface-card-subtle text-body-sm">
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-primary"></span>
+<span class="font-medium text-on-surface">SWITCH 24 POE (GENSET)</span>
+</div>
+<span class="font-telemetry-badge text-[11px] text-text-muted">Port SFP 1/2</span>
+</div>
+<div class="flex items-center justify-between p-2 rounded-lg bg-surface-card-subtle text-body-sm">
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-amber-500"></span>
+<span class="font-medium text-on-surface">WWTP CONTROL ROOM (Plan Baru)</span>
+</div>
+<span class="font-telemetry-badge text-[11px] text-amber-700">Port SFP 1/8</span>
+</div>
+</div>
+</div>
+</div>
+<!-- DEVICE ACTION BUTTONS -->
+<div class="flex items-center gap-space-sm pt-space-md">
+<button class="flex-1 py-2 px-3 rounded-lg bg-surface-container hover:bg-surface-container-high text-on-surface font-body-sm font-semibold transition-colors flex items-center justify-center gap-1.5" id="btn-update-coord">
+<span class="material-symbols-outlined text-[18px]">pin_drop</span>
+<span>Update Posisi 3D</span>
+</button>
+<button class="flex-1 py-2 px-3 rounded-lg bg-surface-container hover:bg-surface-container-high text-primary font-body-sm font-semibold transition-colors flex items-center justify-center gap-1.5" id="btn-ping-sweep">
+<span class="material-symbols-outlined text-[18px]">network_check</span>
+<span>Ping Sweep</span>
+</button>
+<button class="py-2 px-3 rounded-lg bg-status-offline-surface hover:bg-error-container text-status-offline font-body-sm font-semibold transition-colors flex items-center justify-center gap-1" id="btn-reboot-node" title="Restart Switch">
+<span class="material-symbols-outlined text-[18px]">restart_alt</span>
+</button>
+</div>
+</div>
+</div>
+<!-- INTERACTIVE MODAL: ADD / CONNECT NEW CABLE ROUTE -->
+<div class="hidden fixed inset-0 z-50 flex items-center justify-center bg-slate-950/60 backdrop-blur-sm p-4" id="modal-new-cable">
+<div class="bg-surface-card rounded-2xl p-space-xl max-w-lg w-full shadow-2xl relative">
+<div class="flex items-center justify-between pb-space-md mb-space-md">
+<div class="flex items-center gap-space-sm">
+<div class="p-2 rounded-lg bg-primary-container text-on-primary">
+<span class="material-symbols-outlined text-[20px]">add_link</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm font-bold text-on-surface">Sambung Jalur Kabel Baru</h3>
+</div>
+<button class="p-1 rounded-lg hover:bg-surface-container text-text-muted hover:text-on-surface" id="modal-close">
+<span class="material-symbols-outlined text-[20px]">close</span>
+</button>
+</div>
+<div class="space-y-4">
+<div>
+<label class="block font-label-caps text-label-caps uppercase text-text-muted mb-1">Switch Asal (Origin Node)</label>
+<select class="w-full bg-surface-canvas rounded-lg px-3 py-2 text-body-sm font-telemetry-data focus:outline-none" id="modal-origin">
+<option>SWITCH 24 PORT FO (R. SERVER)</option>
+<option>SWITCH 24 POE (GENSET)</option>
+<option>WHS SPAREPART</option>
+<option>WWTP CONTROL ROOM</option>
+<option>NANOSTATION M2 (SILO)</option>
+</select>
+</div>
+<div>
+<label class="block font-label-caps text-label-caps uppercase text-text-muted mb-1">Switch Tujuan (Target Node)</label>
+<select class="w-full bg-surface-canvas rounded-lg px-3 py-2 text-body-sm font-telemetry-data focus:outline-none" id="modal-target">
+<option>POS SEC 1</option>
+<option>POS SEC 2 (TIMUR)</option>
+<option>OFFICE LT 2</option>
+<option>BOILER ROOM</option>
+<option>LAB QUALITY ASSURANCE</option>
+</select>
+</div>
+<div>
+<label class="block font-label-caps text-label-caps uppercase text-text-muted mb-1">Pilih Tipe Kabel</label>
+<div class="grid grid-cols-3 gap-2">
+<label class="flex flex-col items-center gap-1.5 p-2.5 rounded-xl bg-surface-canvas cursor-pointer hover:bg-surface-container has-[:checked]:bg-primary-container has-[:checked]:text-on-primary text-text-secondary transition-all">
+<input checked="" class="hidden" name="new-cable-type" type="radio" value="FO"/>
+<span class="material-symbols-outlined text-[20px]">bolt</span>
+<span class="font-telemetry-badge text-[10px]">LINE FO</span>
+</label>
+<label class="flex flex-col items-center gap-1.5 p-2.5 rounded-xl bg-surface-canvas cursor-pointer hover:bg-surface-container has-[:checked]:bg-slate-700 has-[:checked]:text-white text-text-secondary transition-all">
+<input class="hidden" name="new-cable-type" type="radio" value="Lama"/>
+<span class="material-symbols-outlined text-[20px]">cable</span>
+<span class="font-telemetry-badge text-[10px]">LINE LAMA</span>
+</label>
+<label class="flex flex-col items-center gap-1.5 p-2.5 rounded-xl bg-surface-canvas cursor-pointer hover:bg-surface-container has-[:checked]:bg-amber-500 has-[:checked]:text-white text-text-secondary transition-all">
+<input class="hidden" name="new-cable-type" type="radio" value="Plan"/>
+<span class="material-symbols-outlined text-[20px]">schedule</span>
+<span class="font-telemetry-badge text-[10px]">PLAN BARU</span>
+</label>
+</div>
+</div>
+<div class="pt-space-sm">
+<button class="w-full py-2.5 rounded-lg bg-primary-container text-on-primary font-body-md font-semibold shadow-md hover:bg-primary transition-all" id="modal-submit">
+            Pasang &amp; Render ke 3D Topologi
+          </button>
+</div>
+</div>
+</div>
+</div>
+<!-- TOAST NOTIFICATION CONTAINER -->
+<div class="fixed bottom-6 right-6 z-50 hidden bg-surface-card px-4 py-3 rounded-xl shadow-2xl flex items-center gap-3 transition-all duration-300" id="toast-notify">
+<span class="material-symbols-outlined text-primary text-[22px]" id="toast-icon">check_circle</span>
+<div class="flex flex-col">
+<span class="font-headline-sm text-body-sm font-bold text-on-surface" id="toast-title">Berhasil</span>
+<span class="font-body-sm text-[12px] text-text-secondary" id="toast-desc">Perubahan topologi tersimpan.</span>
+</div>
+</div>
+</div>
+<script>
+  (function initMinselTopology() {
+    // 1. TOAST HELPER
+    const toast = document.getElementById('toast-notify');
+    const toastTitle = document.getElementById('toast-title');
+    const toastDesc = document.getElementById('toast-desc');
+    const toastIcon = document.getElementById('toast-icon');
+
+    function showToast(title, desc, icon = 'check_circle', isError = false) {
+      if (!toast) return;
+      toastTitle.textContent = title;
+      toastDesc.textContent = desc;
+      toastIcon.textContent = icon;
+      toast.classList.remove('hidden');
+      toast.classList.add('flex');
+      setTimeout(() => {
+        toast.classList.add('hidden');
+        toast.classList.remove('flex');
+      }, 3200);
+    }
+
+    // 2. CAMERA RESET & ACTION BUTTONS
+    const btnResetCam = document.getElementById('btn-reset-cam');
+    if (btnResetCam) {
+      btnResetCam.addEventListener('click', () => {
+        showToast('Kamera 3D Di-reset', 'Orbit kamera dikembalikan ke sudut default (Pitch 45°, Core Minsel).', 'crop_free');
+      });
+    }
+
+    const btnSaveLayout = document.getElementById('btn-save-layout');
+    if (btnSaveLayout) {
+      btnSaveLayout.addEventListener('click', () => {
+        showToast('Denah Topologi Tersimpan', 'Koordinat 22 switch dan 21 link kabel telah disinkronkan ke server.', 'cloud_done');
+      });
+    }
+
+    // 3. TRAFFIC SIMULATION TOGGLE
+    const btnSimTraffic = document.getElementById('btn-sim-traffic');
+    const trafficIcon = document.getElementById('traffic-icon');
+    const trafficText = document.getElementById('traffic-text');
+    let trafficActive = true;
+
+    if (btnSimTraffic) {
+      btnSimTraffic.addEventListener('click', () => {
+        trafficActive = !trafficActive;
+        if (trafficActive) {
+          trafficText.textContent = 'Simulasi Trafik: Aktif';
+          trafficIcon.classList.add('text-telemetry-cyan');
+          showToast('Simulasi Berjalan', 'Partikel data paket FO 10Gbps aktif bergerak.', 'electric_bolt');
+        } else {
+          trafficText.textContent = 'Simulasi Trafik: Dijeda';
+          trafficIcon.classList.remove('text-telemetry-cyan');
+          showToast('Simulasi Dijeda', 'Visualisasi aliran partikel kabel dihentikan.', 'pause');
+        }
+      });
+    }
+
+    // 4. QUICK MODE TABS
+    const modeBtns = document.querySelectorAll('.mode-tab-btn');
+    modeBtns.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        modeBtns.forEach((b) => {
+          b.className = 'mode-tab-btn flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-slate-300 hover:text-white font-body-sm transition-all';
+        });
+        btn.className = 'mode-tab-btn flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-primary-container text-on-primary font-body-sm font-semibold transition-all';
+        showToast('Mode Berubah', `Mode aktif: ${btn.innerText.trim()}`, 'tune');
+      });
+    });
+
+    // 5. CABLE CYCLING IN TABLE (Line FO -> Line Lama -> Plan Line Baru)
+    const cableCycleSequence = [
+      { type: 'FO', label: 'Line FO (Trunk)', badgeClass: 'bg-primary text-on-primary', dotClass: 'bg-white' },
+      { type: 'Lama', label: 'Line Lama (UTP)', badgeClass: 'bg-slate-600 text-white', dotClass: 'bg-slate-300' },
+      { type: 'Plan', label: 'Plan Line Baru', badgeClass: 'bg-amber-500 text-white shadow-sm', dotClass: 'bg-white' }
+    ];
+
+    document.querySelectorAll('.cycle-cable-btn').forEach((btn) => {
+      btn.addEventListener('click', (e) => {
+        const row = e.target.closest('tr');
+        if (!row) return;
+        const currentType = row.getAttribute('data-cable-type');
+        let currentIndex = cableCycleSequence.findIndex(item => item.type === currentType);
+        let nextIndex = (currentIndex + 1) % cableCycleSequence.length;
+        let nextConfig = cableCycleSequence[nextIndex];
+
+        row.setAttribute('data-cable-type', nextConfig.type);
+        const badgeSpan = row.querySelector('.cable-badge');
+        if (badgeSpan) {
+          badgeSpan.className = `cable-badge inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full font-telemetry-badge text-[11px] ${nextConfig.badgeClass}`;
+          badgeSpan.innerHTML = `<span class="w-1.5 h-1.5 rounded-full ${nextConfig.dotClass}"></span> ${nextConfig.label}`;
+        }
+        showToast('Tipe Kabel Diubah', `Jalur kabel diubah menjadi: ${nextConfig.label}`, 'cable');
+      });
+    });
+
+    // 6. DISCONNECT CABLE ACTION
+    document.querySelectorAll('.disconnect-btn').forEach((btn) => {
+      btn.addEventListener('click', (e) => {
+        const row = e.target.closest('tr');
+        if (row) {
+          row.style.opacity = '0.35';
+          showToast('Sambungan Dilepas', 'Link dinonaktifkan sementara dari topologi 3D.', 'link_off');
+        }
+      });
+    });
+
+    // 7. REROUTE BUTTON
+    document.querySelectorAll('.reroute-btn').forEach((btn) => {
+      btn.addEventListener('click', (e) => {
+        showToast('Pindah Port/Tujuan', 'Pilih node baru pada 3D canvas untuk memindahkan sambungan.', 'swap_horiz');
+      });
+    });
+
+    // 8. INSPECTOR ACTIONS
+    const btnUpdateCoord = document.getElementById('btn-update-coord');
+    if (btnUpdateCoord) {
+      btnUpdateCoord.addEventListener('click', () => {
+        const x = document.getElementById('coord-x')?.value || 0;
+        const y = document.getElementById('coord-y')?.value || 0;
+        const z = document.getElementById('coord-z')?.value || 0;
+        showToast('Koordinat Disimpan', `Posisi Switch diperbarui: [${x}, ${y}, ${z}]`, 'pin_drop');
+      });
+    }
+
+    const btnPingSweep = document.getElementById('btn-ping-sweep');
+    if (btnPingSweep) {
+      btnPingSweep.addEventListener('click', () => {
+        btnPingSweep.classList.add('opacity-50');
+        showToast('Ping Sweep Berjalan', 'Memeriksa latency 24 port Switch FO...', 'network_check');
+        setTimeout(() => {
+          btnPingSweep.classList.remove('opacity-50');
+          showToast('Ping Sweep Selesai', 'Semua port merespon. 0% loss (1.18ms)', 'check_circle');
+        }, 1200);
+      });
+    }
+
+    const btnReboot = document.getElementById('btn-reboot-node');
+    if (btnReboot) {
+      btnReboot.addEventListener('click', () => {
+        if (confirm('Konfirmasi rebooting hardware node "SWITCH 24 PORT FO"?')) {
+          showToast('Reboot Terjadwal', 'Mengirim sinyal SNMP restart ke switch Minsel...', 'restart_alt');
+        }
+      });
+    }
+
+    // 9. FILTER CABLE SEARCH & SELECT
+    const searchInput = document.getElementById('cable-search');
+    const filterSelect = document.getElementById('filter-type');
+    const tableRows = document.querySelectorAll('#table-body tr');
+
+    function applyTableFilters() {
+      const q = (searchInput?.value || '').toLowerCase();
+      const type = filterSelect?.value || 'all';
+
+      tableRows.forEach((row) => {
+        const rowType = row.getAttribute('data-cable-type');
+        const text = row.innerText.toLowerCase();
+        const matchesQuery = text.includes(q);
+        const matchesType = (type === 'all') || (rowType === type);
+
+        if (matchesQuery && matchesType) {
+          row.style.display = '';
+        } else {
+          row.style.display = 'none';
+        }
+      });
+    }
+
+    if (searchInput) searchInput.addEventListener('input', applyTableFilters);
+    if (filterSelect) filterSelect.addEventListener('change', applyTableFilters);
+
+    // 10. MODAL NEW CABLE
+    const modal = document.getElementById('modal-new-cable');
+    const btnAddCable = document.getElementById('btn-add-cable');
+    const modalClose = document.getElementById('modal-close');
+    const modalSubmit = document.getElementById('modal-submit');
+
+    if (btnAddCable && modal) {
+      btnAddCable.addEventListener('click', () => {
+        modal.classList.remove('hidden');
+      });
+    }
+
+    if (modalClose && modal) {
+      modalClose.addEventListener('click', () => {
+        modal.classList.add('hidden');
+      });
+    }
+
+    if (modalSubmit && modal) {
+      modalSubmit.addEventListener('click', () => {
+        const origin = document.getElementById('modal-origin')?.value;
+        const target = document.getElementById('modal-target')?.value;
+        modal.classList.add('hidden');
+        showToast('Kabel Baru Terpasang', `Jalur dari ${origin} ke ${target} dirender ke 3D.`, 'cable');
+      });
+    }
+
+    // 11. QUICK SWITCH TOGGLE DEMO IN INSPECTOR
+    const btnQuickSwitch = document.getElementById('btn-quick-switch');
+    const inspectorName = document.getElementById('inspector-name');
+    const statPorts = document.getElementById('stat-ports');
+    const statSfp = document.getElementById('stat-sfp');
+
+    const switchDataset = [
+      { name: 'SWITCH 24 PORT FO', ports: '18 / 24', sfp: '-3.2 dBm' },
+      { name: 'SWITCH 24 POE (GENSET)', ports: '21 / 24', sfp: '-4.1 dBm' },
+      { name: 'R. SERVER MINSEL', ports: '48 / 48', sfp: '-2.8 dBm' },
+      { name: 'WWTP CONTROL ROOM', ports: '6 / 8', sfp: 'N/A (Copper)' }
+    ];
+    let currentSwitchIdx = 0;
+
+    if (btnQuickSwitch) {
+      btnQuickSwitch.addEventListener('click', () => {
+        currentSwitchIdx = (currentSwitchIdx + 1) % switchDataset.length;
+        const current = switchDataset[currentSwitchIdx];
+        if (inspectorName) inspectorName.textContent = current.name;
+        if (statPorts) statPorts.textContent = current.ports;
+        if (statSfp) statSfp.textContent = current.sfp;
+        showToast('Node Dipilih', `Inspector fokus pada: ${current.name}`, 'router');
+      });
+    }
+  })();
+</script></main></div></body></html>

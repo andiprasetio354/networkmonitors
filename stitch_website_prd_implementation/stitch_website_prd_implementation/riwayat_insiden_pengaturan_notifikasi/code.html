@@ -1,0 +1,850 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_dashboard" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@500;600;700&amp;family=Space+Grotesk:wght@500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config={darkMode:"class",theme:{extend:{colors:{"on-secondary-fixed-variant":"#004d67","on-tertiary-fixed-variant":"#314865","status-online":"#10B981","secondary-fixed":"#c2e8ff","on-tertiary-container":"#f0f4ff","status-maintenance-surface":"#EEF2FF","surface-container-high":"#dce9ff","surface-canvas":"#F4F7FB","surface-container-highest":"#d3e4fe","inverse-primary":"#b4c5ff","surface-tint":"#0053da","tertiary-container":"#5a7190","on-background":"#0b1c30","on-secondary-container":"#004b65","tertiary-fixed-dim":"#b0c8eb","on-surface":"#0b1c30","text-muted":"#94A3B8","surface-container-lowest":"#ffffff","secondary-fixed-dim":"#75d1ff","primary":"#004cca","primary-fixed":"#dbe1ff","on-secondary":"#ffffff","secondary-container":"#00c1fd","on-primary-fixed-variant":"#003ea8","status-maintenance":"#6366F1","on-secondary-fixed":"#001e2b","status-unreachable":"#F59E0B","surface":"#f8f9ff","on-error-container":"#93000a","border-strong":"#CBD5E1","tertiary":"#415976","on-primary":"#ffffff","telemetry-cyan":"#00C2FF","status-online-surface":"#ECFDF5","on-surface-variant":"#424656","on-primary-fixed":"#00174b","status-offline-glow":"#F87171","surface-variant":"#d3e4fe","on-primary-container":"#f3f3ff","primary-container":"#0062ff","error-container":"#ffdad6","status-unreachable-surface":"#FFFBEB","primary-fixed-dim":"#b4c5ff","surface-card-subtle":"#F8FAFC","border-subtle":"#E2E8F0","outline-variant":"#c2c6d9","tertiary-fixed":"#d2e4ff","on-error":"#ffffff","status-online-glow":"#34D399","surface-container-low":"#eff4ff","status-offline-surface":"#FEF2F2","secondary":"#006688","outline":"#737687","on-tertiary":"#ffffff","surface-bright":"#f8f9ff","surface-card":"#FFFFFF","error":"#ba1a1a","on-tertiary-fixed":"#001c37","text-primary":"#0F172A","inverse-on-surface":"#eaf1ff","inverse-surface":"#213145","surface-container":"#e5eeff","text-secondary":"#475569","background":"#f8f9ff","surface-dim":"#cbdbf5","status-offline":"#EF4444"},borderRadius:{DEFAULT:"0.25rem",lg:"0.5rem",xl:"0.75rem",full:"9999px"},spacing:{"space-2xl":"3rem","margin-desktop":"2rem","space-xs":"0.25rem","space-xl":"2rem","margin":"1rem","space-lg":"1.25rem","gutter":"1rem","margin-tablet":"1.5rem","space-sm":"0.5rem","gutter-desktop":"1.5rem","space-md":"0.75rem"},fontFamily:{"telemetry-badge":["JetBrains Mono"],"body-md":["Inter"],"headline-md":["Space Grotesk"],"headline-lg":["Space Grotesk"],"body-lg":["Inter"],"body-sm":["Inter"],"headline-lg-mobile":["Space Grotesk"],"label-caps":["Space Grotesk"],"display-hero":["Space Grotesk"],"headline-sm":["Space Grotesk"],"telemetry-data":["JetBrains Mono"]},fontSize:{"telemetry-badge":["11px",{lineHeight:"14px",letterSpacing:"0.05em",fontWeight:"700"}],"body-md":["14px",{lineHeight:"20px",fontWeight:"400"}],"headline-md":["24px",{lineHeight:"32px",letterSpacing:"-0.01em",fontWeight:"600"}],"headline-lg":["32px",{lineHeight:"40px",letterSpacing:"-0.02em",fontWeight:"700"}],"body-lg":["16px",{lineHeight:"24px",fontWeight:"400"}],"body-sm":["12px",{lineHeight:"16px",fontWeight:"400"}],"headline-lg-mobile":["26px",{lineHeight:"34px",letterSpacing:"-0.01em",fontWeight:"700"}],"label-caps":["11px",{lineHeight:"16px",letterSpacing:"0.08em",fontWeight:"700"}],"display-hero":["48px",{lineHeight:"56px",letterSpacing:"-0.03em",fontWeight:"700"}],"headline-sm":["18px",{lineHeight:"26px",letterSpacing:"0em",fontWeight:"600"}],"telemetry-data":["13px",{lineHeight:"18px",letterSpacing:"-0.01em",fontWeight:"600"}]}}}};</script></head><body class="bg-surface-canvas font-body-md text-on-surface"><aside class="fixed left-0 top-0 h-full w-72 bg-surface-card border-r border-border-subtle z-50 flex flex-col justify-between shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="flex flex-col"><div class="h-16 px-gutter flex items-center gap-space-sm border-b border-border-subtle"><img alt="Wifitics Logo" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/ALJJyrBLmPbDo2Pety1K2Xjnfrst_J5RLW6g3C6a7sYxJzV86k4rlcBPsGfZFHZeyw0u9hkpQfijeJNN0INrfHbSfi6Ik2oCMze9JGzaRGfSuQ5UGK2o66GYZo-sLjPqQRN_OAnA_5ktS1hPtoYzwDEWTQqX5jeaH9J5RKbHKxValFzgAWWn3iTTskCWlIyulGFS1tTZuML1rSHvJawLI5l2o8D5BNA3piakKf9arVRZOg"/><div class="flex flex-col"><span class="font-headline-sm text-headline-sm font-bold text-on-surface tracking-tight">Wifitics</span><span class="font-label-caps text-label-caps uppercase text-telemetry-cyan font-bold tracking-widest text-[9px] leading-[10px]">NOC Commander v4.2</span></div></div><div class="px-space-md py-space-sm"><div class="px-space-sm py-space-xs font-label-caps text-label-caps uppercase text-text-muted">Telemetri &amp; Operasional</div></div><nav class="flex flex-col gap-space-xs px-space-md" data-active-classes="bg-primary-container text-on-primary font-semibold shadow-[0_2px_8px_rgba(0,98,255,0.3)]"><a class="flex items-center gap-space-md px-space-md py-space-sm rounded-lg text-text-secondary hover:bg-surface-container-low hover:text-on-surface transition-all group" data-path="dashboard-utama" href="#"><span class="material-symbols-outlined text-[20px] text-text-muted group-hover:text-primary transition-colors">monitoring</span><span class="font-body-md text-body-md">Dashboard Utama</span></a><a class="flex items-center gap-space-md px-space-md py-space-sm rounded-lg text-text-secondary hover:bg-surface-container-low hover:text-on-surface transition-all group" data-path="manajemen-perangkat" href="#"><span class="material-symbols-outlined text-[20px] text-text-muted group-hover:text-primary transition-colors">router</span><span class="font-body-md text-body-md">Manajemen Perangkat</span></a><a class="flex items-center gap-space-md px-space-md py-space-sm rounded-lg text-text-secondary hover:bg-surface-container-low hover:text-on-surface transition-all group" data-path="topologi-jaringan" href="#"><span class="material-symbols-outlined text-[20px] text-text-muted group-hover:text-primary transition-colors">hub</span><span class="font-body-md text-body-md">Topologi Jaringan</span></a><a class="flex items-center gap-space-md px-space-md py-space-sm rounded-lg text-text-secondary hover:bg-surface-container-low hover:text-on-surface transition-all group" data-path="riwayat-log-insiden" href="#"><span class="material-symbols-outlined text-[20px] text-text-muted group-hover:text-primary transition-colors">receipt_long</span><span class="font-body-md text-body-md">Riwayat &amp; Log Insiden</span></a></nav><div class="px-space-md pt-space-lg pb-space-xs"><div class="px-space-sm py-space-xs font-label-caps text-label-caps uppercase text-text-muted">Konfigurasi Sistem</div></div><nav class="flex flex-col gap-space-xs px-space-md" data-active-classes="bg-primary-container text-on-primary font-semibold shadow-[0_2px_8px_rgba(0,98,255,0.3)]"><a class="flex items-center gap-space-md px-space-md py-space-sm rounded-lg text-text-secondary hover:bg-surface-container-low hover:text-on-surface transition-all group" data-path="pengaturan-notifikasi" href="#"><span class="material-symbols-outlined text-[20px] text-text-muted group-hover:text-primary transition-colors">notifications_active</span><span class="font-body-md text-body-md">Pengaturan Notifikasi</span></a><a class="flex items-center gap-space-md px-space-md py-space-sm rounded-lg text-text-secondary hover:bg-surface-container-low hover:text-on-surface transition-all group" data-path="pengaturan-sistem" href="#"><span class="material-symbols-outlined text-[20px] text-text-muted group-hover:text-primary transition-colors">settings_suggest</span><span class="font-body-md text-body-md">Pengaturan Sistem</span></a></nav></div><div class="p-space-md m-space-md rounded-xl bg-surface-card-subtle border border-border-subtle flex flex-col gap-space-xs"><div class="flex items-center justify-between"><span class="font-label-caps text-label-caps uppercase text-text-muted">Cluster Status</span><span class="font-telemetry-badge text-telemetry-badge text-status-online bg-status-online-surface px-space-xs py-0.5 rounded border border-status-online/20">OPTIMAL</span></div><div class="flex items-center justify-between text-body-sm font-body-sm text-text-secondary mt-space-xs"><span>Avg Latency</span><span class="font-telemetry-data text-telemetry-data text-on-surface font-semibold">14.2 ms</span></div><div class="flex items-center justify-between text-body-sm font-body-sm text-text-secondary"><span>Active Nodes</span><span class="font-telemetry-data text-telemetry-data text-primary font-semibold">148 / 152</span></div></div></aside><div class="pl-72"><header class="fixed top-0 left-72 right-0 h-16 bg-surface-card/90 backdrop-blur-xl border-b border-border-subtle z-40 flex items-center justify-between px-margin-desktop"><div class="flex items-center gap-gutter"><div class="inline-flex items-center gap-space-xs px-space-md py-1 rounded-full bg-status-online-surface border border-status-online/30 text-status-online font-telemetry-badge text-telemetry-badge shadow-[0_0_10px_rgba(16,185,129,0.2)]"><span class="relative flex h-2 w-2"><span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-status-online opacity-75"></span><span class="relative inline-flex rounded-full h-2 w-2 bg-status-online"></span></span><span>WebSocket Connected • 2s refresh</span></div><div class="relative hidden lg:flex items-center"><span class="material-symbols-outlined absolute left-space-md text-text-muted text-[18px]">search</span><input class="pl-10 pr-space-md py-1.5 w-80 rounded-lg bg-surface-canvas border border-border-subtle font-body-sm text-body-sm text-on-surface placeholder:text-text-muted focus:outline-none focus:border-primary focus:ring-2 focus:ring-telemetry-cyan/20 transition-all font-telemetry-data" placeholder="Quick IP, MAC, Subnet (e.g. 192.168.1.0/24)..." type="text"/></div></div><div class="flex items-center gap-space-lg"><button class="relative p-space-sm rounded-lg hover:bg-surface-container-low text-text-secondary hover:text-on-surface transition-colors" type="button"><span class="material-symbols-outlined text-[22px]">notifications</span><span class="absolute top-1.5 right-1.5 flex h-4 min-w-[16px] items-center justify-center rounded-full bg-status-offline px-1 font-telemetry-badge text-[10px] font-bold text-on-error ring-2 ring-surface-card">4</span></button><div class="h-6 w-px bg-border-subtle"></div><div class="flex items-center gap-space-md pl-space-xs"><div class="flex flex-col text-right hidden sm:flex"><span class="font-body-md text-body-md font-semibold text-on-surface leading-tight">IT Admin Ops</span><span class="font-label-caps text-[10px] text-text-muted uppercase font-bold">Root Access • NOC-1</span></div><img alt="Profile" class="w-8 h-8 rounded-full object-cover ring-2 ring-primary/20" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDoViGmDXBPNNL36RDP3LK8gw4MmOX4DCp5-4AcNpqqjwUkY-vtFfeA4xtCNQnuJBLi9i2JUMgqkgFnkvy_AC4KlEE7Z0Qn9kZfiVC5xlcdM_nnAUtk7A7YGiLJQ26FLkCrz9W6BwAhuV36UBRqQvB3C_x3Idb_UIoMDwLv9v1c3BELwnE2W2WEyMyyBEtqchYYQQEoyOAtuCP4zey60mXBYz85Ksa1rbGlDtjYQQ"/></div></div></header><main class="w-full pt-16 bg-surface-canvas min-h-screen px-margin-desktop py-space-xl"><div class="flex flex-col w-full">
+<!-- Top Operational Banner & Telemetry KPIs -->
+<div class="flex flex-col lg:flex-row lg:items-center justify-between gap-space-md mb-space-lg">
+<div>
+<div class="flex items-center gap-space-sm mb-space-xs">
+<span class="font-telemetry-badge text-telemetry-badge text-primary bg-primary-fixed/50 px-2 py-0.5 rounded uppercase">PRD Sec 7.3 &amp; 7.4 Telemetry Core</span>
+<span class="font-telemetry-data text-body-sm text-text-muted">NOC Incident Intelligence Engine</span>
+</div>
+<h1 class="font-headline-lg text-headline-lg text-text-primary tracking-tight">Riwayat Log Insiden &amp; Pengaturan Notifikasi</h1>
+<p class="font-body-md text-body-md text-text-secondary mt-1">Audit real-time ketercapaian SLA, audit trail MTTR, serta orkestrasi alarm multi-kanal.</p>
+</div>
+<div class="flex items-center gap-space-sm self-start lg:self-center">
+<button class="flex items-center gap-space-xs px-3 py-2 rounded-lg bg-surface-card hover:bg-surface-container-low text-text-primary shadow-sm transition-all font-body-sm text-body-sm font-semibold" id="btn-export-csv">
+<span class="material-symbols-outlined text-[18px] text-text-muted">download</span>
+<span>Ekspor CSV</span>
+</button>
+<button class="flex items-center gap-space-xs px-3 py-2 rounded-lg bg-surface-card hover:bg-surface-container-low text-text-primary shadow-sm transition-all font-body-sm text-body-sm font-semibold" id="btn-export-pdf">
+<span class="material-symbols-outlined text-[18px] text-error">picture_as_pdf</span>
+<span>Ekspor PDF SLA (F-32)</span>
+</button>
+<button class="flex items-center gap-space-xs px-4 py-2 rounded-lg bg-primary hover:bg-primary-container text-on-primary shadow-md hover:shadow-lg transition-all font-body-sm text-body-sm font-semibold" id="btn-test-dispatch">
+<span class="material-symbols-outlined text-[18px]">bolt</span>
+<span>Kirim Alarm Uji Coba</span>
+</button>
+</div>
+</div>
+<!-- SLA & MTTR Telemetry Metric Cards (F-33 compliant) -->
+<div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-space-md mb-space-xl">
+<!-- Card 1: Network Overall Uptime -->
+<div class="relative overflow-hidden rounded-xl bg-surface-card p-space-lg shadow-sm hover:shadow-md transition-shadow">
+<div class="absolute top-0 left-0 right-0 h-1 bg-status-online"></div>
+<div class="flex justify-between items-start">
+<span class="font-label-caps text-label-caps uppercase text-text-muted">Overall SLA Uptime</span>
+<span class="font-telemetry-badge text-[10px] text-status-online bg-status-online-surface px-1.5 py-0.5 rounded font-bold">+0.04% MoM</span>
+</div>
+<div class="mt-2 flex items-baseline gap-2">
+<span class="font-display-hero text-[34px] leading-tight font-bold text-text-primary">99.82%</span>
+<span class="font-body-sm text-body-sm text-text-muted">Bulan Berjalan</span>
+</div>
+<!-- Mini SLA Sparkline SVG -->
+<div class="mt-3 flex items-center justify-between text-body-sm text-text-secondary">
+<span>Target SLA: ≥ 99.50%</span>
+<svg class="w-20 h-5 text-status-online" fill="none" viewbox="0 0 80 20">
+<path d="M0 16 L15 14 L30 15 L45 8 L60 9 L75 4 L80 3" stroke="currentColor" stroke-linecap="round" stroke-width="2"></path>
+</svg>
+</div>
+</div>
+<!-- Card 2: Incident Count & MTTR -->
+<div class="relative overflow-hidden rounded-xl bg-surface-card p-space-lg shadow-sm hover:shadow-md transition-shadow">
+<div class="absolute top-0 left-0 right-0 h-1 bg-primary"></div>
+<div class="flex justify-between items-start">
+<span class="font-label-caps text-label-caps uppercase text-text-muted">Total Insiden &amp; MTTR</span>
+<span class="font-telemetry-badge text-[10px] text-primary bg-primary-fixed/50 px-1.5 py-0.5 rounded font-bold">Optimal Speed</span>
+</div>
+<div class="mt-2 flex items-baseline gap-2">
+<span class="font-display-hero text-[34px] leading-tight font-bold text-text-primary">6</span>
+<span class="font-telemetry-data text-body-md text-text-secondary">Kejadian</span>
+<span class="text-text-muted font-body-sm">/ 12 Menit MTTR</span>
+</div>
+<div class="mt-3 flex items-center justify-between text-body-sm text-text-secondary">
+<span>Rata-rata Pulih Cepat</span>
+<span class="font-telemetry-badge text-status-online font-bold">12m 44s</span>
+</div>
+</div>
+<!-- Card 3: Top Problematic Node 1 (F-33) -->
+<div class="relative overflow-hidden rounded-xl bg-surface-card p-space-lg shadow-sm hover:shadow-md transition-shadow">
+<div class="absolute top-0 left-0 right-0 h-1 bg-status-offline"></div>
+<div class="flex justify-between items-start">
+<span class="font-label-caps text-label-caps uppercase text-text-muted">Top Problematic Node #1</span>
+<span class="font-telemetry-badge text-[10px] text-status-offline bg-status-offline-surface px-1.5 py-0.5 rounded font-bold">3x Incident</span>
+</div>
+<div class="mt-2 flex flex-col">
+<span class="font-headline-sm text-headline-sm font-bold text-text-primary truncate">SW-CORE-FL03</span>
+<span class="font-telemetry-data text-body-sm text-text-muted">192.168.10.3 • Rack MDF Lt.3</span>
+</div>
+<div class="mt-3 flex items-center justify-between text-body-sm">
+<span class="text-text-muted">Total Downtime:</span>
+<span class="font-telemetry-badge text-status-offline font-semibold">28m 10s</span>
+</div>
+</div>
+<!-- Card 4: Top Problematic Node 2 (F-33) -->
+<div class="relative overflow-hidden rounded-xl bg-surface-card p-space-lg shadow-sm hover:shadow-md transition-shadow">
+<div class="absolute top-0 left-0 right-0 h-1 bg-status-unreachable"></div>
+<div class="flex justify-between items-start">
+<span class="font-label-caps text-label-caps uppercase text-text-muted">Top Problematic Node #2</span>
+<span class="font-telemetry-badge text-[10px] text-status-unreachable bg-status-unreachable-surface px-1.5 py-0.5 rounded font-bold">2x Incident</span>
+</div>
+<div class="mt-2 flex flex-col">
+<span class="font-headline-sm text-headline-sm font-bold text-text-primary truncate">AP-MEETING-VIP</span>
+<span class="font-telemetry-data text-body-sm text-text-muted">192.168.40.12 • Boardroom B</span>
+</div>
+<div class="mt-3 flex items-center justify-between text-body-sm">
+<span class="text-text-muted">Total Downtime:</span>
+<span class="font-telemetry-badge text-status-unreachable font-semibold">14m 50s</span>
+</div>
+</div>
+</div>
+<!-- Interactive Navigation Tabs -->
+<div class="flex items-center gap-space-sm bg-surface-card p-1.5 rounded-xl shadow-sm mb-space-lg w-full max-w-xl">
+<button class="flex-1 flex items-center justify-center gap-space-xs py-2 px-3 rounded-lg bg-primary-container text-on-primary font-headline-sm text-body-sm font-semibold transition-all shadow-sm" id="tab-btn-incidents" onclick="switchTab('incidents')">
+<span class="material-symbols-outlined text-[18px]">receipt_long</span>
+<span>Log Insiden &amp; Kejadian (F-30)</span>
+<span class="ml-1 bg-white/20 text-on-primary text-[10px] px-1.5 py-0.5 rounded-full font-telemetry-badge">6</span>
+</button>
+<button class="flex-1 flex items-center justify-center gap-space-xs py-2 px-3 rounded-lg text-text-secondary hover:text-on-surface hover:bg-surface-container-low font-headline-sm text-body-sm font-semibold transition-all" id="tab-btn-settings" onclick="switchTab('settings')">
+<span class="material-symbols-outlined text-[18px]">tune</span>
+<span>Konfigurasi Notifikasi (F-20 - F-24)</span>
+<span class="ml-1 bg-status-online text-on-primary text-[10px] px-1.5 py-0.5 rounded-full font-telemetry-badge">3 Aktif</span>
+</button>
+</div>
+<!-- SECTION 1: INCIDENT & EVENT LOG (F-30, F-31, F-32, F-33) -->
+<div class="flex flex-col w-full gap-space-lg" id="section-incidents">
+<!-- Filter Bar & Control Ribbon -->
+<div class="bg-surface-card rounded-xl p-space-md shadow-sm flex flex-col xl:flex-row items-stretch xl:items-center justify-between gap-space-md">
+<!-- Date Range Chips -->
+<div class="flex items-center gap-1.5 flex-wrap">
+<span class="font-label-caps text-label-caps uppercase text-text-muted mr-2">Rentang Waktu:</span>
+<button class="filter-range-btn px-3 py-1.5 rounded-lg text-body-sm font-semibold text-text-secondary hover:bg-surface-container-low" data-range="today">Hari Ini</button>
+<button class="filter-range-btn px-3 py-1.5 rounded-lg text-body-sm font-semibold text-text-secondary hover:bg-surface-container-low" data-range="7d">7 Hari Terakhir</button>
+<button class="filter-range-btn px-3 py-1.5 rounded-lg text-body-sm font-semibold bg-primary-fixed text-primary font-bold shadow-xs" data-range="30d">30 Hari Terakhir</button>
+<button class="filter-range-btn px-3 py-1.5 rounded-lg text-body-sm font-semibold text-text-secondary hover:bg-surface-container-low flex items-center gap-1" data-range="custom">
+<span>Kustom</span>
+<span class="material-symbols-outlined text-[16px]">calendar_month</span>
+</button>
+</div>
+<!-- Search & Status Filter -->
+<div class="flex items-center gap-space-sm flex-wrap sm:flex-nowrap">
+<div class="relative flex-1 sm:w-64">
+<span class="material-symbols-outlined absolute left-3 top-2.5 text-text-muted text-[18px]">search</span>
+<input class="w-full pl-9 pr-3 py-1.5 bg-surface-canvas rounded-lg text-body-sm font-telemetry-data placeholder:text-text-muted focus:outline-none focus:ring-2 focus:ring-telemetry-cyan/40" id="incident-search" placeholder="Cari IP, node, lokasi..." type="text"/>
+</div>
+<select class="px-3 py-2 bg-surface-canvas rounded-lg text-body-sm font-body-md text-text-primary focus:outline-none focus:ring-2 focus:ring-telemetry-cyan/40" id="status-filter">
+<option value="all">Semua Status (6)</option>
+<option value="ongoing">Sedang Terjadi (Active)</option>
+<option value="resolved">Selesai (Resolved)</option>
+</select>
+</div>
+</div>
+<!-- Incident Table Container -->
+<div class="bg-surface-card rounded-xl shadow-sm overflow-hidden flex flex-col">
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface-card-subtle text-text-muted font-label-caps text-label-caps uppercase border-b-0">
+<th class="py-3 px-4">Status &amp; ID</th>
+<th class="py-3 px-4">Waktu Gangguan</th>
+<th class="py-3 px-4">Waktu Pulih</th>
+<th class="py-3 px-4">Downtime</th>
+<th class="py-3 px-4">Perangkat &amp; IP Host</th>
+<th class="py-3 px-4">Kategori / Lokasi</th>
+<th class="py-3 px-4">Pemicu Deteksi</th>
+<th class="py-3 px-4">Dispatch Notifikasi</th>
+<th class="py-3 px-4 text-right">Aksi</th>
+</tr>
+</thead>
+<tbody class="divide-y-0 text-body-sm font-body-md" id="incident-tbody">
+<!-- Row 1: Active Ongoing Incident (Red accent indicator) -->
+<tr class="hover:bg-status-offline-surface/30 transition-colors bg-status-offline-surface/10">
+<td class="py-3.5 px-4">
+<div class="flex items-center gap-2">
+<span class="flex h-2.5 w-2.5 relative">
+<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-status-offline opacity-75"></span>
+<span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-status-offline"></span>
+</span>
+<span class="font-telemetry-badge text-status-offline font-bold bg-status-offline-surface px-2 py-0.5 rounded">ONGOING ACTIVE</span>
+</div>
+<div class="font-telemetry-data text-[11px] text-text-muted mt-1">INC-202410-094</div>
+</td>
+<td class="py-3.5 px-4 font-telemetry-data">
+<div class="text-text-primary font-semibold">Today, 14:18:02</div>
+<div class="text-[11px] text-text-muted">WIB (UTC+7)</div>
+</td>
+<td class="py-3.5 px-4 font-telemetry-data">
+<span class="text-status-offline font-bold italic">Masih Terputus...</span>
+</td>
+<td class="py-3.5 px-4 font-telemetry-data">
+<span class="font-bold text-status-offline bg-status-offline-surface px-2 py-1 rounded">21m 14s</span>
+</td>
+<td class="py-3.5 px-4">
+<div class="font-bold text-text-primary">SW-CORE-FL03</div>
+<div class="font-telemetry-data text-[12px] text-primary">192.168.10.3</div>
+</td>
+<td class="py-3.5 px-4">
+<div class="text-text-primary">Core Switch</div>
+<div class="text-[11px] text-text-muted">MDF Rack Room Lt. 3</div>
+</td>
+<td class="py-3.5 px-4">
+<div class="inline-flex items-center gap-1 font-telemetry-badge text-[10px] text-error bg-error-container/40 px-1.5 py-0.5 rounded">
+<span class="material-symbols-outlined text-[14px]">sensors_off</span>
+<span>ICMP 3x Fail</span>
+</div>
+</td>
+<td class="py-3.5 px-4">
+<div class="flex items-center gap-1.5">
+<span class="w-6 h-6 rounded flex items-center justify-center bg-telemetry-cyan/10 text-primary text-[14px] font-bold" title="Telegram Dispatched">TG</span>
+<span class="w-6 h-6 rounded flex items-center justify-center bg-status-online-surface text-status-online text-[14px] font-bold" title="WhatsApp Escalation Triggered">WA</span>
+<span class="w-6 h-6 rounded flex items-center justify-center bg-primary-fixed/60 text-primary text-[14px] font-bold" title="Email Sent">EM</span>
+</div>
+</td>
+<td class="py-3.5 px-4 text-right">
+<button class="px-2.5 py-1 bg-surface-card shadow-sm hover:bg-surface-container-low text-text-primary rounded text-body-sm font-semibold transition-all">Tinjau</button>
+</td>
+</tr>
+<!-- Row 2: Resolved Incident -->
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="py-3.5 px-4">
+<div class="flex items-center gap-2">
+<span class="inline-flex rounded-full h-2 w-2 bg-status-online"></span>
+<span class="font-telemetry-badge text-status-online bg-status-online-surface px-2 py-0.5 rounded">RESOLVED</span>
+</div>
+<div class="font-telemetry-data text-[11px] text-text-muted mt-1">INC-202410-093</div>
+</td>
+<td class="py-3.5 px-4 font-telemetry-data">
+<div class="text-text-primary font-semibold">Today, 09:12:40</div>
+<div class="text-[11px] text-text-muted">WIB (UTC+7)</div>
+</td>
+<td class="py-3.5 px-4 font-telemetry-data">
+<div class="text-text-primary">Today, 09:24:18</div>
+<div class="text-[11px] text-text-muted">Auto Recovery</div>
+</td>
+<td class="py-3.5 px-4 font-telemetry-data">
+<span class="text-text-secondary">11m 38s</span>
+</td>
+<td class="py-3.5 px-4">
+<div class="font-bold text-text-primary">AP-MEETING-VIP</div>
+<div class="font-telemetry-data text-[12px] text-primary">192.168.40.12</div>
+</td>
+<td class="py-3.5 px-4">
+<div class="text-text-primary">Access Point Wi-Fi</div>
+<div class="text-[11px] text-text-muted">Boardroom Lantai 2</div>
+</td>
+<td class="py-3.5 px-4">
+<div class="inline-flex items-center gap-1 font-telemetry-badge text-[10px] text-on-surface-variant bg-surface-container-highest px-1.5 py-0.5 rounded">
+<span class="material-symbols-outlined text-[14px]">lan</span>
+<span>SNMP linkDown Trap</span>
+</div>
+</td>
+<td class="py-3.5 px-4">
+<div class="flex items-center gap-1.5">
+<span class="w-6 h-6 rounded flex items-center justify-center bg-telemetry-cyan/10 text-primary text-[14px] font-bold">TG</span>
+<span class="w-6 h-6 rounded flex items-center justify-center bg-primary-fixed/60 text-primary text-[14px] font-bold">EM</span>
+</div>
+</td>
+<td class="py-3.5 px-4 text-right">
+<button class="px-2.5 py-1 bg-surface-card shadow-sm hover:bg-surface-container-low text-text-primary rounded text-body-sm font-semibold transition-all">Detail</button>
+</td>
+</tr>
+<!-- Row 3: Resolved Incident -->
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="py-3.5 px-4">
+<div class="flex items-center gap-2">
+<span class="inline-flex rounded-full h-2 w-2 bg-status-online"></span>
+<span class="font-telemetry-badge text-status-online bg-status-online-surface px-2 py-0.5 rounded">RESOLVED</span>
+</div>
+<div class="font-telemetry-data text-[11px] text-text-muted mt-1">INC-202410-090</div>
+</td>
+<td class="py-3.5 px-4 font-telemetry-data">
+<div class="text-text-primary font-semibold">Yesterday, 19:40:11</div>
+<div class="text-[11px] text-text-muted">Luar Jam Kerja</div>
+</td>
+<td class="py-3.5 px-4 font-telemetry-data">
+<div class="text-text-primary">Yesterday, 19:54:22</div>
+<div class="text-[11px] text-text-muted">Manual Intervention</div>
+</td>
+<td class="py-3.5 px-4 font-telemetry-data">
+<span class="text-text-secondary">14m 11s</span>
+</td>
+<td class="py-3.5 px-4">
+<div class="font-bold text-text-primary">SW-DIST-FL01</div>
+<div class="font-telemetry-data text-[12px] text-primary">192.168.10.8</div>
+</td>
+<td class="py-3.5 px-4">
+<div class="text-text-primary">Distribution Switch</div>
+<div class="text-[11px] text-text-muted">IDF Lantai 1 Area CS</div>
+</td>
+<td class="py-3.5 px-4">
+<div class="inline-flex items-center gap-1 font-telemetry-badge text-[10px] text-error bg-error-container/40 px-1.5 py-0.5 rounded">
+<span class="material-symbols-outlined text-[14px]">sensors_off</span>
+<span>ICMP 3x Fail</span>
+</div>
+</td>
+<td class="py-3.5 px-4">
+<div class="flex items-center gap-1.5">
+<span class="w-6 h-6 rounded flex items-center justify-center bg-telemetry-cyan/10 text-primary text-[14px] font-bold">TG</span>
+<span class="w-6 h-6 rounded flex items-center justify-center bg-status-online-surface text-status-online text-[14px] font-bold">WA</span>
+<span class="w-6 h-6 rounded flex items-center justify-center bg-primary-fixed/60 text-primary text-[14px] font-bold">EM</span>
+</div>
+</td>
+<td class="py-3.5 px-4 text-right">
+<button class="px-2.5 py-1 bg-surface-card shadow-sm hover:bg-surface-container-low text-text-primary rounded text-body-sm font-semibold transition-all">Detail</button>
+</td>
+</tr>
+<!-- Row 4: Resolved Incident -->
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="py-3.5 px-4">
+<div class="flex items-center gap-2">
+<span class="inline-flex rounded-full h-2 w-2 bg-status-online"></span>
+<span class="font-telemetry-badge text-status-online bg-status-online-surface px-2 py-0.5 rounded">RESOLVED</span>
+</div>
+<div class="font-telemetry-data text-[11px] text-text-muted mt-1">INC-202410-085</div>
+</td>
+<td class="py-3.5 px-4 font-telemetry-data">
+<div class="text-text-primary font-semibold">18 Oct, 03:15:00</div>
+<div class="text-[11px] text-text-muted">Maintenance Window</div>
+</td>
+<td class="py-3.5 px-4 font-telemetry-data">
+<div class="text-text-primary">18 Oct, 03:21:45</div>
+<div class="text-[11px] text-text-muted">Firmware Patch</div>
+</td>
+<td class="py-3.5 px-4 font-telemetry-data">
+<span class="text-text-secondary">06m 45s</span>
+</td>
+<td class="py-3.5 px-4">
+<div class="font-bold text-text-primary">ROUTER-EDGE-01</div>
+<div class="font-telemetry-data text-[12px] text-primary">10.0.0.1</div>
+</td>
+<td class="py-3.5 px-4">
+<div class="text-text-primary">Gateway WAN Router</div>
+<div class="text-[11px] text-text-muted">NOC Server Room</div>
+</td>
+<td class="py-3.5 px-4">
+<div class="inline-flex items-center gap-1 font-telemetry-badge text-[10px] text-primary bg-primary-fixed/60 px-1.5 py-0.5 rounded">
+<span class="material-symbols-outlined text-[14px]">restart_alt</span>
+<span>Planned Reboot</span>
+</div>
+</td>
+<td class="py-3.5 px-4">
+<div class="flex items-center gap-1.5">
+<span class="w-6 h-6 rounded flex items-center justify-center bg-primary-fixed/60 text-primary text-[14px] font-bold">EM</span>
+</div>
+</td>
+<td class="py-3.5 px-4 text-right">
+<button class="px-2.5 py-1 bg-surface-card shadow-sm hover:bg-surface-container-low text-text-primary rounded text-body-sm font-semibold transition-all">Detail</button>
+</td>
+</tr>
+<!-- Row 5: Resolved Incident -->
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="py-3.5 px-4">
+<div class="flex items-center gap-2">
+<span class="inline-flex rounded-full h-2 w-2 bg-status-online"></span>
+<span class="font-telemetry-badge text-status-online bg-status-online-surface px-2 py-0.5 rounded">RESOLVED</span>
+</div>
+<div class="font-telemetry-data text-[11px] text-text-muted mt-1">INC-202410-079</div>
+</td>
+<td class="py-3.5 px-4 font-telemetry-data">
+<div class="text-text-primary font-semibold">12 Oct, 11:05:14</div>
+<div class="text-[11px] text-text-muted">WIB (UTC+7)</div>
+</td>
+<td class="py-3.5 px-4 font-telemetry-data">
+<div class="text-text-primary">12 Oct, 11:14:20</div>
+<div class="text-[11px] text-text-muted">PoE Reset</div>
+</td>
+<td class="py-3.5 px-4 font-telemetry-data">
+<span class="text-text-secondary">09m 06s</span>
+</td>
+<td class="py-3.5 px-4">
+<div class="font-bold text-text-primary">AP-LOBBY-GF</div>
+<div class="font-telemetry-data text-[12px] text-primary">192.168.40.2</div>
+</td>
+<td class="py-3.5 px-4">
+<div class="text-text-primary">Access Point Guest</div>
+<div class="text-[11px] text-text-muted">Main Reception Ground</div>
+</td>
+<td class="py-3.5 px-4">
+<div class="inline-flex items-center gap-1 font-telemetry-badge text-[10px] text-error bg-error-container/40 px-1.5 py-0.5 rounded">
+<span class="material-symbols-outlined text-[14px]">sensors_off</span>
+<span>ICMP 3x Fail</span>
+</div>
+</td>
+<td class="py-3.5 px-4">
+<div class="flex items-center gap-1.5">
+<span class="w-6 h-6 rounded flex items-center justify-center bg-telemetry-cyan/10 text-primary text-[14px] font-bold">TG</span>
+</div>
+</td>
+<td class="py-3.5 px-4 text-right">
+<button class="px-2.5 py-1 bg-surface-card shadow-sm hover:bg-surface-container-low text-text-primary rounded text-body-sm font-semibold transition-all">Detail</button>
+</td>
+</tr>
+<!-- Row 6: Resolved Incident -->
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="py-3.5 px-4">
+<div class="flex items-center gap-2">
+<span class="inline-flex rounded-full h-2 w-2 bg-status-online"></span>
+<span class="font-telemetry-badge text-status-online bg-status-online-surface px-2 py-0.5 rounded">RESOLVED</span>
+</div>
+<div class="font-telemetry-data text-[11px] text-text-muted mt-1">INC-202410-062</div>
+</td>
+<td class="py-3.5 px-4 font-telemetry-data">
+<div class="text-text-primary font-semibold">05 Oct, 16:30:10</div>
+<div class="text-[11px] text-text-muted">WIB (UTC+7)</div>
+</td>
+<td class="py-3.5 px-4 font-telemetry-data">
+<div class="text-text-primary">05 Oct, 16:42:30</div>
+<div class="text-[11px] text-text-muted">Cable Reconnected</div>
+</td>
+<td class="py-3.5 px-4 font-telemetry-data">
+<span class="text-text-secondary">12m 20s</span>
+</td>
+<td class="py-3.5 px-4">
+<div class="font-bold text-text-primary">SW-CORE-FL03</div>
+<div class="font-telemetry-data text-[12px] text-primary">192.168.10.3</div>
+</td>
+<td class="py-3.5 px-4">
+<div class="text-text-primary">Core Switch</div>
+<div class="text-[11px] text-text-muted">MDF Rack Room Lt. 3</div>
+</td>
+<td class="py-3.5 px-4">
+<div class="inline-flex items-center gap-1 font-telemetry-badge text-[10px] text-on-surface-variant bg-surface-container-highest px-1.5 py-0.5 rounded">
+<span class="material-symbols-outlined text-[14px]">lan</span>
+<span>SNMP linkDown Trap</span>
+</div>
+</td>
+<td class="py-3.5 px-4">
+<div class="flex items-center gap-1.5">
+<span class="w-6 h-6 rounded flex items-center justify-center bg-telemetry-cyan/10 text-primary text-[14px] font-bold">TG</span>
+<span class="w-6 h-6 rounded flex items-center justify-center bg-status-online-surface text-status-online text-[14px] font-bold">WA</span>
+<span class="w-6 h-6 rounded flex items-center justify-center bg-primary-fixed/60 text-primary text-[14px] font-bold">EM</span>
+</div>
+</td>
+<td class="py-3.5 px-4 text-right">
+<button class="px-2.5 py-1 bg-surface-card shadow-sm hover:bg-surface-container-low text-text-primary rounded text-body-sm font-semibold transition-all">Detail</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Pagination and Footer Telemetry -->
+<div class="p-space-md bg-surface-card flex flex-col sm:flex-row items-center justify-between gap-space-sm">
+<div class="font-telemetry-data text-body-sm text-text-secondary">
+          Menampilkan <span class="font-bold text-text-primary">6</span> dari 6 insiden terdata (Periode: 30 Hari)
+        </div>
+<div class="flex items-center gap-1">
+<button class="px-3 py-1 rounded bg-surface-canvas text-text-muted hover:text-text-primary font-body-sm disabled:opacity-50" disabled="">Sebelumnya</button>
+<button class="px-3 py-1 rounded bg-primary text-on-primary font-body-sm font-bold">1</button>
+<button class="px-3 py-1 rounded bg-surface-canvas text-text-muted hover:text-text-primary font-body-sm disabled:opacity-50" disabled="">Selanjutnya</button>
+</div>
+</div>
+</div>
+</div>
+<!-- SECTION 2: NOTIFICATION & BOT CHANNELS CONFIGURATION (F-20 s/d F-24) -->
+<div class="hidden flex-col w-full gap-space-xl" id="section-settings">
+<!-- Channel Integration Cards Grid -->
+<div>
+<div class="flex items-center justify-between mb-space-md">
+<div>
+<h2 class="font-headline-md text-headline-md text-text-primary">Kanal Notifikasi Terintegrasi (F-20, F-21, F-22)</h2>
+<p class="font-body-md text-body-md text-text-secondary">Konfigurasi endpoint bot, gateway instant messaging, dan alert webhook untuk eskalasi insiden.</p>
+</div>
+<span class="font-telemetry-badge text-status-online bg-status-online-surface px-2.5 py-1 rounded">3/3 KANAL TERHUBUNG</span>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-space-md">
+<!-- Channel 1: Telegram Bot -->
+<div class="bg-surface-card rounded-xl p-space-lg shadow-sm flex flex-col justify-between">
+<div>
+<div class="flex items-center justify-between">
+<div class="w-10 h-10 rounded-lg bg-telemetry-cyan/15 text-primary flex items-center justify-center font-bold">
+<span class="material-symbols-outlined text-[24px]">send</span>
+</div>
+<div class="flex items-center gap-1.5">
+<span class="inline-flex rounded-full h-2 w-2 bg-status-online"></span>
+<span class="font-telemetry-badge text-[10px] text-status-online font-bold">ONLINE</span>
+</div>
+</div>
+<div class="mt-space-md">
+<h3 class="font-headline-sm text-headline-sm font-bold text-text-primary">Telegram Bot (F-20)</h3>
+<p class="font-telemetry-data text-body-sm text-primary font-semibold mt-0.5">@WifiticsNetAlertBot</p>
+<p class="font-body-sm text-body-sm text-text-secondary mt-2">Pemberitahuan instan tanpa jeda saat transisi status node down/up.</p>
+</div>
+<div class="mt-space-md p-space-sm bg-surface-canvas rounded-lg flex flex-col gap-1">
+<div class="flex justify-between text-body-sm">
+<span class="text-text-muted">Target Grup:</span>
+<span class="font-semibold text-text-primary">IT Ops &amp; Network</span>
+</div>
+<div class="flex justify-between text-body-sm">
+<span class="text-text-muted">Chat ID:</span>
+<span class="font-telemetry-data text-text-secondary">-10098234812</span>
+</div>
+</div>
+</div>
+<div class="mt-space-lg flex items-center justify-between pt-space-sm">
+<button class="px-3 py-1.5 rounded-lg bg-surface-canvas hover:bg-surface-container-low text-text-primary font-body-sm font-semibold transition-all" onclick="triggerChannelTest('Telegram')">Test Ping</button>
+<button class="px-3 py-1.5 rounded-lg text-primary hover:bg-primary-fixed/30 font-body-sm font-semibold transition-all">Konfigurasi</button>
+</div>
+</div>
+<!-- Channel 2: WhatsApp Gateway -->
+<div class="bg-surface-card rounded-xl p-space-lg shadow-sm flex flex-col justify-between">
+<div>
+<div class="flex items-center justify-between">
+<div class="w-10 h-10 rounded-lg bg-status-online-surface text-status-online flex items-center justify-center font-bold">
+<span class="material-symbols-outlined text-[24px]">chat</span>
+</div>
+<div class="flex items-center gap-1.5">
+<span class="inline-flex rounded-full h-2 w-2 bg-status-online"></span>
+<span class="font-telemetry-badge text-[10px] text-status-online font-bold">ACTIVE API</span>
+</div>
+</div>
+<div class="mt-space-md">
+<h3 class="font-headline-sm text-headline-sm font-bold text-text-primary">WhatsApp Gateway (F-21)</h3>
+<p class="font-telemetry-data text-body-sm text-status-online font-semibold mt-0.5">Wifitics Enterprise API v2</p>
+<p class="font-body-sm text-body-sm text-text-secondary mt-2">Dikhususkan untuk eskalasi insiden level kritis (Priority-1) ke Team Lead.</p>
+</div>
+<div class="mt-space-md p-space-sm bg-surface-canvas rounded-lg flex flex-col gap-1">
+<div class="flex justify-between text-body-sm">
+<span class="text-text-muted">Nomor NOC:</span>
+<span class="font-telemetry-data font-semibold text-text-primary">+62 811-9283-001</span>
+</div>
+<div class="flex justify-between text-body-sm">
+<span class="text-text-muted">Quota Harian:</span>
+<span class="font-telemetry-data text-text-secondary">4,810 / 5,000</span>
+</div>
+</div>
+</div>
+<div class="mt-space-lg flex items-center justify-between pt-space-sm">
+<button class="px-3 py-1.5 rounded-lg bg-surface-canvas hover:bg-surface-container-low text-text-primary font-body-sm font-semibold transition-all" onclick="triggerChannelTest('WhatsApp')">Test Broadcast</button>
+<button class="px-3 py-1.5 rounded-lg text-primary hover:bg-primary-fixed/30 font-body-sm font-semibold transition-all">Kelola API</button>
+</div>
+</div>
+<!-- Channel 3: Email SMTP Server -->
+<div class="bg-surface-card rounded-xl p-space-lg shadow-sm flex flex-col justify-between">
+<div>
+<div class="flex items-center justify-between">
+<div class="w-10 h-10 rounded-lg bg-primary-fixed/60 text-primary flex items-center justify-center font-bold">
+<span class="material-symbols-outlined text-[24px]">mail</span>
+</div>
+<div class="flex items-center gap-1.5">
+<span class="inline-flex rounded-full h-2 w-2 bg-status-online"></span>
+<span class="font-telemetry-badge text-[10px] text-status-online font-bold">VERIFIED</span>
+</div>
+</div>
+<div class="mt-space-md">
+<h3 class="font-headline-sm text-headline-sm font-bold text-text-primary">Email Dispatch (F-22)</h3>
+<p class="font-telemetry-data text-body-sm text-primary font-semibold mt-0.5">smtp.noc.wifitics.corp:587</p>
+<p class="font-body-sm text-body-sm text-text-secondary mt-2">Kompilasi ringkasan insiden harian &amp; pemberitahuan ke jajaran manajemen IT.</p>
+</div>
+<div class="mt-space-md p-space-sm bg-surface-canvas rounded-lg flex flex-col gap-1">
+<div class="flex justify-between text-body-sm">
+<span class="text-text-muted">Recipient List:</span>
+<span class="font-semibold text-text-primary">it-noc-managers@...</span>
+</div>
+<div class="flex justify-between text-body-sm">
+<span class="text-text-muted">Enkripsi:</span>
+<span class="font-telemetry-data text-text-secondary">TLS 1.3 Active</span>
+</div>
+</div>
+</div>
+<div class="mt-space-lg flex items-center justify-between pt-space-sm">
+<button class="px-3 py-1.5 rounded-lg bg-surface-canvas hover:bg-surface-container-low text-text-primary font-body-sm font-semibold transition-all" onclick="triggerChannelTest('Email')">Kirim Sampel</button>
+<button class="px-3 py-1.5 rounded-lg text-primary hover:bg-primary-fixed/30 font-body-sm font-semibold transition-all">Edit SMTP</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Notification Rules & Sound Matrix (Bento style 2-columns) -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-space-lg">
+<!-- Left Column: Notification Rules & Escalation Logic (F-23) -->
+<div class="lg:col-span-7 bg-surface-card rounded-xl p-space-xl shadow-sm flex flex-col gap-space-lg">
+<div class="flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-primary text-[26px]">rule_settings</span>
+<div>
+<h3 class="font-headline-sm text-headline-sm font-bold text-text-primary">Aturan Notifikasi &amp; Kebijakan Eskalasi (F-23)</h3>
+<p class="font-body-sm text-body-sm text-text-secondary">Tentukan ambang batas toleransi kegagalan dan eskalasi otomatis berjenjang.</p>
+</div>
+</div>
+<div class="flex flex-col gap-space-md">
+<!-- Rule 1: Working Hours vs Off-Hours -->
+<div class="p-space-md rounded-xl bg-surface-canvas flex flex-col sm:flex-row items-start sm:items-center justify-between gap-space-sm">
+<div>
+<div class="font-headline-sm text-body-md font-bold text-text-primary">Jadwal Operasional (Jam Kerja vs Luar Jam Kerja)</div>
+<div class="font-body-sm text-body-sm text-text-secondary mt-0.5">Senin - Jumat (08:00 - 18:00 WIB) prioritas penuh; luar jam kerja kirim hanya ke On-Call Admin.</div>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox"/>
+<div class="w-11 h-6 bg-border-strong peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+</label>
+</div>
+<!-- Rule 2: Detection Failure Threshold -->
+<div class="p-space-md rounded-xl bg-surface-canvas flex flex-col gap-space-xs">
+<div class="flex items-center justify-between">
+<div class="font-headline-sm text-body-md font-bold text-text-primary">Ambang Batas Kegagalan Ping (Ping Failure Threshold)</div>
+<span class="font-telemetry-badge text-primary bg-primary-fixed/50 px-2 py-0.5 rounded font-bold">Default: 3x Berturut</span>
+</div>
+<p class="font-body-sm text-body-sm text-text-secondary">Jumlah kegagalan respon ICMP sebelum memicu status OFFLINE dan mendispatch notifikasi bot.</p>
+<div class="grid grid-cols-3 gap-space-sm mt-space-xs">
+<label class="cursor-pointer border-0 rounded-lg p-2.5 bg-surface-card flex items-center justify-between hover:bg-surface-container-low transition-all">
+<div class="flex items-center gap-2">
+<input class="accent-primary" name="threshold" type="radio" value="2"/>
+<span class="font-body-sm font-semibold">2x Gagal (Agresif)</span>
+</div>
+</label>
+<label class="cursor-pointer border-0 rounded-lg p-2.5 bg-primary/10 flex items-center justify-between transition-all">
+<div class="flex items-center gap-2">
+<input checked="" class="accent-primary" name="threshold" type="radio" value="3"/>
+<span class="font-body-sm font-bold text-primary">3x Gagal (Standar)</span>
+</div>
+</label>
+<label class="cursor-pointer border-0 rounded-lg p-2.5 bg-surface-card flex items-center justify-between hover:bg-surface-container-low transition-all">
+<div class="flex items-center gap-2">
+<input class="accent-primary" name="threshold" type="radio" value="5"/>
+<span class="font-body-sm font-semibold">5x Gagal (Toleran)</span>
+</div>
+</label>
+</div>
+</div>
+<!-- Rule 3: Auto-Escalation > 15 Minutes -->
+<div class="p-space-md rounded-xl bg-surface-canvas flex flex-col gap-space-xs">
+<div class="flex items-center justify-between">
+<div class="font-headline-sm text-body-md font-bold text-text-primary">Eskalasi Insiden Tidak Pulih &gt; 15 Menit (F-23)</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox"/>
+<div class="w-11 h-6 bg-border-strong peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-status-offline"></div>
+</label>
+</div>
+<p class="font-body-sm text-body-sm text-text-secondary">Jika perangkat berstatus OFFLINE selama 15 menit berturut-turut tanpa perbaikan, sistem akan otomatis mengirim broadcast darurat via WhatsApp ke IT Operation Manager dan menyalakan alarm visual di Command Center.</p>
+<div class="mt-2 flex items-center gap-2 text-body-sm text-text-primary">
+<span class="material-symbols-outlined text-status-unreachable text-[18px]">emergency_home</span>
+<span class="font-telemetry-data text-body-sm font-semibold">Eskalasi Tujuan: Hendra Kurniawan (Lead NOC) • +62 812-4040-9999</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Column: Browser Sound Alerts (F-24) & NOC Room Audio -->
+<div class="lg:col-span-5 bg-surface-card rounded-xl p-space-xl shadow-sm flex flex-col justify-between">
+<div>
+<div class="flex items-center gap-space-sm mb-space-md">
+<span class="material-symbols-outlined text-primary text-[26px]">volume_up</span>
+<div>
+<h3 class="font-headline-sm text-headline-sm font-bold text-text-primary">Notifikasi Suara di Browser (F-24)</h3>
+<p class="font-body-sm text-body-sm text-text-secondary">Konfigurasi audio alert pada browser dashboard NOC.</p>
+</div>
+</div>
+<!-- Master Sound Toggle -->
+<div class="p-space-md rounded-xl bg-primary-fixed/30 flex items-center justify-between mb-space-md">
+<div>
+<div class="font-headline-sm text-body-md font-bold text-on-surface">Audio Alert Dashboard</div>
+<div class="font-body-sm text-body-sm text-text-secondary">Bunyikan nada sirine saat ada perangkat down.</div>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" id="sound-master-toggle" type="checkbox"/>
+<div class="w-11 h-6 bg-border-strong peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+</label>
+</div>
+<!-- Sound Profiles Selection -->
+<div class="flex flex-col gap-space-sm">
+<span class="font-label-caps text-label-caps uppercase text-text-muted">Pilihan Karakter Audio:</span>
+<div class="flex items-center justify-between p-2.5 rounded-lg bg-surface-canvas hover:bg-surface-container-low transition-colors">
+<div class="flex items-center gap-2">
+<input checked="" class="accent-primary" name="sound-theme" type="radio"/>
+<div>
+<div class="text-body-sm font-bold text-text-primary">NOC Tactical Siren (High Urgency)</div>
+<div class="text-[11px] text-text-muted">Frekuensi tinggi ganda untuk kegagalan Switch Core &amp; Router</div>
+</div>
+</div>
+<button class="p-1.5 rounded bg-surface-card hover:bg-primary hover:text-on-primary transition-all text-text-secondary" onclick="previewAudio('tactical')">
+<span class="material-symbols-outlined text-[18px]">play_arrow</span>
+</button>
+</div>
+<div class="flex items-center justify-between p-2.5 rounded-lg bg-surface-canvas hover:bg-surface-container-low transition-colors">
+<div class="flex items-center gap-2">
+<input class="accent-primary" name="sound-theme" type="radio"/>
+<div>
+<div class="text-body-sm font-bold text-text-primary">Subtle Chime Ping (Low Urgency)</div>
+<div class="text-[11px] text-text-muted">Nada harmoni lembut untuk perangkat non-kritis (AP Tamu)</div>
+</div>
+</div>
+<button class="p-1.5 rounded bg-surface-card hover:bg-primary hover:text-on-primary transition-all text-text-secondary" onclick="previewAudio('chime')">
+<span class="material-symbols-outlined text-[18px]">play_arrow</span>
+</button>
+</div>
+<div class="flex items-center justify-between p-2.5 rounded-lg bg-surface-canvas hover:bg-surface-container-low transition-colors">
+<div class="flex items-center gap-2">
+<input class="accent-primary" name="sound-theme" type="radio"/>
+<div>
+<div class="text-body-sm font-bold text-text-primary">Recovery Pulse (Device Back Up)</div>
+<div class="text-[11px] text-text-muted">Dua nada ascending ketika node berhasil pulih online</div>
+</div>
+</div>
+<button class="p-1.5 rounded bg-surface-card hover:bg-primary hover:text-on-primary transition-all text-text-secondary" onclick="previewAudio('recovery')">
+<span class="material-symbols-outlined text-[18px]">play_arrow</span>
+</button>
+</div>
+</div>
+</div>
+<div class="mt-space-lg pt-space-md flex items-center justify-between">
+<span class="font-telemetry-data text-body-sm text-text-muted">Volume: 85% • Web Audio API Ready</span>
+<button class="px-4 py-2 bg-primary hover:bg-primary-container text-on-primary rounded-lg font-body-sm font-semibold transition-all shadow-md" onclick="saveNotificationSettings()">Simpan Perubahan</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Interactive Feedback Toast Container -->
+<div class="fixed bottom-6 right-6 z-50 transform translate-y-24 opacity-0 transition-all duration-300 pointer-events-none" id="toast-notification">
+<div class="bg-inverse-surface text-inverse-on-surface px-4 py-3 rounded-xl shadow-xl flex items-center gap-space-sm font-body-sm">
+<span class="material-symbols-outlined text-telemetry-cyan text-[20px]" id="toast-icon">info</span>
+<span class="font-medium" id="toast-message">Tindakan berhasil dieksekusi.</span>
+</div>
+</div>
+</div>
+<script>
+  // Tab Switching Functionality
+  function switchTab(target) {
+    const sectionIncidents = document.getElementById('section-incidents');
+    const sectionSettings = document.getElementById('section-settings');
+    const btnIncidents = document.getElementById('tab-btn-incidents');
+    const btnSettings = document.getElementById('tab-btn-settings');
+
+    if (target === 'incidents') {
+      sectionIncidents.classList.remove('hidden');
+      sectionIncidents.classList.add('flex');
+      sectionSettings.classList.add('hidden');
+      sectionSettings.classList.remove('flex');
+
+      btnIncidents.className = 'flex-1 flex items-center justify-center gap-space-xs py-2 px-3 rounded-lg bg-primary-container text-on-primary font-headline-sm text-body-sm font-semibold transition-all shadow-sm';
+      btnSettings.className = 'flex-1 flex items-center justify-center gap-space-xs py-2 px-3 rounded-lg text-text-secondary hover:text-on-surface hover:bg-surface-container-low font-headline-sm text-body-sm font-semibold transition-all';
+    } else {
+      sectionIncidents.classList.add('hidden');
+      sectionIncidents.classList.remove('flex');
+      sectionSettings.classList.remove('hidden');
+      sectionSettings.classList.add('flex');
+
+      btnSettings.className = 'flex-1 flex items-center justify-center gap-space-xs py-2 px-3 rounded-lg bg-primary-container text-on-primary font-headline-sm text-body-sm font-semibold transition-all shadow-sm';
+      btnIncidents.className = 'flex-1 flex items-center justify-center gap-space-xs py-2 px-3 rounded-lg text-text-secondary hover:text-on-surface hover:bg-surface-container-low font-headline-sm text-body-sm font-semibold transition-all';
+    }
+  }
+
+  // Toast Helper
+  function showToast(msg, icon = 'check_circle') {
+    const toast = document.getElementById('toast-notification');
+    const toastMsg = document.getElementById('toast-message');
+    const toastIcon = document.getElementById('toast-icon');
+
+    toastMsg.textContent = msg;
+    toastIcon.textContent = icon;
+    toast.classList.remove('translate-y-24', 'opacity-0');
+    toast.classList.add('translate-y-0', 'opacity-100');
+
+    setTimeout(() => {
+      toast.classList.remove('translate-y-0', 'opacity-100');
+      toast.classList.add('translate-y-24', 'opacity-0');
+    }, 3200);
+  }
+
+  // Test Notifications
+  function triggerChannelTest(channel) {
+    showToast(`Test sinyal berhasil dikirim ke kanal ${channel} via WebSocket`, 'send');
+  }
+
+  // Preview Web Audio Generator
+  function previewAudio(type) {
+    try {
+      const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+      const osc = audioCtx.createOscillator();
+      const gain = audioCtx.createGain();
+
+      osc.connect(gain);
+      gain.connect(audioCtx.destination);
+
+      if (type === 'tactical') {
+        osc.type = 'sawtooth';
+        osc.frequency.setValueAtTime(880, audioCtx.currentTime);
+        osc.frequency.exponentialRampToValueAtTime(440, audioCtx.currentTime + 0.3);
+        gain.gain.setValueAtTime(0.15, audioCtx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.3);
+        osc.start();
+        osc.stop(audioCtx.currentTime + 0.3);
+      } else if (type === 'chime') {
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(587.33, audioCtx.currentTime);
+        osc.frequency.exponentialRampToValueAtTime(880, audioCtx.currentTime + 0.25);
+        gain.gain.setValueAtTime(0.1, audioCtx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.25);
+        osc.start();
+        osc.stop(audioCtx.currentTime + 0.25);
+      } else {
+        osc.type = 'triangle';
+        osc.frequency.setValueAtTime(440, audioCtx.currentTime);
+        osc.frequency.exponentialRampToValueAtTime(659.25, audioCtx.currentTime + 0.2);
+        gain.gain.setValueAtTime(0.12, audioCtx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.25);
+        osc.start();
+        osc.stop(audioCtx.currentTime + 0.25);
+      }
+      showToast(`Memutar pratinjau audio alert: ${type.toUpperCase()}`, 'volume_up');
+    } catch (e) {
+      showToast('Audio API dibatasi browser, klik halaman terlebih dahulu.', 'warning');
+    }
+  }
+
+  function saveNotificationSettings() {
+    showToast('Konfigurasi notifikasi & aturan eskalasi (F-23) disimpan.', 'save');
+  }
+
+  // Event Listeners for Exports & Quick Actions
+  document.getElementById('btn-export-csv').addEventListener('click', () => {
+    showToast('Menyiapkan file CSV Log Insiden Wifitics...', 'download');
+  });
+
+  document.getElementById('btn-export-pdf').addEventListener('click', () => {
+    showToast('Mengenerate Laporan SLA Bulanan Resmi (PDF F-32)...', 'picture_as_pdf');
+  });
+
+  document.getElementById('btn-test-dispatch').addEventListener('click', () => {
+    showToast('Mengirim alarm simulasi pemicu ICMP fail ke Telegram & WhatsApp!', 'bolt');
+  });
+
+  // Incident Filtering Logic
+  const incidentSearch = document.getElementById('incident-search');
+  const statusFilter = document.getElementById('status-filter');
+  const tbody = document.getElementById('incident-tbody');
+
+  function filterIncidents() {
+    const query = (incidentSearch.value || '').toLowerCase();
+    const statusVal = statusFilter.value;
+    const rows = tbody.getElementsByTagName('tr');
+
+    for (let r of rows) {
+      const text = r.textContent.toLowerCase();
+      const isOngoing = text.includes('ongoing');
+      let statusMatches = true;
+
+      if (statusVal === 'ongoing') statusMatches = isOngoing;
+      if (statusVal === 'resolved') statusMatches = !isOngoing;
+
+      const textMatches = text.includes(query);
+      if (statusMatches && textMatches) {
+        r.style.display = '';
+      } else {
+        r.style.display = 'none';
+      }
+    }
+  }
+
+  incidentSearch.addEventListener('input', filterIncidents);
+  statusFilter.addEventListener('change', filterIncidents);
+
+  // Range button chip toggling
+  document.querySelectorAll('.filter-range-btn').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      document.querySelectorAll('.filter-range-btn').forEach(b => {
+        b.classList.remove('bg-primary-fixed', 'text-primary', 'font-bold', 'shadow-xs');
+        b.classList.add('text-text-secondary');
+      });
+      btn.classList.remove('text-text-secondary');
+      btn.classList.add('bg-primary-fixed', 'text-primary', 'font-bold', 'shadow-xs');
+      showToast(`Filter rentang waktu diterapkan: ${btn.textContent.trim()}`, 'calendar_today');
+    });
+  });
+</script></main></div></body></html>
